@@ -46,7 +46,7 @@ let ydbody = $.getdata('ydbody')
   .finally(() => $.done())
 //ck
 function ydck() {
-   if ($request.url.indexOf("toGetReward.json") > -1) {
+   if ($request.url.indexOf("complete") > -1) {
     $.setdata($request.url,'ydurl')
     $.log(ydurl)
 $.setdata(JSON.stringify($request.headers),'ydhd')
