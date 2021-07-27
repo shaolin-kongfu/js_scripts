@@ -46,7 +46,7 @@ let xsgbody = $.getdata('xsgbody')
   .finally(() => $.done())
 //ck
 function xsgck() {
-   if ($request.url.indexOf("CommonReward") > -1) {
+   if ($request.url.indexOf("toGetReward.json") > -1) {
     $.setdata($request.url,'xsgurl')
     $.log(xsgurl)
 $.setdata(JSON.stringify($request.headers),'xsghd')
