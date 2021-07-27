@@ -61,7 +61,7 @@ $.log(xsgbody)
 function xsgqd(timeout = 0) {
   return new Promise((resolve) => {
 let url = {
-        url : 'http://ant.xunsl.com/v5/CommonReward/toGetReward.json',
+        url : 'https://ant.xunsl.com/v5/CommonReward/toGetReward.json',
         headers : JSON.parse($.getdata('xsghd')),
         body : xsgbody,}//xsgbody,}
       $.post(url, async (err, resp, data) => {
