@@ -23,7 +23,7 @@ Task地址  :  https://raw.githubusercontent.com/xl2101200/-/main/Tom_task.josn
 
 [rewrite_local]
 #薪时光
-http://ant.xunsl.com/v5/CommonReward/toGetReward.json url script-request-body https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jckd.js
+https://ant.xunsl.com/v5/nameless/bannerstatus.json url script-request-body https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jckd.js
 
 [MITM]
 hostname = ant.xunsl.com
@@ -46,7 +46,7 @@ let xsgbody = $.getdata('xsgbody')
   .finally(() => $.done())
 //ck
 function xsgck() {
-   if ($request.url.indexOf("toGetReward.json") > -1) {
+   if ($request.url.indexOf("bannerstatus") > -1) {
     $.setdata($request.url,'xsgurl')
     $.log(xsgurl)
 $.setdata(JSON.stringify($request.headers),'xsghd')
@@ -61,7 +61,7 @@ $.log(xsgbody)
 function xsgqd(timeout = 0) {
   return new Promise((resolve) => {
 let url = {
-        url : 'https://ant.xunsl.com/v5/CommonReward/toGetReward.json',
+        url : 'https://ant.xunsl.com/v5/nameless/bannerstatus.json',
         headers : JSON.parse($.getdata('xsghd')),
         body : xsgbody,}//xsgbody,}
       $.post(url, async (err, resp, data) => {
@@ -69,9 +69,9 @@ let url = {
 
     const result = JSON.parse(data)
         if(result.success == true){
-        console.log('\n签到成功，获得：'+result.score)
+        console.log('\成功，获得：'+result.message)
 }else{
-        console.log('\n今日已签到')
+        console.log('\失败')
 }
         } catch (e) {
         } finally {
