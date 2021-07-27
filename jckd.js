@@ -19,11 +19,11 @@ Task地址  :  https://raw.githubusercontent.com/xl2101200/-/main/Tom_task.josn
 圈X配置如下，其他软件自行测试
 [task_local]
 #薪时光
-0 10 * * * https://raw.githubusercontent.com/xl2101200/-/main/xsg.js, tag=薪时光, img-url=https://raw.githubusercontent.com/sngxpro/QuanX/master/icons/tom.png, enabled=true
+0 10 * * * https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jckd.js, tag=薪时光, img-url=https://raw.githubusercontent.com/sngxpro/QuanX/master/icons/tom.png, enabled=true
 
 [rewrite_local]
 #薪时光
-http://ant.xunsl.com/v5/CommonReward/toGetReward.json url script-request-body https://raw.githubusercontent.com/xl2101200/-/main/xsg.js
+http://ant.xunsl.com/v5/CommonReward/toGetReward.json url script-request-body https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jckd.js
 
 [MITM]
 hostname = ant.xunsl.com
