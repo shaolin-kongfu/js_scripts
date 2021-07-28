@@ -6,11 +6,7 @@ status = (status = ($.getval("zsbstatus") || "1") ) > 1 ? `${status}` : ""; // �
 let jcwzurl = $.getdata('jcwzurl')
 let wzbody= $.isNode() ? (process.env.wzbody ? process.env.wzbody : "") : ($.getdata('wzbody') ? $.getdata('wzbody') : "")
 let wzbodyArr = []
-if (wzbody.match("&")) {
-    wzbodyArr = wzbody.split("&")
-} else {
-    wzbodyArr.push($.getdata('wzbody'))
-}
+
 const wzheader = {
     'device-platform': 'android',
     'Content-Type': 'application/x-www-form-urlencoded',
@@ -23,12 +19,16 @@ const wzheader = {
             $.msg($.name, '【提示】请阅读文章等待转圈完成后获取body，再跑一次脚本', '测试', {
                 "open-url": ""
             });
-            
+
             return;
         }
         if (typeof $request !== "undefined") {
                 await getwzbody()
-                
+                if (wzbody.match("&")) {
+                    wzbodyArr = wzbody.split("&")
+                } else {
+                    wzbodyArr.push($.getdata('wzbody'))
+                }
             }
         console.log(`共${wzbodyArr.length}个阅读body`)
 	        for (let k = 0; k < wzbodyArr.length; k++) {
