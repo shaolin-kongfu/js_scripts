@@ -1,6 +1,8 @@
 const $ = new Env("晶彩看点");
 const notify = $.isNode() ? require('./sendNotify') : '';
 message = ""
+let status;
+status = (status = ($.getval("zsbstatus") || "1") ) > 1 ? `${status}` : ""; // 账号扩展字符
 let jcwzurl = $.getdata('jcwzurl')
 let wzbody= $.isNode() ? (process.env.wzbody ? process.env.wzbody : "") : ($.getdata('wzbody') ? $.getdata('wzbody') : "")
 let wzbodyArr = []
@@ -21,15 +23,16 @@ const wzheader = {
             $.msg($.name, '【提示】请阅读文章等待转圈完成后获取body，再跑一次脚本', '测试', {
                 "open-url": ""
             });
-            if (typeof $request !== "undefined") {
+
+            return;
+        }
+        if (typeof $request !== "undefined") {
                 await getwzbody()
             }
             else {
+
                 wzbodyArr.push($.getdata('wzbody'))
             }
-            return;
-        }
-
         console.log(`共${wzbodyArr.length}个阅读body`)
 	        for (let k = 0; k < wzbodyArr.length; k++) {
                 $.message = ""
@@ -59,9 +62,6 @@ const wzheader = {
 
 function getwzbody() {
    if ($request.url.indexOf("complete") > -1) {
-    $.setdata($request.url,'jcwzurl')
-    $.log(jcwzurl)
-
     $.setdata($request.body,'wzbody')
     $.log(wzbody)
     $.msg($.name,"","晶彩看点获取wzbody成功！")
