@@ -9,9 +9,12 @@ if (wzbody.match("&")) {
 } else {
     wzbodyArr = [wzbody]
 }
-let wzheader = $.getdata('wzheader')
-
-
+const wzheader = {
+    'device-platform': 'android',
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'Content-Length': '1201',
+    'Host': 'ant.xunsl.com'
+}
 !(async () => {
 
     if (!wzbodyArr[0]) {
@@ -26,23 +29,6 @@ let wzheader = $.getdata('wzheader')
             }
             return;
         }
-    if (!wzheader) {
-     wzheader={
-    'device-platform': 'android',
-    'Content-Type': 'application/x-www-form-urlencoded',
-    'Content-Length': '1201',
-    'Host': 'ant.xunsl.com'
-}
-        console.log(`共${wzbodyArr.length}个阅读body`)
-	        for (let k = 0; k < wzbodyArr.length; k++) {
-            $.message = ""
-            wzbody1 = wzbodyArr[k];
-            console.log(`${wzbody1}`)
-            console.log(`--------第 ${k+1} 次阅读任务执行中--------\n`)
-            await wzjl()
-            await $.wait(20000);
-            console.log("\n\n")
-    }}else {
 
         console.log(`共${wzbodyArr.length}个阅读body`)
 	        for (let k = 0; k < wzbodyArr.length; k++) {
@@ -55,7 +41,7 @@ let wzheader = $.getdata('wzheader')
                 console.log("\n\n")
             }
 
-    }
+
 
         date = new Date()
         if ($.isNode() &&date.getHours() == 11 && date.getMinutes()<10) {
@@ -75,8 +61,7 @@ function getwzbody() {
    if ($request.url.indexOf("complete") > -1) {
     $.setdata($request.url,'jcwzurl')
     $.log(jcwzurl)
-    $.setdata(JSON.stringify($request.headers),'wzheader')
-    $.log(wzheader)
+
     $.setdata($request.body,'wzbody')
     $.log(wzbody)
     $.msg($.name,"","晶彩看点获取wzbody成功！")
