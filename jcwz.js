@@ -9,7 +9,7 @@ let wzbodyArr = []
 if (wzbody.match("&")) {
     wzbodyArr = wzbody.split("&")
 } else {
-    wzbodyArr = [wzbody]
+    wzbodyArr.push($.getdata('wzbody'))
 }
 const wzheader = {
     'device-platform': 'android',
@@ -28,7 +28,7 @@ const wzheader = {
         }
         if (typeof $request !== "undefined") {
                 await getwzbody()
-                wzbodyArr.push($.getdata('wzbody'))
+                
             }
         console.log(`共${wzbodyArr.length}个阅读body`)
 	        for (let k = 0; k < wzbodyArr.length; k++) {
