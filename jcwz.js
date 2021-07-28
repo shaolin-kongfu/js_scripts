@@ -8,9 +8,7 @@ let wzbody= $.isNode() ? (process.env.wzbody ? process.env.wzbody : "") : ($.get
 let wzbodyArr = []
 if (wzbody.match("&")) {
     wzbodyArr = wzbody.split("&")
-} else {
-    wzbodyArr = [wzbody]
-}
+} 
 const wzheader = {
     'device-platform': 'android',
     'Content-Type': 'application/x-www-form-urlencoded',
