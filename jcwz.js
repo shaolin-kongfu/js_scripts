@@ -48,7 +48,7 @@ const wzheader = {
 	        for (let k = 0; k < wzbodyArr.length; k++) {
                 $.message = ""
                 wzbody1 = wzbodyArr[k];
-                console.log(`${wzbody1}`)
+//                 console.log(`${wzbody1}`)
                 console.log(`--------第 ${k + 1} 次阅读任务执行中--------\n`)
                 await wzjl()
                 await $.wait(20000);
