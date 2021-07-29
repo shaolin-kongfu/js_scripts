@@ -93,20 +93,21 @@ const rewardheader={
                     await lookstart()
                     await $.wait(20000);
                 }
-            for (let k = 0; k < rewardbodyArr.length; k++) {
-                $.message = ""
-                rewardbody1 = rewardbodyArr[k];
-                await reward()
-                await $.wait(20000);
-            }
+                if (lookbodyArr.length === rewardbodyArr.length) {
+                    rewardbody1 = rewardbodyArr[k];
+                    await reward()
+                }else{
+                    console.log(`看看赚阅读数与奖励数不同，请注意获取奖励body\n`)
+                    $.done()
+                }
                 console.log("\n\n")
             }
 
 
 
         date = new Date()
-        if ($.isNode() &&date.getHours() == 11 && date.getMinutes()<10) {
-            if (message.length != 0) {
+        if ($.isNode() &&date.getHours() === 11 && date.getMinutes()<10) {
+            if (message.length !== 0) {
                    await notify.sendNotify("晶彩看点看看赚", `${message}\n\n shaolin-kongfu`);
             }
         } else {
@@ -124,7 +125,7 @@ function getlookbody() {
         if (lookbody) {
             if (lookbody.indexOf(bodyVal) > -1) {
                 $.log("此看看赚请求已存在，本次跳过")
-            } else if (lookbody.indexOf(bodyVal) == -1) {
+            } else if (lookbody.indexOf(bodyVal) === -1) {
                 lookbodys = lookbody + "&" + bodyVal;
                 $.setdata(lookbodys, 'lookbody');
                 $.log(`${$.name}获取看看赚: 成功, lookbodys: ${bodyVal}`);
@@ -146,7 +147,7 @@ function getrewardbody() {
         if (rewardbody) {
             if (rewardbody.indexOf(bodyVal) > -1) {
                 $.log("此看看赚奖励请求已存在，本次跳过")
-            } else if (rewardbody.indexOf(bodyVal) == -1) {
+            } else if (rewardbody.indexOf(bodyVal) === -1) {
                 rewardbodys = rewardbody + "&" + bodyVal;
                 $.setdata(rewardbodys, 'rewardbody');
                 $.log(`${$.name}获取看看赚奖励: 成功, rewardbodys: ${bodyVal}`);
@@ -172,7 +173,7 @@ function lookstart(timeout = 0) {
             try {
 
                 const result = JSON.parse(data)
-                if(result.success == true ){
+                if(result.success === true ){
                     console.log('\n浏览看看赚文章成功')
                 }else{
                     console.log('\n浏览看看赚文章失败')
