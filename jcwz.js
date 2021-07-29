@@ -14,7 +14,7 @@ const wzheader = {
     'Host': 'ant.xunsl.com'
 }
  if (typeof $request !== "undefined") {
-     await getwzbody()
+     getwzbody()
      $.done()
  }
  if (!wzbody) {
