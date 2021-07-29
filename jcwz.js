@@ -6,7 +6,7 @@ message = ""
 
 let wzbody= $.isNode() ? (process.env.wzbody ? process.env.wzbody : "") : ($.getdata('wzbody') ? $.getdata('wzbody') : "")
 let wzbodyArr = []
-let wzbodys=""
+let wzbodys = ""
 const wzheader = {
     'device-platform': 'android',
     'Content-Type': 'application/x-www-form-urlencoded',
@@ -26,12 +26,12 @@ const wzheader = {
  else if (wzbody.indexOf("&") == -1) {
             wzbodyArr.push(wzbody)
  }
- else if (process.env.wzbody && process.env.wzbody.indexOf('&') > -1) {
-            wzbodys = process.env.wzbody.split('&');
-            console.log(`您选择的是用"&"隔开\n`)
- }
  else if (wzbody.indexOf("&") > -1) {
             wzbodys = wzbody.split("&")
+ }
+ else if (process.env.wzbody && process.env.wzbody.indexOf('&') > -1) {
+            wzbodyArr = process.env.wzbody.split('&');
+            console.log(`您选择的是用"&"隔开\n`)
  }
  else {
             wzbodys = [process.env.wzbody]
