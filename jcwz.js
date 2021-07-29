@@ -6,7 +6,7 @@ message = ""
 
 let wzbody= $.isNode() ? (process.env.wzbody ? process.env.wzbody : "") : ($.getdata('wzbody') ? $.getdata('wzbody') : "")
 let wzbodyArr = []
-
+let wzbodys=""
 const wzheader = {
     'device-platform': 'android',
     'Content-Type': 'application/x-www-form-urlencoded',
