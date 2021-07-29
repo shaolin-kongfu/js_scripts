@@ -95,7 +95,7 @@ const rewardheader={
                 }
             for (let k = 0; k < rewardbodyArr.length; k++) {
                 $.message = ""
-                lookbody1 = rewardbodyArr[k];
+                rewardbody1 = rewardbodyArr[k];
                 await reward()
                 await $.wait(20000);
             }
