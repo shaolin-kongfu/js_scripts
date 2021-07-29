@@ -22,6 +22,7 @@ let jclookArr=[];
 let lookscore = 0;
 let jclookbody = [];
 let jclookbodys = $.getdata('jc_look')
+
 if (isGetCookie = typeof $request !==`undefined`) {
    GetCookie();
    $.done()
@@ -30,13 +31,13 @@ if (!jclookbodys) {
     $.msg($.name, "您未获取看看赚请求，请先获取");
 }
 else if (jclookbody.indexOf("&") == -1) {
-            jclookbodyArr.push(jclookbody)
+            jclookArr.push(jclookbody)
  }
  else if (jclookbody.indexOf("&") > -1) {
             jclookbodys = jclookbody.split("&")
  }
  else if (process.env.jclookbody && process.env.jclookbody.indexOf('&') > -1) {
-            jclookbodyArr = process.env.jclookbody.split('&');
+            jclookArr = process.env.jclookbody.split('&');
             console.log(`您选择的是用"&"隔开\n`)
  }
  else {
@@ -69,7 +70,7 @@ console.log(`\n === 脚本执行 ${bjTime} ===\n`);
             await lookStart();
         }
         console.log(`-------------------------\n\n晶彩看点共完成${$.index}次任务，共计获得${lookscore}个青豆，看看赚任务全部结束`);
-        $.msg("晶彩看点看看赚", '共完成' + (lookArr.length + startArr.length) + '次任务，共计获得' + parseInt(lookscore + gainscore) + '个青豆');
+        $.msg("晶彩看点看看赚", '共完成' + (jclookArr.length) + '次任务，共计获得' + parseInt(lookscore + gainscore) + '个青豆');
     }
     if ($.isNode()) {
         //await notify.sendNotify($.name，`共完成${$.index}次任务，\n共计获得${gainscore}个青豆`
