@@ -70,7 +70,7 @@ console.log(`\n === 脚本执行 ${bjTime} ===\n`);
             await lookStart();
         }
         console.log(`-------------------------\n\n晶彩看点共完成${$.index}次任务，共计获得${lookscore}个青豆，看看赚任务全部结束`);
-        $.msg("晶彩看点看看赚", '共完成' + (jclookArr.length) + '次任务，共计获得' + parseInt(lookscore + gainscore) + '个青豆');
+        $.msg("晶彩看点看看赚", '共完成' + (jclookArr.length) + '次任务，共计获得' + parseInt(lookscore) + '个青豆');
     }
     if ($.isNode()) {
         //await notify.sendNotify($.name，`共完成${$.index}次任务，\n共计获得${gainscore}个青豆`
