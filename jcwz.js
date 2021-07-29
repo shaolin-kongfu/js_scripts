@@ -1,9 +1,9 @@
 const $ = new Env("晶彩看点");
 const notify = $.isNode() ? require('./sendNotify') : '';
 message = ""
-let status;
-status = (status = ($.getval("zsbstatus") || "1") ) > 1 ? `${status}` : ""; // 账号扩展字符
-let jcwzurl = $.getdata('jcwzurl')
+// let status;
+// status = (status = ($.getval("zsbstatus") || "1") ) > 1 ? `${status}` : ""; // 账号扩展字符
+
 let wzbody= $.isNode() ? (process.env.wzbody ? process.env.wzbody : "") : ($.getdata('wzbody') ? $.getdata('wzbody') : "")
 let wzbodyArr = []
 
@@ -13,23 +13,37 @@ const wzheader = {
     'Content-Length': '1201',
     'Host': 'ant.xunsl.com'
 }
+ if (typeof $request !== "undefined") {
+     await getwzbody()
+     $.done()
+ }
+ if (!wzbody) {
+     $.msg($.name, '【提示】请阅读文章等待转圈完成后获取body，再跑一次脚本', '测试', {
+         "open-url": ""
+     });
+     $.done()
+ }
+ else if (wzbody.indexOf("&") == -1) {
+            wzbodyArr.push(wzbody)
+ }
+ else if (process.env.wzbody && process.env.wzbody.indexOf('&') > -1) {
+            wzbodys = process.env.wzbody.split('&');
+            console.log(`您选择的是用"&"隔开\n`)
+ }
+ else if (wzbody.indexOf("&") > -1) {
+            wzbodys = wzbody.split("&")
+ }
+ else {
+            wzbodys = [process.env.wzbody]
+ };
+    Object.keys(wzbodys).forEach((item) => {
+        if (wzbodys[item]) {
+            wzbodyArr.push(wzbodys[item])
+        }
+    })
+
 !(async () => {
 
-    if (!wzbodyArr[0]) {
-            $.msg($.name, '【提示】请阅读文章等待转圈完成后获取body，再跑一次脚本', '测试', {
-                "open-url": ""
-            });
-
-            return;
-        }
-        if (typeof $request !== "undefined") {
-                await getwzbody()
-                if (wzbody.match("&")) {
-                    wzbodyArr = wzbody.split("&")
-                } else {
-                    wzbodyArr.push($.getdata('wzbody'))
-                }
-            }
         console.log(`共${wzbodyArr.length}个阅读body`)
 	        for (let k = 0; k < wzbodyArr.length; k++) {
                 $.message = ""
@@ -58,11 +72,25 @@ const wzheader = {
 
 
 function getwzbody() {
-   if ($request.url.indexOf("complete") > -1) {
-    $.setdata($request.body,'wzbody')
-    $.log(wzbody)
-    $.msg($.name,"","晶彩看点获取wzbody成功！")
+    if ($request.url.match(/\/article\/complete/)) {
+          bodyVal = $request.body
+        if (wzbody) {
+            if (wzbody.indexOf(bodyVal) > -1) {
+                $.log("此阅读请求已存在，本次跳过")
+            } else if (wzbody.indexOf(bodyVal) == -1) {
+                wzbodys = wzbody + "&" + bodyVal;
+                $.setdata(wzbodys, 'wzbody');
+                $.log(`${$.name}获取阅读: 成功, wzbodys: ${bodyVal}`);
+                bodys = wzbodys.split("&")
+                $.msg($.name, "获取第" + bodys.length + "个阅读请求: 成功🎉", ``)
+            }
+        } else {
+            $.setdata(bodyVal, 'wzbody');
+            $.log(`${$.name}获取阅读: 成功, wzbodys: ${bodyVal}`);
+            $.msg($.name, `获取第一个阅读请求: 成功🎉`, ``)
+        }
     }
+
   }
 //阅读文章奖励
 function wzjl(timeout = 0) {
