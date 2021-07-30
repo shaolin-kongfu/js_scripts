@@ -84,7 +84,7 @@ const rewardheader={
 !(async () => {
 
         console.log(`共${lookbodyArr.length}个看看赚body`)
-	        for (let k = 0; k < lookbodyArr.length; k++) {
+	        for (let k = 4; k < lookbodyArr.length; k++) {
                 $.message = ""
                 lookbody1 = lookbodyArr[k];
                 console.log(`${lookbody1}`)
