@@ -111,13 +111,16 @@ const rewardheader={
 //     })()
 //     .catch((e) => $.logErr(e))
 //     .finally(() => $.done())
-
+!(async () => {
 console.log(`共${rewardbodyArr.length}个看看赚奖励body`)
 // if (lookbodyArr.length === rewardbodyArr.length) {
 for(let k = 0; k < rewardbodyArr.length; k++){
                     rewardbody1 = rewardbodyArr[k];
-			$.wait(5000);
+		    await $.wait(5000);
                     reward()}
+	    })()
+    .catch((e) => $.logErr(e))
+    .finally(() => $.done())
 //                 }else{
 //                     console.log(`看看赚阅读数与奖励数不同，请注意获取奖励body\n`)
 //                     $.done()
