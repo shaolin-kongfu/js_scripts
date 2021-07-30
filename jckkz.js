@@ -91,7 +91,7 @@ const rewardheader={
                 console.log(`--------第 ${k + 1} 次看看赚任务执行中--------\n`)
                 for(let k = 0; k < 6; k++){
                     await lookstart()
-                    await $.wait(20000);
+                    await $.wait(10000);
                 }
                 
                 console.log("\n\n")
