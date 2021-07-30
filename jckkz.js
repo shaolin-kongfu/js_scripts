@@ -93,13 +93,7 @@ const rewardheader={
                     await lookstart()
                     await $.wait(20000);
                 }
-                if (lookbodyArr.length !== rewardbodyArr.length) {
-                    rewardbody1 = rewardbodyArr[k];
-                    await reward()
-                }else{
-                    console.log(`看看赚阅读数与奖励数不同，请注意获取奖励body\n`)
-                    $.done()
-                }
+                
                 console.log("\n\n")
             }
 
@@ -117,6 +111,15 @@ const rewardheader={
     })()
     .catch((e) => $.logErr(e))
     .finally(() => $.done())
+
+console.log(`共${rewardbodyArr.length}个看看赚body`)
+if (lookbodyArr.length === rewardbodyArr.length) {
+                    rewardbody1 = rewardbodyArr[k];
+                    reward()
+                }else{
+                    console.log(`看看赚阅读数与奖励数不同，请注意获取奖励body\n`)
+                    $.done()
+                }
 
 //获取看看赚阅读body
 function getlookbody() {
