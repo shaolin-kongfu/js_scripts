@@ -112,7 +112,7 @@ const rewardheader={
     .catch((e) => $.logErr(e))
     .finally(() => $.done())
 
-console.log(`共${rewardbodyArr.length}个看看赚body`)
+console.log(`共${rewardbodyArr.length}个看看赚奖励body`)
 if (lookbodyArr.length === rewardbodyArr.length) {
                     rewardbody1 = rewardbodyArr[k];
                     reward()
