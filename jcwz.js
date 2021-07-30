@@ -51,7 +51,7 @@ const wzheader = {
 //                 console.log(`${wzbody1}`)
                 console.log(`--------第 ${k + 1} 次阅读任务执行中--------\n`)
                 await wzjl()
-                await $.wait(20000);
+                await $.wait(30000);
                 console.log("\n\n")
             }
 
