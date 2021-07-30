@@ -93,7 +93,7 @@ const rewardheader={
                     await lookstart()
                     await $.wait(20000);
                 }
-                if (lookbodyArr.length === rewardbodyArr.length) {
+                if (lookbodyArr.length !== rewardbodyArr.length) {
                     rewardbody1 = rewardbodyArr[k];
                     await reward()
                 }else{
