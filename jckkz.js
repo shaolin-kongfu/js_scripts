@@ -81,45 +81,47 @@ const rewardheader={
         }
     })
 
-!(async () => {
+// !(async () => {
 
-        console.log(`共${lookbodyArr.length}个看看赚body`)
-	        for (let k = 4; k < lookbodyArr.length; k++) {
-                $.message = ""
-                lookbody1 = lookbodyArr[k];
-                console.log(`${lookbody1}`)
-                console.log(`--------第 ${k + 1} 次看看赚任务执行中--------\n`)
-                for(let k = 0; k < 6; k++){
-                    await lookstart()
-                    await $.wait(10000);
-                }
+//         console.log(`共${lookbodyArr.length}个看看赚body`)
+// 	        for (let k = 4; k < lookbodyArr.length; k++) {
+//                 $.message = ""
+//                 lookbody1 = lookbodyArr[k];
+// //                 console.log(`${lookbody1}`)
+//                 console.log(`--------第 ${k + 1} 次看看赚任务执行中--------\n`)
+//                 for(let k = 0; k < 6; k++){
+//                     await lookstart()
+//                     await $.wait(10000);
+//                 }
                 
-                console.log("\n\n")
-            }
+//                 console.log("\n\n")
+//             }
 
 
 
-        date = new Date()
-        if ($.isNode() &&date.getHours() === 11 && date.getMinutes()<10) {
-            if (message.length !== 0) {
-                   await notify.sendNotify("晶彩看点看看赚", `${message}\n\n shaolin-kongfu`);
-            }
-        } else {
-            $.msg($.name, "",  message)
-        }
+//         date = new Date()
+//         if ($.isNode() &&date.getHours() === 11 && date.getMinutes()<10) {
+//             if (message.length !== 0) {
+//                    await notify.sendNotify("晶彩看点看看赚", `${message}\n\n shaolin-kongfu`);
+//             }
+//         } else {
+//             $.msg($.name, "",  message)
+//         }
 
-    })()
-    .catch((e) => $.logErr(e))
-    .finally(() => $.done())
+//     })()
+//     .catch((e) => $.logErr(e))
+//     .finally(() => $.done())
 
 console.log(`共${rewardbodyArr.length}个看看赚奖励body`)
-if (lookbodyArr.length === rewardbodyArr.length) {
+// if (lookbodyArr.length === rewardbodyArr.length) {
+for(let k = 0; k < rewardbodyArr.length; k++){
                     rewardbody1 = rewardbodyArr[k];
-                    reward()
-                }else{
-                    console.log(`看看赚阅读数与奖励数不同，请注意获取奖励body\n`)
-                    $.done()
-                }
+			$.wait(5000);
+                    reward()}
+//                 }else{
+//                     console.log(`看看赚阅读数与奖励数不同，请注意获取奖励body\n`)
+//                     $.done()
+//                 }
 
 //获取看看赚阅读body
 function getlookbody() {
