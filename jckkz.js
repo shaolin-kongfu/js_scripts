@@ -1,7 +1,7 @@
 const $ = new Env("晶彩看点看看赚");
 const notify = $.isNode() ? require('./sendNotify') : '';
 message = ""
-Exchange = $.isNode() ? (process.env.remove ? process.env.remove : false) : ($.getdata("remove") ? $.getdata("remove") : false);
+remove = $.isNode() ? (process.env.remove ? process.env.remove : false) : ($.getdata("remove") ? $.getdata("remove") : false);
 
 let lookbody= $.isNode() ? (process.env.lookbody ? process.env.lookbody : "") : ($.getdata('lookbody') ? $.getdata('lookbody') : "")
 let lookbodyArr = []
