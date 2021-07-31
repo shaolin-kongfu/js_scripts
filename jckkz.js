@@ -188,7 +188,7 @@ function getlookStartbody() {
         if (lookStartbody) {
             if (lookStartbody.indexOf(bodyVal) > -1) {
                 $.log("此看看赚任务请求已存在，本次跳过")
-            } else if (lookStartbody.indexOf(bodyVal) === -1) {
+            } else if (lookStartbody.indexOf(bodyVal) == -1) {
                 lookStartbodys = lookStartbody + "&" + bodyVal;
                 $.setdata(lookStartbodys, 'lookStartbody');
                 $.log(`${$.name}获取看看赚任务: 成功, lookStartbodys: ${bodyVal}`);
@@ -210,7 +210,7 @@ function getlookbody() {
         if (lookbody) {
             if (lookbody.indexOf(bodyVal) > -1) {
                 $.log("此看看赚请求已存在，本次跳过")
-            } else if (lookbody.indexOf(bodyVal) === -1) {
+            } else if (lookbody.indexOf(bodyVal) == -1) {
                 lookbodys = lookbody + "&" + bodyVal;
                 $.setdata(lookbodys, 'lookbody');
                 $.log(`${$.name}获取看看赚: 成功, lookbodys: ${bodyVal}`);
@@ -232,7 +232,7 @@ function getrewardbody() {
         if (rewardbody) {
             if (rewardbody.indexOf(bodyVal) > -1) {
                 $.log("此看看赚奖励请求已存在，本次跳过")
-            } else if (rewardbody.indexOf(bodyVal) === -1) {
+            } else if (rewardbody.indexOf(bodyVal) == -1) {
                 rewardbodys = rewardbody + "&" + bodyVal;
                 $.setdata(rewardbodys, 'rewardbody');
                 $.log(`${$.name}获取看看赚奖励: 成功, rewardbodys: ${bodyVal}`);
