@@ -128,10 +128,9 @@ if (!lookStartbody) {
                 lookStartbody1 = lookStartbodyArr[k];
 
                 console.log(`--------第 ${k + 1} 次看看赚激活执行中--------\n`)
-                for (let k = 0; k < 6; k++) {
                     await lookStart()
                     await $.wait(5000);
-                }
+
                 console.log("\n\n")
             }
 
