@@ -3,7 +3,9 @@ shaolin-kongfu
 仅适配v2p以及青龙（青龙请自行抓包），不支持圈x
 
 新手写脚本，难免有bug,欢迎反馈！
-频道:https://t.me/ShaolinTemple1
+个人频道:https://t.me/ShaolinTemple1
+tom大佬的频道:https://t.me/tom_ww
+我都在里面，有问题欢迎反馈
 
 软件名称：晶彩看点
 赞赏:邀请码54870223 
