@@ -122,7 +122,7 @@ if (!lookStartbody) {
     })
 
 !(async () => {
-    console.log(`共${lookStartbodyArr.length}个看看赚任务body`)
+    console.log(`共${lookStartbodyArr.length}个看看赚激活body`)
 	        for (let k = 0; k < lookStartbodyArr.length; k++) {
                 $.message = ""
                 lookStartbody1 = lookStartbodyArr[k];
@@ -134,7 +134,7 @@ if (!lookStartbody) {
                 console.log("\n\n")
             }
 
-        console.log(`共${lookbodyArr.length}个看看赚body`)
+        console.log(`共${lookbodyArr.length}个看看赚阅读body`)
 	        for (let k = 0; k < lookbodyArr.length; k++) {
                 $.message = ""
                 lookbody1 = lookbodyArr[k];
