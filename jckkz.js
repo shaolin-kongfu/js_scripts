@@ -1,3 +1,21 @@
+/*
+shaolin-kongfu
+
+软件名称：晶彩看点
+赞赏:邀请码54870223 
+
+万分感谢！！
+
+[rewrite_local]
+
+#看看赚
+https://ant.xunsl.com/v5/nameless/adlickstart.json 重写目标 https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jckkz.js
+https://ant.xunsl.com/v5/nameless/bannerstatus.json 重写目标 https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jckkz.js
+https://ant.xunsl.com/v5/nameless/adlickend.json 重写目标 https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jckkz.js
+
+[MITM]
+hostname = ant.xunsl.com
+*/
 const $ = new Env("晶彩看点看看赚");
 const notify = $.isNode() ? require('./sendNotify') : '';
 message = ""
