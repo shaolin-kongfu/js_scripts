@@ -148,18 +148,18 @@ if (!lookStartbody) {
 	    console.log(`共${lookbodyArr.length}个看看赚阅读body`)
 	    console.log(`共${lookStartbodyArr.length}个看看赚激活body`)
                 console.log("\n\n")
-            }
-
-
-
-//         date = new Date()
-//         if ($.isNode() &&date.getHours() === 11 && date.getMinutes()<10) {
-//             if (message.length !== 0) {
-//                    await notify.sendNotify("晶彩看点看看赚", `${message}\n\n shaolin-kongfu`);
 //             }
-//         } else {
-//             $.msg($.name, "",  message)
-//         }
+
+
+
+        date = new Date()
+        if ($.isNode() &&date.getHours() === 11 && date.getMinutes()<10) {
+            if (message.length !== 0) {
+                   await notify.sendNotify("晶彩看点看看赚", `${message}\n\n shaolin-kongfu`);
+            }
+        } else {
+            $.msg($.name, "",  message)
+        }
 
     })()
     .catch((e) => $.logErr(e))
