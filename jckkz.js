@@ -164,14 +164,19 @@ if (!lookStartbody) {
     .catch((e) => $.logErr(e))
     .finally(() => $.done())
 
+function sleep (time) {
+  return new Promise((resolve) => setTimeout(resolve, time));
+}
+
+
 
 console.log(`共${rewardbodyArr.length}个看看赚奖励body`)
 if (lookbodyArr.length === rewardbodyArr.length) {
 
 rewardbody1 = rewardbodyArr[k];
-		    await $.wait(5000);
-                    reward()
-
+    sleep(5000).then(() => {
+            reward()// 这里写sleep之后需要去做的事情
+                })
                 }else{
                     console.log(`看看赚阅读数与奖励数不同，请注意获取奖励body\n`)
                     $.done()
