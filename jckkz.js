@@ -168,19 +168,19 @@ function sleep (time) {
 }
 
 
-
+!(async () => {
 console.log(`共${rewardbodyArr.length}个看看赚奖励body`)
-if (lookbodyArr.length !== rewardbodyArr.length) {
-
+if (lookbodyArr.length == rewardbodyArr.length) {
+for(let k=0;k<rewardbodyArr.length;k++){
 rewardbody1 = rewardbodyArr[k];
-    sleep(5000).then(() => {
-            reward()// 这里写sleep之后需要去做的事情
-                })
-                }else{
+            await $.wait(5000);
+            await reward()// 这里写sleep之后需要去做的事情
+}
+	}else{
                     console.log(`看看赚阅读数与奖励数不同，请注意获取奖励body\n`)
                     $.done()
                 }
-
+    })()
 //获取看看赚激活body
 function getlookStartbody() {
     if ($request.url.match(/\/nameless\/adlickstart/)) {
