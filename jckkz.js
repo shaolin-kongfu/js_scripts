@@ -152,14 +152,14 @@ if (!lookStartbody) {
 
 
 
-        date = new Date()
-        if ($.isNode() &&date.getHours() === 11 && date.getMinutes()<10) {
-            if (message.length !== 0) {
-                   await notify.sendNotify("晶彩看点看看赚", `${message}\n\n shaolin-kongfu`);
-            }
-        } else {
-            $.msg($.name, "",  message)
-        }
+//         date = new Date()
+//         if ($.isNode() &&date.getHours() === 11 && date.getMinutes()<10) {
+//             if (message.length !== 0) {
+//                    await notify.sendNotify("晶彩看点看看赚", `${message}\n\n shaolin-kongfu`);
+//             }
+//         } else {
+//             $.msg($.name, "",  message)
+//         }
 
     })()
     .catch((e) => $.logErr(e))
