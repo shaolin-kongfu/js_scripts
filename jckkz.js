@@ -122,29 +122,31 @@ if (!lookStartbody) {
     })
 
 !(async () => {
-    console.log(`共${lookStartbodyArr.length}个看看赚激活body`)
-	        for (let k = 0; k < lookStartbodyArr.length; k++) {
-                $.message = ""
-                lookStartbody1 = lookStartbodyArr[k];
+//     console.log(`共${lookStartbodyArr.length}个看看赚激活body`)
+// 	        for (let k = 0; k < lookStartbodyArr.length; k++) {
+//                 $.message = ""
+//                 lookStartbody1 = lookStartbodyArr[k];
 
-                console.log(`--------第 ${k + 1} 次看看赚激活执行中--------\n`)
-                    await lookStart()
-                    await $.wait(5000);
+//                 console.log(`--------第 ${k + 1} 次看看赚激活执行中--------\n`)
+//                     await lookStart()
+//                     await $.wait(5000);
 
-                console.log("\n\n")
-            }
+//                 console.log("\n\n")
+//             }
 
-        console.log(`共${lookbodyArr.length}个看看赚阅读body`)
-	        for (let k = 0; k < lookbodyArr.length; k++) {
-                $.message = ""
-                lookbody1 = lookbodyArr[k];
-//                 console.log(`${lookbody1}`)
-                console.log(`--------第 ${k + 1} 次看看赚任务执行中--------\n`)
-                for(let k = 0; k < 6; k++){
-                    await lookstart()
-                    await $.wait(10000);
-                }
-
+//         console.log(`共${lookbodyArr.length}个看看赚阅读body`)
+// 	        for (let k = 0; k < lookbodyArr.length; k++) {
+//                 $.message = ""
+//                 lookbody1 = lookbodyArr[k];
+// //                 console.log(`${lookbody1}`)
+//                 console.log(`--------第 ${k + 1} 次看看赚任务执行中--------\n`)
+//                 for(let k = 0; k < 6; k++){
+//                     await lookstart()
+//                     await $.wait(10000);
+//                 }
+		await removebody()
+	    console.log(`共${lookbodyArr.length}个看看赚阅读body`)
+	    console.log(`共${lookStartbodyArr.length}个看看赚激活body`)
                 console.log("\n\n")
             }
 
@@ -174,13 +176,21 @@ if (lookbodyArr.length == rewardbodyArr.length) {
 for(let k=0;k<rewardbodyArr.length;k++){
 rewardbody1 = rewardbodyArr[k];
             await $.wait(5000);
-            await reward()// 这里写sleep之后需要去做的事情
+            await reward()
 }
 	}else{
                     console.log(`看看赚阅读数与奖励数不同，请注意获取奖励body\n`)
+		
                     $.done()
                 }
     })()
+
+function removebody() {
+  let smallbody = []
+       lookbodyArr = smallbody
+  lookStartbodyArr = smallbody
+}
+
 //获取看看赚激活body
 function getlookStartbody() {
     if ($request.url.match(/\/nameless\/adlickstart/)) {
