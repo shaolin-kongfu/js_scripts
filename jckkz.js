@@ -170,7 +170,7 @@ function sleep (time) {
 
 
 console.log(`共${rewardbodyArr.length}个看看赚奖励body`)
-if (lookbodyArr.length === rewardbodyArr.length) {
+if (lookbodyArr.length !== rewardbodyArr.length) {
 
 rewardbody1 = rewardbodyArr[k];
     sleep(5000).then(() => {
