@@ -119,7 +119,7 @@ function wzlist(timeout = 0) {
     })
 }
 
-function share(wzid) {
+function share(wzid,timeout=0) {
     return new Promise((resolve) => {
         let url = {
             url : 'https://ant.xunsl.com/WebApi/ShareNew/getShareArticleReward',
