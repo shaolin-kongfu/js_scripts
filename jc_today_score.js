@@ -81,7 +81,7 @@ if (!jc_cookie) {
     .finally(() => $.done())
 
 
-function today_score(jc_cookie1) {
+function today_score(jc_cookie1,timeout = 0) {
     return new Promise((resolve) => {
 
         let url = {
