@@ -77,8 +77,9 @@ if (!jc_cookie) {
         date = new Date()
         
             if (message.length != 0) {
-                   await notify.sendNotify("晶彩看点收益查询", `${message}\n\n shaolin-kongfu`);
-            }
+        await notify ? notify.sendNotify("晶彩看点收益查询", `${message}\n\n shaolin-kongfu`) :
+            $.msg($.name, "", message);
+    }
         
      })()
     .catch((e) => $.logErr(e))
