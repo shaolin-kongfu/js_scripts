@@ -28,5 +28,17 @@
       "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jcbox.js",
       "enable": true
     }
+    ,
+    {
+      "match": "https://ant.xunsl.com/v5/user/stay.json",
+      "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jcwz.js",
+      "enable": true
+    }
+    ,
+    {
+      "match": "https://ant.xunsl.com/v17/NewTask/getTaskList.json",
+      "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jc_today_score.js",
+      "enable": true
+    }
   ]
 }
