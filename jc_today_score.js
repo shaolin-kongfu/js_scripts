@@ -14,6 +14,22 @@ https://ant.xunsl.com/v17/NewTask/getTaskList.json 重写目标 https://raw.gith
 hostname = ant.xunsl.com
 */
 
+/*
+shaolin-kongfu
+
+软件名称：晶彩看点
+赞赏:邀请码54870223
+
+万分感谢！！
+
+[rewrite_local]
+
+#晶彩看点每日收益查询
+https://ant.xunsl.com/v17/NewTask/getTaskList.json 重写目标 https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jc_today_score.js
+[MITM]
+hostname = ant.xunsl.com
+*/
+
 const $ = new Env("晶彩看点收益统计");
 const notify = $.isNode() ? require('./sendNotify') : '';
 message = ""
@@ -21,12 +37,12 @@ let jc_cookie= $.isNode() ? (process.env.jc_cookie ? process.env.jc_cookie : "")
 let jc_cookieArr = []
 let jc_cookies = ""
 
-!(async () => {
+
  if (typeof $request !== "undefined") {
-     await getjc_cookie()
+    getjc_cookie()
      $.done()
  }
- })()
+
 
 if (!jc_cookie) {
      $.msg($.name, '【提示】进入点击右下角"赚钱图标"，再跑一次脚本', '不知道说啥好', {
@@ -56,7 +72,7 @@ if (!jc_cookie) {
 !(async () => {
         console.log(`共${jc_cookieArr.length}个cookie`)
 	        for (let k = 0; k < jc_cookieArr.length; k++) {
-                // $.message = ""
+                $.message = ""
                 bodyVal = jc_cookieArr[k];
                 cookie = bodyVal.replace(/zqkey=/, "cookie=")
                 cookie_id = cookie.replace(/zqkey_id=/, "cookie_id=")
@@ -66,16 +82,20 @@ if (!jc_cookie) {
                 console.log(`--------第 ${k + 1} 个账号收益查询中--------\n`)
                 await today_score(jc_cookie1)
                 await $.wait(4000);
+                if ($.message.length != 0) {
+                    message +="账号" +(k+1)+ "：  " +$.message + " \n"
+                }else {
+                $.msg($.name, "", `账号${k+1}cookie已失效`)
+
+            }
                 console.log("\n\n")
             }
         date = new Date()
-        if ($.isNode()) {
+        
             if (message.length != 0) {
                    await notify.sendNotify("晶彩看点收益查询", `${message}\n\n shaolin-kongfu`);
             }
-        } else {
-            $.msg($.name, "",  message)
-        }
+        
      })()
     .catch((e) => $.logErr(e))
     .finally(() => $.done())
