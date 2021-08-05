@@ -187,9 +187,9 @@ function wzjl(timeout = 0) {
 
 function getjc_timebody() {
     if ($request.url.match(/\/v5\/article\/stay.json/)) {
-          bodyVal1 = $request.url.split('p=')[1]
-          console.log(encodeURIComponent(bodyVal1))
-          bodyVal = 'p='+encodeURIComponent(bodyVal1)
+          bodyVal=$.setdata($request.body,'jc_timebody')
+          // console.log(encodeURIComponent(bodyVal1))
+          // bodyVal = 'p='+encodeURIComponent(bodyVal1)
             console.log(bodyVal)
 
 
@@ -198,13 +198,13 @@ function getjc_timebody() {
                 $.log("此阅读请求已存在，本次跳过")
             } else if (jc_timebody.indexOf(bodyVal) == -1) {
                 jc_timebodys = jc_timebody + "&" + bodyVal;
-                $.setdata(jc_timebodys, 'jc_timebody');
+                $.setdata($request.body,'jc_timebody');
                 $.log(`${$.name}获取阅读: 成功, jc_timebodys: ${bodyVal}`);
                 bodys = jc_timebodys.split("&")
                 // $.msg($.name, "获取第" + bodys.length + "个阅读请求: 成功🎉", ``)
             }
         } else {
-            $.setdata(bodyVal, 'jc_timebody');
+            $.setdata($request.body,'jc_timebody');
             $.log(`${$.name}获取阅读: 成功, jc_timebodys: ${bodyVal}`);
             $.msg($.name, `获取第一个阅读请求: 成功🎉`, ``)
         }
