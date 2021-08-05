@@ -60,7 +60,6 @@ console.log(hour)
         console.log(`共${jc_cookieArr.length}个cookie`)
 	        for (let k = 0; k < jc_cookieArr.length; k++) {
                 // $.message = ""
-                bodyVal = jc_cookieArr[k];
                 //bodyVal2 =jc_cookie2.split('&token=')[0]
                 //console.log(`${bodyVal2}`)
 
@@ -68,7 +67,7 @@ console.log(hour)
             if(hour > 4 && hour !== 10 && hour !== 16 && hour !== 22) {
                 var time1 = Date.parse( new Date() ).toString();
                 time1 = time1.substr(0,10);
-
+		bodyVal = jc_cookieArr[k].split('&uid=')[0];
                 cookie = bodyVal.replace(/zqkey=/, "cookie=")
                 cookie_id = cookie.replace(/zqkey_id=/, "cookie_id=")
                 jc_cookie1= cookie_id  +'&device_brand=xfdg&device_id=cc7dgdsgfsz83e&device_model=1gx&device_platform=android&device_type=android&inner_version=202107261526&mi=0&openudid=cc7dgdsgfsz83e&os_api=27&os_version=bdftgsdfga&phone_network=WIFI&phone_sim=1'+'&request_time=' + time1 +'&time=' + time1 +'&'+ bodyVal
@@ -183,16 +182,19 @@ function sharejl(timeout=0) {
     })
 }
 
+
 async function getjc_cookie() {
     if ($request.url.match(/\/v17\/NewTask\/getTaskList/)) {
           bodyVal1 = $request.url.split('?')[1]
           bodyVal2 = bodyVal1.split('&token')[0]
           bodyVal3 = bodyVal2.split('&zqkey=')[1]
-          bodyVal =  'zqkey='+ bodyVal3
+          bodyVal4 = bodyVal2.split('&uid=')[1]
+          bodyVal5 = bodyVal4.split('&version_code=')[0]
+          bodyVal =  'zqkey='+ bodyVal3 + '&uid='+ bodyVal5
         if (jc_cookie) {
-            if (jc_cookie.indexOf(bodyVal) > -1) {
+            if (jc_cookie.indexOf(bodyVal5) > -1) {
                 $.log("此cookie已存在，本次跳过")
-            } else if (jc_cookie.indexOf(bodyVal) === -1) {
+            } else if (jc_cookie.indexOf(bodyVal5) === -1) {
                 jc_cookies = jc_cookie + "@" + bodyVal;
                 $.setdata(jc_cookies, 'jc_cookie');
                 $.log(`${$.name}获取cookie: 成功, jc_cookies: ${bodyVal}`);
