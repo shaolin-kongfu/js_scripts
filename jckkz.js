@@ -21,6 +21,11 @@ let lookStartbody= $.isNode() ? (process.env.lookStartbody ? process.env.lookSta
 let lookStartbodyArr = []
 let lookStartbodys = ""
 
+let jc_cookie= $.isNode() ? (process.env.jc_cookie ? process.env.jc_cookie : "") : ($.getdata('jc_cookie') ? $.getdata('jc_cookie') : "")
+let jc_cookieArr = []
+let jc_cookies = ""
+
+
 const lookheader = {
     'device-platform': 'android',
     'Content-Type': 'application/x-www-form-urlencoded',
@@ -47,6 +52,30 @@ const lookStartheader={
      $.done()
  }
     })()
+if (!jc_cookie) {
+     $.msg($.name, '【提示】进入点击右下角"赚钱图标"，再跑一次脚本', '不知道说啥好', {
+         "open-url": "给您劈个叉吧"
+     });
+     $.done()
+ }
+ else if (jc_cookie.indexOf("@") == -1 && jc_cookie.indexOf("@") == -1) {
+            jc_cookieArr.push(jc_cookie)
+ }
+ else if (jc_cookie.indexOf("@") > -1) {
+            jc_cookies = jc_cookie.split("@")
+ }
+ else if (process.env.jc_cookie && process.env.jc_cookie.indexOf('@') > -1) {
+            jc_cookieArr = process.env.jc_cookie.split('@');
+            console.log(`您选择的是用"@"隔开\n`)
+ }
+ else {
+            jc_cookies = [process.env.jc_cookie]
+ };
+    Object.keys(jc_cookies).forEach((item) => {
+        if (jc_cookies[item]) {
+            jc_cookieArr.push(jc_cookies[item])
+        }
+    })
 if (!lookStartbody) {
      $.msg($.name, '【提示】请点击看看赚某一任务获取body', '不知道说啥好', {
          "open-url": "给您劈个叉吧"
@@ -73,11 +102,9 @@ if (!lookStartbody) {
     })
 
 !(async () => {
-
-
     console.log(`共${lookStartbodyArr.length}个看看赚body`)
 	        for (let k = 0; k < lookStartbodyArr.length; k++) {
-                // $.message = ""
+
                 lookStartbody1 = lookStartbodyArr[k];
                 console.log(`--------第 ${k + 1} 次看看赚激活执行中--------\n`)
                     await lookStart()
@@ -87,10 +114,66 @@ if (!lookStartbody) {
                     await lookstart()
                     await $.wait(10000);
                 }
- console.log(`--------第 ${k + 1} 次看看赚奖励执行中--------\n`)
+                console.log(`--------第 ${k + 1} 次看看赚奖励执行中--------\n`)
                 await reward()
                 console.log("\n\n")
             }
+            console.log(`共${jc_cookieArr.length}个cookie`)
+	        for (let k = 0; k < jc_cookieArr.length; k++) {
+                bodyVal = jc_cookieArr[k];
+                var time1 = Date.parse( new Date() ).toString();
+                time1 = time1.substr(0,10);
+
+                cookie = bodyVal.replace(/zqkey=/, "cookie=")
+                cookie_id = cookie.replace(/zqkey_id=/, "cookie_id=")
+                jc_cookie1= cookie_id  +'&device_brand=xfdg&device_id=cc7dgdsgfsz83e&device_model=1gx&device_platform=android&device_type=android&inner_version=202107261526&mi=0&openudid=cc7dgdsgfsz83e&os_api=27&os_version=bdftgsdfga&phone_network=WIFI&phone_sim=1'+'&request_time=' + time1 +'&time=' + time1 +'&'+ bodyVal
+                //待处理cookie
+
+//'&device_brand=Meizu&device_id=cc711930be47583e&device_model=16%20X&device_platform=android&device_type=android&inner_version=202107261526&mi=0&openudid=cc711930be47583e&os_api=27&os_version=Flyme%207.1.4.3A&phone_network=WIFI&phone_sim=1'
+  //'&resolution=1080x2160&sim=1&sm_device_id=20210724192520b77a90e30b292063f912a71e02a8ee780100bf43fd155d93&subv=1.2.2'
+                console.log(`${jc_cookie1}`)
+                console.log(`--------第 ${k + 1} 个账号看看赚上方宝箱奖励执行中--------\n`)
+for(let k = 0; k < 3; k++){
+    id = k.toString()
+    await openbox(id,jc_cookie1)
+                await $.wait(30000);
+
+}
+                // await openbox(id,jc_cookie1)
+                // await $.wait(30000);
+
+                //console.log(typeof(jc_cookie1));
+                //console.log(jc_cookie1.length.toString());
+                console.log("\n\n")
+
+            }
+
+
+function openbox(id,jc_cookie1,timeout=0) {
+    return new Promise((resolve) => {
+        let url = {
+            url : 'https://ant.xunsl.com/WebApi/Nameless/getBoxReward?id='+ id + '&' + jc_cookie1,
+            headers : {
+    'Host': 'ant.xunsl.com',
+     //'Referer': 'https://ant.xunsl.com/h5/20190527watchMoney/?' +jc_cookie1
+     'Referer':'https://ant.xunsl.com/h5/20190527watchMoney/?keyword_wyq=woyaoq.com&access=WIFI&app-version=8.1.2&app_version=8.1.2&carrier=%E4%B8%AD%E5%9B%BD%E7%A7%BB%E5%8A%A8&channel=c1005&'+jc_cookie1},
+            }
+        $.get(url, async (err, resp, data) => {
+            try {
+
+                const result = JSON.parse(data)
+                if(result.status == 1){
+                    console.log(result.data)
+                }else{
+                     console.log(result)
+                }
+            } catch (e) {
+            } finally {
+                resolve()
+            }
+            },timeout)
+    })
+}
 
 
 
