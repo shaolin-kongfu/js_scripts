@@ -94,7 +94,7 @@ const wzheader = {
 
 
 function getwzbody() {
-    if ($request.url.match(/\/v5\/article\/info/)) {
+    if ($request.url.match(/\/v5\/article\/info.json/)||$request.url.match(/\/v5\/article\/detail.json/)) {
           bodyVal1 = $request.url.split('p=')[1]
           console.log(encodeURIComponent(bodyVal1))
           bodyVal = 'p='+encodeURIComponent(bodyVal1)
