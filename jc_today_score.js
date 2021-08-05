@@ -57,7 +57,7 @@ if (!jc_cookie) {
         console.log(`共${jc_cookieArr.length}个cookie`)
 	        for (let k = 0; k < jc_cookieArr.length; k++) {
                 $.message = ""
-                bodyVal = jc_cookieArr[k];
+                bodyVal = jc_cookieArr[k].split('&uid=')[0];
                 cookie = bodyVal.replace(/zqkey=/, "cookie=")
                 cookie_id = cookie.replace(/zqkey_id=/, "cookie_id=")
                 jc_cookie1= cookie_id + '&' + bodyVal
@@ -66,21 +66,15 @@ if (!jc_cookie) {
                 console.log(`--------第 ${k + 1} 个账号收益查询中--------\n`)
                 await today_score(jc_cookie1)
                 await $.wait(4000);
-                if ($.message.length != 0) {
-                    message +="账号" +(k+1)+ "：  " +$.message + " \n"
-                }else {
-                $.msg($.name, "", `账号${k+1}cookie已失效`)
-
-            }
                 console.log("\n\n")
             }
-        date = new Date()
-        
+
+
+
             if (message.length != 0) {
         await notify ? notify.sendNotify("晶彩看点收益查询", `${message}\n\n shaolin-kongfu`) :
-            $.msg($.name, "", message);
+            $.msg($.name, "晶彩看点收益查询", `${message}`);
     }
-        
      })()
     .catch((e) => $.logErr(e))
     .finally(() => $.done())
@@ -104,6 +98,7 @@ function today_score(jc_cookie1,timeout = 0) {
                     console.log('\n当前金币总数:'+result.user.score)
                     console.log('\n折合人民币总数:'+result.user.money)
                     $.message = `今日收益总计:${result.user.today_score}金币\n 当前金币总数:${result.user.score} \n 折合人民币总数:${result.user.money}元`
+                    $.msg($.name, "", `今日收益总计:${result.user.today_score}金币\n 当前金币总数:${result.user.score} \n 折合人民币总数:${result.user.money}元`);
                 }else{
                      console.log(result)
                 }
@@ -122,11 +117,13 @@ async function getjc_cookie() {
           bodyVal1 = $request.url.split('?')[1]
           bodyVal2 = bodyVal1.split('&token')[0]
           bodyVal3 = bodyVal2.split('&zqkey=')[1]
-          bodyVal =  'zqkey='+ bodyVal3
+          bodyVal4 = bodyVal2.split('&uid=')[1]
+          bodyVal5 = bodyVal4.split('&version_code=')[0]
+          bodyVal =  'zqkey='+ bodyVal3 + '&uid='+ bodyVal5
         if (jc_cookie) {
-            if (jc_cookie.indexOf(bodyVal) > -1) {
+            if (jc_cookie.indexOf(bodyVal5) > -1) {
                 $.log("此cookie已存在，本次跳过")
-            } else if (jc_cookie.indexOf(bodyVal) === -1) {
+            } else if (jc_cookie.indexOf(bodyVal5) === -1) {
                 jc_cookies = jc_cookie + "@" + bodyVal;
                 $.setdata(jc_cookies, 'jc_cookie');
                 $.log(`${$.name}获取cookie: 成功, jc_cookies: ${bodyVal}`);
