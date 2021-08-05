@@ -71,7 +71,8 @@ console.log(hour)
 
                 cookie = bodyVal.replace(/zqkey=/, "cookie=")
                 cookie_id = cookie.replace(/zqkey_id=/, "cookie_id=")
-                jc_cookie1= cookie_id + '&request_time=' + time1 + '&time=' + time1 + bodyVal
+                jc_cookie1= cookie_id  +'&device_brand=xfdg&device_id=cc7dgdsgfsz83e&device_model=1gx&device_platform=android&device_type=android&inner_version=202107261526&mi=0&openudid=cc7dgdsgfsz83e&os_api=27&os_version=bdftgsdfga&phone_network=WIFI&phone_sim=1'+'&request_time=' + time1 +'&time=' + time1 +'&'+ bodyVal
+
                 //待处理cookie
 
                 console.log(`${jc_cookie1}`)
@@ -135,7 +136,7 @@ function share(wzid,timeout=0) {
 
                 const result = JSON.parse(data)
                 if(result.status == 1){
-                    console.log(result.data.banners)
+                    console.log(result.data)
                 }else{
                      console.log(result)
                 }
@@ -147,13 +148,13 @@ function share(wzid,timeout=0) {
     })
 }
 
-function sharejl() {
+function sharejl(timeout=0) {
     return new Promise((resolve) => {
         if(hour >= 5 && hour <=10 ){
             reward = 'one'
-        }else if(hour >= 5 && hour <=10){
+        }else if(hour >= 11 && hour <=16){
             reward = 'two'
-        }else if(hour >= 11 && hour <=22){
+        }else if(hour >= 17 && hour <=22){
             reward = 'three'
         }
         let url = {
