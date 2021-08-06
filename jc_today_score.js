@@ -65,6 +65,9 @@ if (!jc_cookie) {
                 console.log(`${jc_cookie1}`)
                 console.log(`--------第 ${k + 1} 个账号收益查询中--------\n`)
                 await today_score(jc_cookie1)
+			if ($.message.length != 0) {
+                    message +=  "账号" +(k+1)+ "：  " + $.message + " \n"
+                }
                 await $.wait(4000);
                 console.log("\n\n")
             }
@@ -74,7 +77,7 @@ if (!jc_cookie) {
             if (message.length != 0) {
         await notify ? notify.sendNotify("晶彩看点收益查询", `${message}\n\n shaolin-kongfu`) :
             $.msg($.name, "晶彩看点收益查询", `${message}`);
-    }
+    }else if($.isNode()){await notify.sendNotify("晶彩看点收益查询", `${message}\n\nshaolin-kongfu`);}
      })()
     .catch((e) => $.logErr(e))
     .finally(() => $.done())
