@@ -1,16 +1,15 @@
 {
-    "id": "xxxx.app.sub",
+    "id": "jckd.app.sub",
     "name": "晶彩看点boxjs订阅",
-    "author": "@xxxxxx",
-    "icon": "https://raw.githubusercontent.com/xxxx/xxxx/main/xxxx/xxxx.png",
+    "author": "@BoBo",
+    "icon": "https://cdn.jsdelivr.net/gh/NANXIAO1971/ceshi@main/picture/jckd1.png",
     "repo": "https://github.com/xxxxx/xxxx",
     "apps": [
         {
             "id": "jcKkz",
             "name": "晶彩看看赚",
             "keys": [
-              "lookStartbody", 
-              "lookbody"
+              "lookStartbody"
             ], 
             "repo": "https://github.com/shaolin-kongfu/js_scripts/blob/main/jckkz.js",  
             "script": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jckkz.js", 
