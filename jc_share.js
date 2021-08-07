@@ -106,6 +106,7 @@ function wzlist(timeout = 0) {
                 if(result.data.items !== "undefined" ){
                     wzid = result.data.items[0].id
                     //console.log(result.data.items[0].id)
+		    await $.wait(3000);
                     await share(wzid)
 
                 }else{
@@ -125,7 +126,7 @@ function share(wzid,timeout=0) {
             url : 'https://ant.xunsl.com/WebApi/ShareNew/getShareArticleReward',
             headers : {
     'Content-Type': 'application/x-www-form-urlencoded',
-    'Content-Length': (jc_cookie1+ '&article_id=33002555').length.toString(),
+    'Content-Length': (jc_cookie1+ '&article_id='+wzid).length.toString(),
     'Host': 'ant.xunsl.com',
      'Referer': 'https://ant.xunsl.com/h5/20200612makeMoney/?' +jc_cookie1
 },
