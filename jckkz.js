@@ -108,19 +108,12 @@ if (!lookStartbody) {
                 lookStartbody1 = lookStartbodyArr[k];
                 console.log(`--------第 ${k + 1} 次看看赚激活执行中--------\n`)
                     await lookStart()
-                    await $.wait(5000);
-                    console.log(`--------第 ${k + 1} 次看看赚阅读执行中--------\n`)
-                for(let k = 0; k < 6; k++){
-                    await lookstart()
-                    await $.wait(10000);
-                }
-                console.log(`--------第 ${k + 1} 次看看赚奖励执行中--------\n`)
-                await reward()
+                await $.wait(1000);
                 console.log("\n\n")
             }
             console.log(`共${jc_cookieArr.length}个cookie`)
 	        for (let k = 0; k < jc_cookieArr.length; k++) {
-                bodyVal = jc_cookieArr[k];
+                bodyVal = jc_cookieArr[k].split('&uid=')[0];
                 var time1 = Date.parse( new Date() ).toString();
                 time1 = time1.substr(0,10);
 
@@ -136,6 +129,9 @@ if (!lookStartbody) {
 for(let k = 0; k < 3; k++){
     id = k.toString()
     await openbox(id,jc_cookie1)
+    if(result.data.msg === '奖励已领取'){
+    id = 3
+    }
                 await $.wait(30000);
 
 }
@@ -169,25 +165,11 @@ function openbox(id,jc_cookie1,timeout=0) {
                 }
             } catch (e) {
             } finally {
-                resolve()
+                resolve(result)
             }
             },timeout)
     })
 }
-
-
-
-
-
-        // date = new Date()
-        // if ($.isNode() &&date.getHours() === 11 && date.getMinutes()<10) {
-        //     if (message.length !== 0) {
-        //            await notify.sendNotify("晶彩看点看看赚", `${message}\n\n shaolin-kongfu`);
-        //     }
-        // } else {
-        //     $.msg($.name, "",  message)
-        // }
-
     })()
     .catch((e) => $.logErr(e))
     .finally(() => $.done())
@@ -235,6 +217,20 @@ function lookStart(timeout = 0) {
                 const result = JSON.parse(data)
                 if(result.success === true ){
                     console.log('\n激活看看赚任务成功')
+                    comstate = result.items.comtele_state
+                    if(comstate === 1){
+                        console.log('\n任务: '+ result.items.banner_id+'已完成，跳过')
+                    }else {
+                        $.log("任务开始，" + result.items.banner_id + result.message);
+                        for (let j = 0; j < result.items.see_num - result.items.read_num; j++) {
+                        $.log("任务执行第" + parseInt(j + 1) + "次")
+                        await $.wait(8000);
+                        await lookstart()
+                    }
+                        await $.wait(10000);
+                    await reward()
+                    }
+
                 }else{
                     console.log('\n激活看看赚任务失败')
                 }
