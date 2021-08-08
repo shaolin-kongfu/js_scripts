@@ -120,18 +120,11 @@ if (!lookStartbody) {
                 cookie = bodyVal.replace(/zqkey=/, "cookie=")
                 cookie_id = cookie.replace(/zqkey_id=/, "cookie_id=")
                 jc_cookie1= cookie_id  +'&device_brand=xfdg&device_id=cc7dgdsgfsz83e&device_model=1gx&device_platform=android&device_type=android&inner_version=202107261526&mi=0&openudid=cc7dgdsgfsz83e&os_api=27&os_version=bdftgsdfga&phone_network=WIFI&phone_sim=1'+'&request_time=' + time1 +'&time=' + time1 +'&'+ bodyVal
-                //待处理cookie
-
-//'&device_brand=Meizu&device_id=cc711930be47583e&device_model=16%20X&device_platform=android&device_type=android&inner_version=202107261526&mi=0&openudid=cc711930be47583e&os_api=27&os_version=Flyme%207.1.4.3A&phone_network=WIFI&phone_sim=1'
-  //'&resolution=1080x2160&sim=1&sm_device_id=20210724192520b77a90e30b292063f912a71e02a8ee780100bf43fd155d93&subv=1.2.2'
                 console.log(`${jc_cookie1}`)
                 console.log(`--------第 ${k + 1} 个账号看看赚上方宝箱奖励执行中--------\n`)
 for(let k = 0; k < 3; k++){
     id = k.toString()
     await openbox(id,jc_cookie1)
-    if(result.data.msg === '奖励已领取'){
-    id = 3
-    }
                 await $.wait(30000);
 
 }
@@ -165,7 +158,7 @@ function openbox(id,jc_cookie1,timeout=0) {
                 }
             } catch (e) {
             } finally {
-                resolve(result)
+                resolve()
             }
             },timeout)
     })
