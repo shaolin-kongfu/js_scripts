@@ -1,18 +1,4 @@
-/*
-电视家
-原作者：soy
 
-仅适配v2p重写
-可能还会有点小问题，后续再改
-【rewrite_local】
-http://user.gaoqingdianshi.com/api/v3/user/info 重写目标 https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/dsj.js
-
-【MITM】
-user.gaoqingdianshi.com
-
-变量：dsj_header
-
-*/
 const $ = new Env("电视家");
 const notify = $.isNode() ? require('./sendNotify') : '';
 message = ""
@@ -470,7 +456,7 @@ function sleep() {
         }
         $.get(url, (error, response, data) => {
             try {
-               $.log(`睡觉任务: ${data}\n`)
+                 $.log(`睡觉任务: ${data}\n`)
                 let sleepres = JSON.parse(data)
                 if (sleepres.errCode == 0) {
                     sleeping = sleepres.data.name + '报名成功 🛌'
@@ -496,7 +482,7 @@ function CarveUp() {
             headers: JSON.parse(dsj_header1),
         }
         $.get(url, (error, response, data) => {
-            if (logs) $.log(`瓜分百万金币: ${data}`)
+             $.log(`瓜分百万金币: ${data}`)
             const result = JSON.parse(data)
             if (result.errCode == 0) {
                 detail += `【金币瓜分】✅ 报名成功\n`
@@ -514,7 +500,7 @@ function getCUpcoin() {
             headers: JSON.parse(dsj_header1),
         }, (error, response, data) => {
             //console.log(data)
-            if (logs) $.log(`【瓜分百万金币】: 获得 ${data} 金币`)
+             $.log(`【瓜分百万金币】: 获得 ${data} 金币`)
         })
         resolve()
     })
@@ -527,7 +513,7 @@ function walk() {
             headers: JSON.parse(dsj_header1),
         }
         $.get(url, (error, response, data) => {
-            if (logs) $.log(`走路任务: ${data}\n`)
+             $.log(`走路任务: ${data}\n`)
             let result = JSON.parse(data)
             if (result.data.unGetCoin > 10) {
                 $.get({
@@ -547,7 +533,7 @@ function wakeup() {
             headers: JSON.parse(dsj_header1),
         }
         $.get(url, (error, response, data) => {
-            if (logs) $.log(`睡觉打卡: ${data}\n`)
+            $.log(`睡觉打卡: ${data}\n`)
         })
         resolve()
     })
