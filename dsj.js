@@ -470,7 +470,7 @@ function sleep() {
         }
         $.get(url, (error, response, data) => {
             try {
-                if (logs) $.log(`睡觉任务: ${data}\n`)
+               $.log(`睡觉任务: ${data}\n`)
                 let sleepres = JSON.parse(data)
                 if (sleepres.errCode == 0) {
                     sleeping = sleepres.data.name + '报名成功 🛌'
