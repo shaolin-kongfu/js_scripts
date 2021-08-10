@@ -82,7 +82,7 @@ if (!jc_cookie) {
 function Rotary(jc_cookie1,cookie_id,time) {
     return new Promise((resolve, reject) => {
         let url = {
-            url : 'https://ant.xunsl.com/WebApi/RotaryTable/turnRotary?_='+jc_cookie1,
+            url : 'https://ant.xunsl.com/WebApi/RotaryTable/turnRotary?_='+time,
             headers : {'Host': 'ant.xunsl.com',
                 'Referer':'https://ant.xunsl.com/html/rotaryTable/index.html?'+jc_cookie1
             },
