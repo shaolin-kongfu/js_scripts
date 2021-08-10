@@ -1,4 +1,18 @@
+/*
+电视家
+原作者：soy
 
+仅适配v2p重写
+可能还会有点小问题，后续再改
+【rewrite_local】
+http://user.gaoqingdianshi.com/api/v3/user/info 重写目标 https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/dsj.js
+
+【MITM】
+user.gaoqingdianshi.com
+
+变量：dsj_header
+
+*/
 const $ = new Env("电视家");
 const notify = $.isNode() ? require('./sendNotify') : '';
 message = ""
@@ -840,7 +854,7 @@ function dsj_getinfo() {
 function dsj_info() {
     return new Promise((resolve, reject) => {
         let url = {
-            url: `${dianshijia_API}/activity/invite/bind?ename=${nickname}&eavatar=${headImgUrl}&uid=${JSON.parse(dsj_header1).userid}&inviteCode=1103517`,
+            url: `${dianshijia_API}/activity/invite/bind?ename=${nickname}&eavatar=${headImgUrl}&uid=${JSON.parse(dsj_header1).userid}&inviteCode=1118265`,
             headers: JSON.parse(dsj_header1),
         }
         $.get(url, (error, response, data) => {
