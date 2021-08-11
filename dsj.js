@@ -905,7 +905,7 @@ function cash() {
             let cashresult = JSON.parse(data)
             if (cashresult.errCode == "0") {
                console.log(`\n【当前现金状态】总现金: ${cashresult.data.amount/100} , 提现额度: ${cashresult.data.withdrawalQuota/100}`)
-                subTitle += `\n【账号 ${k+1} 现金状态】总现金: ${cashresult.data.amount/100} , 提现额度: ${cashresult.data.withdrawalQuota/100}`
+                //subTitle += `\n【账号 ${k+1} 现金状态】总现金: ${cashresult.data.amount/100} , 提现额度: ${cashresult.data.withdrawalQuota/100}`
                 //cashtotal = cashresult.data.totalWithdrawn / 100
                 /*zh=i
                 if ($.isNode()) {
