@@ -485,7 +485,8 @@ function CarveUp() {
              $.log(`瓜分百万金币: ${data}`)
             const result = JSON.parse(data)
             if (result.errCode == 0) {
-                detail += `【金币瓜分】✅ 报名成功\n`
+                //detail += `【金币瓜分】✅ 报名成功\n`
+		    $.log(`金币瓜分】✅ 报名成功\n`)
             }
             resolve()
         })
