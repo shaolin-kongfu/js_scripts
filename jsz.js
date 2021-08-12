@@ -61,7 +61,7 @@ var timestamp = (new Date()).valueOf();
             $.log("提现金额如果达标 将会自动提现")
             await myInfo()
             await task()
-	    await $.wait(10000)
+	    await $.wait(15000)
 		
   }
 }
@@ -87,7 +87,7 @@ var timestamp = (new Date()).valueOf();
             $.log("提现金额如果达标 将会自动提现")
             await myInfo()
             await task()
-	    await $.wait(10000)
+	    await $.wait(15000)
             }
       }
   }
@@ -142,7 +142,7 @@ async function myInfo(){
             mode: CryptoJS.mode.ECB,
             padding: CryptoJS.pad.Pkcs7
     })
-             await $.wait(10000)
+             await $.wait(15000)
                 await tx(js)
             }
 } else {
@@ -226,7 +226,7 @@ async function task(){
             padding: CryptoJS.pad.Pkcs7
     })
 	    if (taskId !== "null"){
-             await $.wait(10000)
+             await $.wait(15000)
             await completeTask(js)
 	    }else{
 	    console.log('此账号已被限制阅读，请72小时后再跑脚本')
