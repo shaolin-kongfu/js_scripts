@@ -77,7 +77,7 @@
       "id": "jsz",
       "name": "金银手指阅读",
       "keys": 
-        ["jszhd","jszhd1","jszhd2","jszhd3","jszhd4","jszhd5"],
+        ["jszhd","jszhd2","jszhd3","jszhd4","jszhd5"],
       "settings": [{
                         "id": "jszstatus",
                         "name": "当前账号",
