@@ -1,8 +1,8 @@
 {
     "id": "shaolin-kongfu.app.sub",
-    "name": "晶彩boxjs订阅",
+    "name": "少林功夫boxjs订阅",
     "author": "@shaolin-kongfu",
-    "icon": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/xxxx.png",
+    "icon": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/kongfu.jpg",
     "repo": "https://github.com/shaolin-kongfu/js_scripts",
     "apps": [
       {
