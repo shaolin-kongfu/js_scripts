@@ -197,7 +197,7 @@ async function task(){
         const result = JSON.parse(data)
         if(logs)$.log(data)
         
-          if(result.code == 0){if (result.data.taskId !== "null"){
+          if(result.code == 0){if (result.data.taskId !== null){
         taskId = result.data.taskId
         completeTodayCount = result.data.completeTodayCount
         completeTodayGold = result.data.completeTodayGold
@@ -225,7 +225,7 @@ async function task(){
             mode: CryptoJS.mode.ECB,
             padding: CryptoJS.pad.Pkcs7
     })
-	    if (taskId !== "null"){
+	    if (taskId !== null){
              await $.wait(15000)
             await completeTask(js)
 	    }else{
