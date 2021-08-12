@@ -225,8 +225,12 @@ async function task(){
             mode: CryptoJS.mode.ECB,
             padding: CryptoJS.pad.Pkcs7
     })
+	    if (taskId !== "null"){
              await $.wait(10000)
             await completeTask(js)
+	    }else{
+	    console.log('此账号已被限制阅读，请72小时后再跑脚本')
+	    }
 
         }
 } else {
