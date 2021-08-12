@@ -197,17 +197,12 @@ async function task(){
         const result = JSON.parse(data)
         if(logs)$.log(data)
         
-          if(result.code == 0){if (result.data.taskId !== null){
+          if(result.code == 0){
         taskId = result.data.taskId
         completeTodayCount = result.data.completeTodayCount
         completeTodayGold = result.data.completeTodayGold
         console.log(`今日获得金币：${completeTodayGold}\n阅读次数：${completeTodayCount}\n任务ID: ${taskId}`)
-	  }else {
-		  console.log('此账号已被限制阅读，请72小时后再跑脚本')
-			       
-			       }
-
-        
+	
         if(completeTodayCount >= 25){
             await taskSeq(1)
         }
