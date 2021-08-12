@@ -61,7 +61,7 @@
       ]
      },
      {
-      "id": "jcZf",
+      "id": "jcfriendSign",
       "name": "晶彩好友签到红包",
       "keys": [
         "jc_cookie"
@@ -72,6 +72,32 @@
       "https://cdn.jsdelivr.net/gh/NANXIAO1971/ceshi@main/picture/jckd1.png",
       "https://cdn.jsdelivr.net/gh/NANXIAO1971/ceshi@main/picture/jckd1.png"
       ]
-     }
+     },
+        {
+      "id": "jsz",
+      "name": "金银手指阅读",
+      "keys": 
+        ["jszhd","jszhd1","jszhd2","jszhd3","jszhd4","jszhd5"],
+      "settings": [{
+                        "id": "jszstatus",
+                        "name": "当前账号",
+                        "val": "1",
+                        "type": "number",
+                        "desc": "当前抓取ck记录的账号序号，如：1、2、3、4等"
+                    }, {
+                        "id": "jszcount",
+                        "name": "账号个数",
+                        "val": "1",
+                        "type": "number",
+                        "desc": "指定任务最多跑几个账号，根据抓取的账号数据个数来设值"
+                    }],
+  
+      "repo": "https://github.com/shaolin-kongfu/js_scripts/blob/main/jsz.js", 
+      "script": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jsz.js", 
+      "icons": [ 
+        "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jysz.jpg",
+        "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jysz.jpg"
+      ]
+    }
    ]
 }
