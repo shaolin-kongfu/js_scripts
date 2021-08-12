@@ -4,6 +4,7 @@
 原作者：柠檬
 
 适配v2p和青龙，修复v2p运行偶现报错问题，需要依赖 crypto-js.js ，请将该文件放在脚本同级目录即可
+圈x请跑原作者脚本
 
 青龙抓包以下链接的header
 https://hh.102727.com/user/myInfo
@@ -28,7 +29,7 @@ hostname = hh.102727.com
 每满4000金币（4毛）申请微信提现
 
 */
-// */5 * * * * https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jsz.js
+// */10 * * * * https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jsz.js
 
 
 // @grant    require
@@ -60,6 +61,8 @@ var timestamp = (new Date()).valueOf();
             $.log("提现金额如果达标 将会自动提现")
             await myInfo()
             await task()
+	    await $.wait(10000)
+		
   }
 }
       }else  {
@@ -84,6 +87,7 @@ var timestamp = (new Date()).valueOf();
             $.log("提现金额如果达标 将会自动提现")
             await myInfo()
             await task()
+	    await $.wait(10000)
             }
       }
   }
@@ -193,11 +197,15 @@ async function task(){
         const result = JSON.parse(data)
         if(logs)$.log(data)
         
-          if(result.code == 0){
+          if(result.code == 0){if (result.data.taskId !== "null"){
         taskId = result.data.taskId
         completeTodayCount = result.data.completeTodayCount
         completeTodayGold = result.data.completeTodayGold
         console.log(`今日获得金币：${completeTodayGold}\n阅读次数：${completeTodayCount}\n任务ID: ${taskId}`)
+	  }else {
+		  console.log('此账号已被限制阅读，请72小时后再跑脚本')
+			       
+			       }
 
         
         if(completeTodayCount >= 25){
