@@ -4,7 +4,6 @@
 原作者：柠檬
 
 适配v2p和青龙，修复v2p运行偶现报错问题，需要依赖 crypto-js.js ，请将该文件放在脚本同级目录即可
-crypto-js 文件地址：https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/crypto-js.js
 圈x请跑原作者脚本
 
 青龙抓包以下链接的header
@@ -26,7 +25,7 @@ hostname = hh.102727.com
 1.先填写好上方的重写或打开抓包软件
 2.微信扫图片二维码，会自动跳出文章，等待10s左右，点击返回，点击停止阅读即可
 
-收益：只看文章的话，跑满每日12000金币（1.2元），被限制阅读另说
+收益：只看文章的话，跑满每日12000金币（1.2元）
 每满4000金币（4毛）申请微信提现
 
 */
@@ -63,7 +62,7 @@ var timestamp = (new Date()).valueOf();
             await myInfo()
             await task()
 	    await $.wait(15000)
-		
+
   }
 }
       }else  {
@@ -108,7 +107,7 @@ $.log(jszhd)
 //$.log(jszurl)
 
    $.msg($.name,"",'金手指'+`${status}` +'数据获取成功！')
- 
+
 }
 }
 
@@ -118,14 +117,14 @@ async function myInfo(){
        url: `https://hh.102727.com/user/myInfo`,
         headers: JSON.parse(jszhd),
         //body: `{"channel_id":188}`,
-        
+
     }
    $.get(plant6_url,async(error, response, data) =>{
        //console.log(`${JSON.stringify(jszhd)}`)
     try{
         const result = JSON.parse(data)
         if(logs)$.log(data)
-        
+
           if(result.code == 0){
          $.goldNow = result.data.goldNow
          console.log(`\n余额：`+result.data.goldNow)
@@ -136,7 +135,7 @@ async function myInfo(){
             $.log("\n=====开始提现=====")
              txnum = $.goldNow/4000*0.35
              txnum = txnum.toFixed(1)
-                const CryptoJS = require('crypto-js')
+                const CryptoJS = require('./crypto-js')
           var key = CryptoJS.enc.Utf8.parse("5kosc7jy2w0fxx3s")
             var plaintText = `{"moneyPick":${txnum}}`
             var js = CryptoJS.AES.encrypt(plaintText, key, {
@@ -153,7 +152,7 @@ async function myInfo(){
           $.logErr(e, response);
       } finally {
         resolve();
-      } 
+      }
     })
    })
   }
@@ -165,7 +164,7 @@ async function taskSeq(type){
        url: `https://hh.102727.com/sign/todayAwardGain?taskSeq=${type}`,
         headers: JSON.parse(jszhd),
         //body: `{"channel_id":188}`,
-        
+
     }
    $.post(plant6_url,async(error, response, data) =>{
        //console.log(`${JSON.stringify(jszhd)}`)
@@ -181,7 +180,7 @@ async function taskSeq(type){
           $.logErr(e, response);
       } finally {
         resolve();
-      } 
+      }
     })
    })
   }
@@ -191,19 +190,19 @@ async function task(){
        url: `https://hh.102727.com/task/fetchTask?taskType=1`,
         headers: JSON.parse(jszhd),
         //body: `{"channel_id":188}`,
-        
+
     }
    $.get(plant6_url,async(error, response, data) =>{
     try{
         const result = JSON.parse(data)
         if(logs)$.log(data)
-        
+
           if(result.code == 0){
         taskId = result.data.taskId
         completeTodayCount = result.data.completeTodayCount
         completeTodayGold = result.data.completeTodayGold
         console.log(`今日获得金币：${completeTodayGold}\n阅读次数：${completeTodayCount}\n任务ID: ${taskId}`)
-	
+
         if(completeTodayCount >= 25){
             await taskSeq(1)
         }
@@ -212,9 +211,9 @@ async function task(){
             $.log("今日阅读次数已满 请明天再来")
            //$.log("\n=====开始提现=====")
 
-            
+
         }else {
-		const CryptoJS = require('crypto-js')
+		const CryptoJS = require('./crypto-js')
           var key = CryptoJS.enc.Utf8.parse("5kosc7jy2w0fxx3s")
             var plaintText = `{"taskId":${taskId}}`
             var js = CryptoJS.AES.encrypt(plaintText, key, {
@@ -225,7 +224,7 @@ async function task(){
              await $.wait(15000)
             await completeTask(js)
 	    }else{
-	    console.log('此账号已被限制阅读或当前已无文章可读，等待下次任务执行')
+	    console.log('此账号已被限制阅读，请72小时后再跑脚本')
 	    }
 
         }
