@@ -46,8 +46,13 @@ if (!jc_cookie) {
                 //待处理cookie
                 console.log(`${jc_cookie1}`)
                 console.log(`--------第 ${k + 1} 个账号观看福利视频中--------\n`)
-                await video(jc_cookie1)
-                await $.wait(4000);
+		for (let j =0; j<5;j++){
+			console.log(`--------第 ${j + 1} 次观看福利视频中--------\n`)
+                	await video(jc_cookie1)
+			console.log("等待30秒")
+                	await $.wait(30000);
+			console.log("\n\n")
+		}
                 console.log("\n\n")
             }
 
