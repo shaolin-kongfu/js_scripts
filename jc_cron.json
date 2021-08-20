@@ -45,6 +45,16 @@
       }
     },
     {
+      "name": "晶彩福利视频",
+      "type": "cron",
+      "time": "20 21 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jc_Adv_video.js"
+      }
+    },
+    {
       "name": "晶彩每日任务宝箱领取",
       "type": "cron",
       "time": "15 22 * * *",
