@@ -46,11 +46,7 @@ const wzheader = {
     'Content-Length': '1201',
     'Host': 'ant.xunsl.com'
 }
- if (typeof $request !== "undefined") {
-     getwzbody()
-     getjc_timebody()
-     $.done()
- }
+
   if (!jc_timebody) {
      $.msg($.name, '【提示】请点击文章获取body，再跑一次脚本', '不知道说啥好', {
          "open-url": "给您劈个叉吧"
@@ -102,21 +98,27 @@ const wzheader = {
     })
 
 !(async () => {
+    if (typeof $request !== "undefined") {
+     getwzbody()
+     getjc_timebody()
+     $.done()
+ }else {
 
         console.log(`共${wzbodyArr.length}个阅读body`)
-	        for (let k = 0; k < wzbodyArr.length; k++) {
-                // $.message = ""
-                wzbody1 = wzbodyArr[k];
-                // console.log(`${wzbody1}`)
-                console.log(`--------第 ${k + 1} 次阅读任务执行中--------\n`)
-                await wzjl()
-                await $.wait(60000);
-                for (let k = 0; k < jc_timebodyArr.length; k++){
-                jc_timebody1=jc_timebodyArr[k];
+        for (let k = 0; k < wzbodyArr.length; k++) {
+            // $.message = ""
+            wzbody1 = wzbodyArr[k];
+            // console.log(`${wzbody1}`)
+            console.log(`--------第 ${k + 1} 次阅读任务执行中--------\n`)
+            await wzjl()
+            await $.wait(60000);
+            for (let k = 0; k < jc_timebodyArr.length; k++) {
+                jc_timebody1 = jc_timebodyArr[k];
                 await timejl()
-                }
-                console.log("\n\n")
             }
+            console.log("\n\n")
+        }
+    }
 
 
 
@@ -205,7 +207,7 @@ function getjc_timebody() {
             $.msg($.name, `获取第一个阅读请求: 成功🎉`, ``)
         }
     }
-    }
+}
 
 function timejl(timeout = 0) {
     return new Promise((resolve) => {
@@ -214,7 +216,7 @@ function timejl(timeout = 0) {
             headers : jc_timeheader,
             body : jc_timebody1,}//xsgbody,}
         $.post(url, async (err, resp, data) => {
-            try {time
+            try {
 
                 const result = JSON.parse(data)
                 if(result.success === true ){
