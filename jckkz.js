@@ -46,12 +46,9 @@ const lookStartheader={
     'Content-Length': '1197',
     'Host': 'ant.xunsl.com'
 }
-!(async () => {
- if (typeof $request !== "undefined") {
-     await getlookStartbody()
-     $.done()
- }
-    })()
+
+
+
 if (!jc_cookie) {
      $.msg($.name, '【提示】进入点击右下角"赚钱图标"，再跑一次脚本', '不知道说啥好', {
          "open-url": "给您劈个叉吧"
@@ -102,6 +99,10 @@ if (!lookStartbody) {
     })
 
 !(async () => {
+     if (typeof $request !== "undefined") {
+     await getlookStartbody()
+     $.done()
+ }else{
     console.log(`共${lookStartbodyArr.length}个看看赚body`)
 	        for (let k = 0; k < lookStartbodyArr.length; k++) {
 
@@ -120,19 +121,15 @@ if (!lookStartbody) {
                 cookie = bodyVal.replace(/zqkey=/, "cookie=")
                 cookie_id = cookie.replace(/zqkey_id=/, "cookie_id=")
                 jc_cookie1= cookie_id  +'&device_brand=xfdg&device_id=cc7dgdsgfsz83e&device_model=1gx&device_platform=android&device_type=android&inner_version=202107261526&mi=0&openudid=cc7dgdsgfsz83e&os_api=27&os_version=bdftgsdfga&phone_network=WIFI&phone_sim=1'+'&request_time=' + time1 +'&time=' + time1 +'&'+ bodyVal
-                console.log(`${jc_cookie1}`)
+                //console.log(`${jc_cookie1}`)
                 console.log(`--------第 ${k + 1} 个账号看看赚上方宝箱奖励执行中--------\n`)
-for(let k = 0; k < 3; k++){
-    id = k.toString()
-    await openbox(id,jc_cookie1)
-                await $.wait(30000);
+                for(let k = 0; k < 3; k++){
+                    id = k.toString()
+                    await openbox(id,jc_cookie1)
+                    await $.wait(30000);
 
-}
-                // await openbox(id,jc_cookie1)
-                // await $.wait(30000);
+                }
 
-                //console.log(typeof(jc_cookie1));
-                //console.log(jc_cookie1.length.toString());
                 console.log("\n\n")
 
             }
@@ -162,7 +159,7 @@ function openbox(id,jc_cookie1,timeout=0) {
             }
             },timeout)
     })
-}
+}}
     })()
     .catch((e) => $.logErr(e))
     .finally(() => $.done())
@@ -226,6 +223,9 @@ function lookStart(timeout = 0) {
 
                 }else{
                     console.log('\n激活看看赚任务失败')
+                    smbody = $.getdata('lookStartbody').replace(lookStartbody1 + "&", "");
+                    $.setdata(smbody, 'lookStartbody');
+                    console.log("该看看赚任务已自动删除")
                 }
             } catch (e) {
             } finally {
@@ -247,9 +247,10 @@ function lookstart(timeout = 0) {
                 const result = JSON.parse(data)
                 if(result.success === true ){
                     console.log('\n浏览看看赚文章成功')
-                }else{
+                }else {
                     console.log('\n浏览看看赚文章失败')
                 }
+
             } catch (e) {
             } finally {
                 resolve()
