@@ -25,12 +25,9 @@ var myDate = new Date();
 var hour=myDate.getHours();
 console.log(hour)
 
-!(async () => {
- if (typeof $request !== "undefined") {
-     await getjc_cookie()
-     $.done()
- }
- })()
+
+
+
  if (!jc_cookie) {
      $.msg($.name, '【提示】进入点击右下角"赚钱图标"，再跑一次脚本', '不知道说啥好', {
          "open-url": "给您劈个叉吧"
@@ -57,42 +54,46 @@ console.log(hour)
     })
 
 !(async () => {
-        console.log(`共${jc_cookieArr.length}个cookie`)
-	        for (let k = 0; k < jc_cookieArr.length; k++) {
-                // $.message = ""
-                //bodyVal2 =jc_cookie2.split('&token=')[0]
-                //console.log(`${bodyVal2}`)
+     if (typeof $request !== "undefined") {
+     await getjc_cookie()
+     $.done()}else {
+         console.log(`共${jc_cookieArr.length}个cookie`)
+         for (let k = 0; k < jc_cookieArr.length; k++) {
+             // $.message = ""
+             //bodyVal2 =jc_cookie2.split('&token=')[0]
+             //console.log(`${bodyVal2}`)
 
 
-            if(hour > 4 && hour !== 10 && hour !== 16 && hour !== 22) {
-                var time1 = Date.parse( new Date() ).toString();
-                time1 = time1.substr(0,10);
-		bodyVal = jc_cookieArr[k].split('&uid=')[0];
-                cookie = bodyVal.replace(/zqkey=/, "cookie=")
-                cookie_id = cookie.replace(/zqkey_id=/, "cookie_id=")
-                jc_cookie1= cookie_id  +'&device_brand=xfdg&device_id=cc7dgdsgfsz83e&device_model=1gx&device_platform=android&device_type=android&inner_version=202107261526&mi=0&openudid=cc7dgdsgfsz83e&os_api=27&os_version=bdftgsdfga&phone_network=WIFI&phone_sim=1'+'&request_time=' + time1 +'&time=' + time1 +'&'+ bodyVal
+             if (hour > 4 && hour !== 10 && hour !== 16 && hour !== 22) {
+                 var time1 = Date.parse(new Date()).toString();
+                 time1 = time1.substr(0, 10);
+                 bodyVal = jc_cookieArr[k].split('&uid=')[0];
+                 cookie = bodyVal.replace(/zqkey=/, "cookie=")
+                 cookie_id = cookie.replace(/zqkey_id=/, "cookie_id=")
+                 jc_cookie1 = cookie_id + '&device_brand=xfdg&device_id=cc7dgdsgfsz83e&device_model=1gx&device_platform=android&device_type=android&inner_version=202107261526&mi=0&openudid=cc7dgdsgfsz83e&os_api=27&os_version=bdftgsdfga&phone_network=WIFI&phone_sim=1' + '&request_time=' + time1 + '&time=' + time1 + '&' + bodyVal
 
-                //待处理cookie
+                 //待处理cookie
 
-                console.log(`${jc_cookie1}`)
-                console.log(`--------第 ${k + 1} 次转发奖励执行中--------\n`)
+                 //console.log(`${jc_cookie1}`)
+                 console.log(`--------第 ${k + 1} 次转发奖励执行中--------\n`)
 
-                await wzlist()
-                await $.wait(4000);
-                await sharejl()
-                //console.log(typeof(jc_cookie1));
-                console.log(jc_cookie1.length.toString());
-                await $.wait(4000);
-                console.log("\n\n")
-            }else{
-                console.log('\n现在不是转发时段！')
-            }
-            }
+                 await wzlist()
+                 await $.wait(4000);
+                 await sharejl()
+                 //console.log(typeof(jc_cookie1));
+                 //console.log(jc_cookie1.length.toString());
+                 await $.wait(4000);
+                 console.log("\n\n")
+             } else {
+                 console.log('\n现在不是转发时段！')
+             }
+         }
+     }
      })()
     .catch((e) => $.logErr(e))
     .finally(() => $.done())
 
-function wzlist(timeout = 0) {
+function wzlist(timeout = 5000) {
     return new Promise((resolve) => {
         let url = {
             url : 'https://ant.xunsl.com/WebApi/ArticleTop/listsNewTag',
@@ -106,11 +107,11 @@ function wzlist(timeout = 0) {
                 if(result.data.items !== "undefined" ){
                     wzid = result.data.items[0].id
                     //console.log(result.data.items[0].id)
-		    await $.wait(3000);
+		            await $.wait(3000);
                     await share(wzid)
 
                 }else{
-                    console.log('\n看太久了，换一篇试试')
+                    console.log(result)
                 }
             } catch (e) {
             } finally {
