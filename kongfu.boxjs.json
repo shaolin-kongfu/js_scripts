@@ -111,6 +111,37 @@
         "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/kongfu.jpg",
         "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/kongfu.jpg"
       ]
+    },
+    {
+      "id": "jc_withdraw",
+      "name": "晶彩提现",
+      "keys": 
+        "jc_withdraw",
+  "settings": [{
+          "id": "zqcash", 
+          "val": "0.3", 
+          "name": "提现金额", 
+          "type": "radios", 
+          "desc": "自动提现金额需和获取提现请求保持一致", 
+          "items": [
+            {
+              "key": "0.3", 
+              "label": "0.3元"
+            }, 
+            {
+              "key": "30", 
+              "label": "30元"
+            }
+          ]
+        }
+        ],
+  
+      "repo": "https://github.com/shaolin-kongfu/js_scripts/blob/main/jsz.js", 
+      "script": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jsz.js", 
+      "icons": [ 
+        "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/kongfu.jpg",
+        "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/kongfu.jpg"
+      ]
     }
    ]
 }
