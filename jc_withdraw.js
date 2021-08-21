@@ -1,3 +1,34 @@
+/*
+晶彩自动提现 jc_withdraw.js，
+调用jc_cookie,jc_withdraw,jc_cash
+
+赞赏:邀请码54870223
+
+脚本地址：
+https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jc_withdraw.js
+定时确保在每日首次火爆转发之后（jc_share.js），一天一次
+***************************************************************************
+v2p食用说明：
+1.添加重写如下：
+https://ant.xunsl.com/v5/wechat/withdraw2.json 重写目标 https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jc_withdraw.js
+
+2.打开app进入提现页面，选择对应金额，点击立即提现（不管当日是否已经提现，都能抓），到变量中查看到有jc_withdraw即可
+
+3.注意多账号用户抓包jc_withdraw时需要与jc_cookie账号顺序一致
+
+4.jc_cash不填默认0.3元，填的话有0.3，30两个选项（boxjs订阅中可直接修改，没有订阅的话直接新建变量即可）
+
+5.jc_withdraw务必与jc_cash金额一致，即修改jc_withdraw时也要修改jc_cash
+****************************************************************************
+青龙食用说明：
+1.自己抓包数据
+2.export jc_withdraw="p=xxx"(多账号用@隔开)
+3.export jc_cash="0.3"或者export jc_cash="30"，不填默认0.3
+4.多账号用户抓包jc_withdraw时需要与jc_cookie账号顺序一致
+5.jc_withdraw务必与jc_cash金额一致，即修改jc_withdraw时也要修改jc_cash
+
+*/
+
 
 
 const $ = new Env("晶彩看点提现");
@@ -13,10 +44,7 @@ let jc_cookies = ""
 let nowmoney;
 
 
- if (typeof $request !== "undefined") {
-    getbody()
-     $.done()
- }
+
 var time1 = Date.parse( new Date() ).toString();
     time1 = time1.substr(0,10);
 if (!jc_withdraw) {
@@ -72,33 +100,38 @@ if (!jc_cookie) {
     })
 
 !(async () => {
-        console.log(`共${jc_cookieArr.length}个cookie`)
-	        for (let k = 0; k < jc_cookieArr.length; k++) {
-                $.message = ""
-                bodyVal = jc_cookieArr[k].split('&uid=')[0];
-                cookie = bodyVal.replace(/zqkey=/, "cookie=")
-                cookie_id = cookie.replace(/zqkey_id=/, "cookie_id=")
-                jc_cookie1= cookie_id + '&' + bodyVal
-                //待处理cookie
-                console.log(`--------第 ${k + 1} 个账号收益查询中--------\n`)
-                jc_withdraw1 = jc_withdrawArr[k]
-                await today_score(jc_cookie1)
+     if (typeof $request !== "undefined") {
+    getbody()
+     $.done()
+ }else {
+         console.log(`共${jc_cookieArr.length}个cookie`)
+         for (let k = 0; k < jc_cookieArr.length; k++) {
+             $.message = ""
+             bodyVal = jc_cookieArr[k].split('&uid=')[0];
+             cookie = bodyVal.replace(/zqkey=/, "cookie=")
+             cookie_id = cookie.replace(/zqkey_id=/, "cookie_id=")
+             jc_cookie1 = cookie_id + '&' + bodyVal
+             //待处理cookie
+             console.log(`--------第 ${k + 1} 个账号收益查询中--------\n`)
+             jc_withdraw1 = jc_withdrawArr[k]
+             await today_score(jc_cookie1)
 
 
-
-			if ($.message.length != 0) {
-                    message +=  "账号" +(k+1)+ "：  " + $.message + " \n"
-                }
-                await $.wait(4000);
-                console.log("\n\n")
-            }
-
+             if ($.message.length != 0) {
+                 message += "账号" + (k + 1) + "：  " + $.message + " \n"
+             }
+             await $.wait(4000);
+             console.log("\n\n")
+         }
 
 
-            if (message.length != 0) {
-        await notify ? notify.sendNotify("晶彩看点提现", `${message}\n\n shaolin-kongfu`) :
-            $.msg($.name, "晶彩看点提现", `${message}\n\n shaolin-kongfu`);
-    }else if($.isNode()){await notify.sendNotify("晶彩看点提现", `${message}\n\nshaolin-kongfu`);}
+         if (message.length != 0) {
+             await notify ? notify.sendNotify("晶彩看点提现", `${message}\n\n shaolin-kongfu`) :
+                 $.msg($.name, "晶彩看点提现", `${message}\n\n shaolin-kongfu`);
+         } else if ($.isNode()) {
+             await notify.sendNotify("晶彩看点提现", `${message}\n\nshaolin-kongfu`);
+         }
+     }
      })()
     .catch((e) => $.logErr(e))
     .finally(() => $.done())
