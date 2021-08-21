@@ -116,9 +116,9 @@
       "id": "jc_withdraw",
       "name": "晶彩提现",
       "keys": 
-        "jc_withdraw",
+        ["jc_withdraw","jc_cash"],
   "settings": [{
-          "id": "zqcash", 
+          "id": "jc_cash", 
           "val": "0.3", 
           "name": "提现金额", 
           "type": "radios", 
