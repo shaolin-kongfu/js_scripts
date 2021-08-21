@@ -25,10 +25,7 @@ let jcboxbody= $.isNode() ? (process.env.jcboxbody ? process.env.jcboxbody : "")
 let jcboxbodyArr = []
 let jcboxbodys = ""
 
- if (typeof $request !== "undefined") {
-     getjcboxbody()
-     $.done()
- }
+
 
 if (!jcboxbody) {
      $.msg($.name, '【提示】请在app下方点击赚钱图标，在每日任务中点击所有可领取的奖励，获取body，明天再跑一次脚本', '不知道说啥好', {
@@ -56,25 +53,29 @@ if (!jcboxbody) {
     })
 
 !(async () => {
-
-        console.log(`共${jcboxbodyArr.length}个宝箱奖励body`)
-	        for (let k = 0; k < jcboxbodyArr.length; k++) {
-                // $.message = ""
-                jcboxbody1 = jcboxbodyArr[k];
-                console.log(`${jcboxbody1}`)
-                console.log(`--------第 ${k + 1} 次宝箱奖励执行中--------\n`)
-                let jcboxheader={
-    'device-platform': 'android',
-    'Content-Type': 'application/x-www-form-urlencoded',
-    'Content-Length': jcboxbody1.length.toString(),
-    'Host': 'ant.xunsl.com',
+if (typeof $request !== "undefined") {
+     getjcboxbody()
+     $.done()
+ }else {
+    console.log(`共${jcboxbodyArr.length}个宝箱奖励body`)
+    for (let k = 0; k < jcboxbodyArr.length; k++) {
+        // $.message = ""
+        jcboxbody1 = jcboxbodyArr[k];
+        console.log(`${jcboxbody1}`)
+        console.log(`--------第 ${k + 1} 次宝箱奖励执行中--------\n`)
+        let jcboxheader = {
+            'device-platform': 'android',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Length': jcboxbody1.length.toString(),
+            'Host': 'ant.xunsl.com',
+        }
+        await jcboxreward(jcboxheader)
+        console.log(typeof (jcboxbody1));
+        console.log(jcboxbody1.length.toString());
+        await $.wait(4000);
+        console.log("\n\n")
+    }
 }
-                await jcboxreward(jcboxheader)
-                console.log(typeof(jcboxbody1));
-            console.log(jcboxbody1.length.toString());
-                await $.wait(4000);
-                console.log("\n\n")
-            }
      })()
     .catch((e) => $.logErr(e))
     .finally(() => $.done())
