@@ -142,6 +142,118 @@
       "https://cdn.jsdelivr.net/gh/NANXIAO1971/ceshi@main/picture/jckd1.png",
       "https://cdn.jsdelivr.net/gh/NANXIAO1971/ceshi@main/picture/jckd1.png"
       ]
+    },
+     {
+      "id": "zqKkz",
+      "name": "中青看看赚",
+      "keys": [
+        "zqlookStartbody"
+      ],
+      "repo": "https://github.com/shaolin-kongfu/js_scripts/blob/main/zq/zqkkz.js",
+      "script": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zqkkz.js",
+
+      "icons": [
+        "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/kongfu.jpg",
+        "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/kongfu.jpg"
+      ]
+    },
+    {
+      "id": "zqRead",
+      "name": "中青自动阅读",
+      "keys": [
+        "zqwzbody",
+        "zq_timebody"
+      ],
+      "repo": "https://github.com/shaolin-kongfu/js_scripts/blob/main/zq/zqwz.js",
+      "script": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zqwz.js",
+      "icons": [
+        "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/kongfu.jpg",
+        "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/kongfu.jpg"
+      ]
+    },
+    {
+      "id": "zqSign",
+      "name": "中青签到&宝箱",
+      "keys": [
+        "zqqdbody",
+        "zqboxbody"
+      ],
+      "repo": "https://github.com/shaolin-kongfu/js_scripts/blob/main/zq/zqqd.js",
+      "script": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zqqd.js",
+      "icons": [
+        "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/kongfu.jpg",
+        "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/kongfu.jpg"
+      ]
+    },
+    {
+      "id": "zqZf",
+      "name": "中青火爆转发",
+      "keys": [
+        "zq_cookie"
+      ],
+      "repo": "https://github.com/shaolin-kongfu/js_scripts/blob/main/zq/zq_share.js",
+      "script": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zq_share.js",
+      "icons": [
+      "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/kongfu.jpg",
+      "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/kongfu.jpg"
+      ]
+     },
+     {
+      "id": "zqfriendSign",
+      "name": "中青好友签到红包",
+      "keys": [
+        "zq_cookie"
+      ],
+      "repo": "https://github.com/shaolin-kongfu/js_scripts/blob/main/zq/zq_friendSign.js",
+      "script": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zq_friendSign.js",
+      "icons": [
+      "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/kongfu.jpg",
+      "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/kongfu.jpg"
+      ]
+     },
+     {
+      "id": "zq_Adv_video.js",
+      "name": "中青福利视频",
+      "keys": [
+        "zq_cookie"
+      ],
+      "repo": "https://github.com/shaolin-kongfu/js_scripts/blob/main/zq/zq_Adv_video.js",
+      "script": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zq_Adv_video.js",
+      "icons": [
+      "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/kongfu.jpg",
+      "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/kongfu.jpg"
+      ]
+     },
+    {
+      "id": "zq_withdraw",
+      "name": "中青提现",
+      "keys":
+        ["zq_withdraw","zq_cash"],
+  "settings": [{
+          "id": "zq_cash",
+          "val": "0.3",
+          "name": "提现金额",
+          "type": "radios",
+          "desc": "自动提现金额需和获取提现请求保持一致",
+          "items": [
+            {
+              "key": "0.3",
+              "label": "0.3元"
+            },
+            {
+              "key": "30",
+              "label": "30元"
+            }
+          ]
+        }
+        ],
+
+      "repo": "https://github.com/shaolin-kongfu/js_scripts/blob/main/zq/zq_withdraw.js",
+      "script": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zq_withdraw.js",
+      "icons": [
+      "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/kongfu.jpg",
+      "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/kongfu.jpg"
+      ]
     }
    ]
 }
