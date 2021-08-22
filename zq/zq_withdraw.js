@@ -171,7 +171,7 @@ function withdraw(zq_withdraw1,timeout = 0) {
 
 
 function getbody() {
-    if ($request.url.match(/\/kandian.wkandian.com\/wechat\/withdraw2.json/)) {
+    if ($request.url.match(/\/kandian.wkandian.com\/v5\/wechat\/withdraw2.json/)) {
           bodyVal=$request.body
             console.log(bodyVal)
         if (zq_withdraw) {
