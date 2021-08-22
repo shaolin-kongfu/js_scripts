@@ -1,0 +1,89 @@
+{
+  "name": "中青看点定时任务订阅",
+  "desc": "无",
+  "date": "2021-08-05 20:32:08",
+  "author": "https://t.me/ShaolinTemple1",
+  "resource": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zq_cron.json",
+  "list": [
+    {
+      "name": "中青签到",
+      "type": "cron",
+      "time": "15 2 * * *",
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zqqd.js"
+      }
+    },
+    {
+      "name": "中青文章",
+      "type": "cron",
+      "time": "30 7,12,18 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zqwz.js"
+      }
+    },
+    {
+     "name": "中青看看赚",
+      "type": "cron",
+      "time": "45 9 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zqkkz.js"
+      }
+    },
+    {
+      "name": "中青火爆转发",
+      "type": "cron",
+      "time": "15 6,12,18 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zq_share.js"
+      }
+    },
+    {
+      "name": "中青福利视频",
+      "type": "cron",
+      "time": "20 21 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zq_Adv_video.js"
+      }
+    },
+    {
+      "name": "中青每日任务宝箱领取",
+      "type": "cron",
+      "time": "15 22 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zqbox.js"
+      }
+    },
+    {
+      "name": "中青每日收益统计",
+      "type": "cron",
+      "time": "15 23 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zq_today_score.js"
+      }
+    },
+    {
+      "name": "中青自动提现",
+      "type": "cron",
+      "time": "25 10 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zq_withdraw.js"
+      }
+    }
+
+  ]
+}
