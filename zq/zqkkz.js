@@ -125,8 +125,8 @@ if (!zqlookStartbody) {
                 console.log(`--------第 ${k + 1} 个账号看看赚上方宝箱奖励执行中--------\n`)
                 for(let k = 0; k < 3; k++){
                     id = k.toString()
-                    //await openbox(id,zq_cookie1)
-                    //await $.wait(30000);
+                    await openbox(id,zq_cookie1)
+                    await $.wait(30000);
 
                 }
 
