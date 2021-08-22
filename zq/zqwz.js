@@ -1,97 +1,175 @@
+
 /*
 shaolin-kongfu
 
 软件名称：中青看点
 赞赏:邀请码57984759
+
 万分感谢！！
 
-好友签到红包位置：打开app → 下方左起第三个选项（任务图标） → 中间好友红包（在看看赚的左边）
 
-每天每位好友签到后有4个红包，前两个是100金币，后面两个是10金币，先抢先得
+【MITM】
+kandian.wkandian.com
+【rewrite】
+https://kandian.wkandian.com/v5/article/info.json 重写目标
+https://kandian.wkandian.com/v5/article/detail.json 重写目标
 
-没有好友的可以加群，让群友扫码：https://t.me/ShaolinTemple2
+*/
 
-
- */
-
-const $ = new Env("中青看点好友签到红包");
+const $ = new Env("中青看点阅读文章");
 const notify = $.isNode() ? require('./sendNotify') : '';
 message = ""
-let zq_cookie= $.isNode() ? (process.env.zq_cookie ? process.env.zq_cookie : "") : ($.getdata('zq_cookie') ? $.getdata('zq_cookie') : "")
-let zq_cookieArr = []
-let zq_cookies = ""
-if (!zq_cookie) {
-     $.msg($.name, '【提示】进入点击右下角"任务图标"，获取cookie，再跑一次脚本', '不知道说啥好', {
+
+
+let zqwzbody= $.isNode() ? (process.env.zqwzbody ? process.env.zqwzbody : "") : ($.getdata('zqwzbody') ? $.getdata('zqwzbody') : "")
+let zqwzbodyArr = []
+let zqwzbodys = ""
+
+let zq_timebody= $.isNode() ? (process.env.zq_timebody ? process.env.zq_timebody : "") : ($.getdata('zq_timebody') ? $.getdata('zq_timebody') : "")
+let zq_timebodyArr = []
+let zq_timebodys = ""
+const jc_timeheader={
+    'device-platform': 'android',
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'Content-Length': '1197',
+    'Host': 'kandian.wkandian.com'
+}
+const wzheader = {
+    'device-platform': 'android',
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'Content-Length': '1203',
+    'Host': 'kandian.wkandian.com'
+}
+
+  if (!zq_timebody) {
+     $.msg($.name, '【提示】请点击文章阅读1分钟获取timebody，再跑一次脚本', '不知道说啥好', {
          "open-url": "给您劈个叉吧"
      });
      $.done()
  }
- else if (zq_cookie.indexOf("@") == -1 && zq_cookie.indexOf("@") == -1) {
-            zq_cookieArr.push(zq_cookie)
+ else if (zq_timebody.indexOf("&") == -1) {
+            zq_timebodyArr.push(zq_timebody)
  }
- else if (zq_cookie.indexOf("@") > -1) {
-            zq_cookies = zq_cookie.split("@")
+ else if (zq_timebody.indexOf("&") > -1) {
+            zq_timebodys = zq_timebody.split("&")
  }
- else if (process.env.zq_cookie && process.env.zq_cookie.indexOf('@') > -1) {
-            zq_cookieArr = process.env.zq_cookie.split('@');
-            console.log(`您选择的是用"@"隔开\n`)
+ else if (process.env.zq_timebody && process.env.zq_timebody.indexOf('&') > -1) {
+            zq_timebodyArr = process.env.zq_timebody.split('&');
+            console.log(`您选择的是用"&"隔开\n`)
  }
  else {
-            zq_cookies = [process.env.zq_cookie]
+            zq_timebodys = [process.env.zq_timebody]
  };
-    Object.keys(zq_cookies).forEach((item) => {
-        if (zq_cookies[item]) {
-            zq_cookieArr.push(zq_cookies[item])
+    Object.keys(zq_timebodys).forEach((item) => {
+        if (zq_timebodys[item]) {
+            zq_timebodyArr.push(zq_timebodys[item])
+        }
+    })
+
+ if (!zqwzbody) {
+     $.msg($.name, '【提示】请点击文章获取body，再跑一次脚本', '不知道说啥好', {
+         "open-url": "给您劈个叉吧"
+     });
+     $.done()
+ }
+ else if (zqwzbody.indexOf("&") == -1) {
+            zqwzbodyArr.push(zqwzbody)
+ }
+ else if (zqwzbody.indexOf("&") > -1) {
+            zqwzbodys = zqwzbody.split("&")
+ }
+ else if (process.env.zqwzbody && process.env.zqwzbody.indexOf('&') > -1) {
+            zqwzbodyArr = process.env.zqwzbody.split('&');
+            console.log(`您选择的是用"&"隔开\n`)
+ }
+ else {
+            zqwzbodys = [process.env.zqwzbody]
+ };
+    Object.keys(zqwzbodys).forEach((item) => {
+        if (zqwzbodys[item]) {
+            zqwzbodyArr.push(zqwzbodys[item])
         }
     })
 
 !(async () => {
-        console.log(`共${zq_cookieArr.length}个cookie`)
-	        for (let k = 0; k < zq_cookieArr.length; k++) {
-                $.message = ""
-                bodyVal = zq_cookieArr[k].split('&uid=')[0];
-                cookie = bodyVal.replace(/zqkey=/, "cookie=")
-                cookie_id = cookie.replace(/zqkey_id=/, "cookie_id=")
-                var time1 = Date.parse( new Date() ).toString();
-                time1 = time1.substr(0,10);
-                zq_cookie1= cookie_id + '&request_time=' + time1 + '&time=' + time1 +'&'+ bodyVal
-                //待处理cookie
-                //console.log(`${zq_cookie1}`)
-                console.log(`--------第 ${k + 1} 个账号好友查询中--------\n`)
-                await friendlist(zq_cookie1)
-                //await $.wait(4000);
-                console.log("\n\n")
+    if (typeof $request !== "undefined") {
+     getzqwzbody()
+     getzq_timebody()
+     $.done()
+ }else {
+
+        console.log(`共${zqwzbodyArr.length}个阅读body`)
+        for (let k = 0; k < zqwzbodyArr.length; k++) {
+            // $.message = ""
+            zqwzbody1 = zqwzbodyArr[k];
+            // console.log(`${zqwzbody1}`)
+            console.log(`--------第 ${k + 1} 次阅读任务执行中--------\n`)
+            await wzjl()
+            await $.wait(60000);
+            for (let k = 0; k < zq_timebodyArr.length; k++) {
+                zq_timebody1 = zq_timebodyArr[k];
+                await timejl()
             }
+            console.log("\n\n")
+        }
+    }
 
 
-     })()
+
+        // date = new Date()
+        // if ($.isNode() &&date.getHours() == 11 && date.getMinutes()<10) {
+        //     if (message.length != 0) {
+        //            await notify.sendNotify("晶彩看点文章阅读", `${message}\n\n shaolin-kongfu`);
+        //     }
+        // } else {
+        //     $.msg($.name, "",  message)
+        // }
+
+    })()
     .catch((e) => $.logErr(e))
     .finally(() => $.done())
-//查询好友列表
-function friendlist(zq_cookie1,timeout = 0) {
+
+
+function getzqwzbody() {
+    if ($request.url.match(/\/kandian.wkandian.com\/v5\/article\/info.json/)||$request.url.match(/\/kandian.wkandian.com\/v5\/article\/detail.json/)) {
+          bodyVal1 = $request.url.split('p=')[1]
+          console.log(encodeURIComponent(bodyVal1))
+          bodyVal = 'p='+encodeURIComponent(bodyVal1)
+            console.log(bodyVal)
+
+        if (zqwzbody) {
+            if (zqwzbody.indexOf(bodyVal) > -1) {
+                $.log("此阅读请求已存在，本次跳过")
+            } else if (zqwzbody.indexOf(bodyVal) == -1) {
+                zqwzbodys = zqwzbody + "&" + bodyVal;
+                $.setdata(zqwzbodys, 'zqwzbody');
+                $.log(`${$.name}获取阅读: 成功, zqwzbodys: ${bodyVal}`);
+                bodys = zqwzbodys.split("&")
+                // $.msg($.name, "获取第" + bodys.length + "个阅读请求: 成功🎉", ``)
+            }
+        } else {
+            $.setdata(bodyVal, 'zqwzbody');
+            $.log(`${$.name}获取阅读: 成功, zqwzbodys: ${bodyVal}`);
+            $.msg($.name, `获取第一个阅读请求: 成功🎉`, ``)
+        }
+    }
+
+  }
+//阅读文章奖励
+function wzjl(timeout = 0) {
     return new Promise((resolve) => {
         let url = {
-            url : 'https://kandian.wkandian.com/WebApi/ShareSignNew/getFriendFinalList?'+zq_cookie1,
-            headers : {'Host': 'kandian.wkandian.com',
-                'Referer':'https://kandian.wkandian.com/h5/20201020missionSign/?'+zq_cookie1
-            },
-        }
-        $.get(url, async (err, resp, data) => {
+            url : 'https://kandian.wkandian.com/v5/article/complete.json',
+            headers : wzheader,
+            body : zqwzbody1,}//xsgbody,}
+        $.post(url, async (err, resp, data) => {
             try {
 
                 const result = JSON.parse(data)
-                if(result.success === true ){
-
-                    for (let k=0;k<result.data.list.length;k++){
-                    friendid = result.data.list[k].uid
-                    console.log(result.data.list[k].uid)
-                    await friendSign(friendid)
-                    await $.wait(3000);
-                    }
-                   // await share(wzid)
-
+                if(result.items.read_score !== "undefined" ){
+                    console.log('\n浏览文章成功，获得：'+result.items.read_score + '金币')
                 }else{
-                    console.log('\n你个孤儿，没有好友')
+                    console.log('\n看太久了，换一篇试试')
                 }
             } catch (e) {
             } finally {
@@ -101,27 +179,43 @@ function friendlist(zq_cookie1,timeout = 0) {
     })
 }
 
-function friendSign(uid,timeout = 0) {
+
+function getzq_timebody() {
+    if ($request.url.match(/\/kandian.wkandian.com\/v5\/user\/stay.json/)) {
+          bodyVal=$request.body
+            console.log(bodyVal)
+        if (zq_timebody) {
+            if (zq_timebody.indexOf(bodyVal) > -1) {
+                $.log("此阅读请求已存在，本次跳过")
+            } else if (zq_timebody.indexOf(bodyVal) == -1) {
+                zq_timebodys = zq_timebody + "&" + bodyVal;
+                $.setdata(zq_timebodys,'zq_timebody');
+                $.log(`${$.name}获取阅读: 成功, zq_timebodys: ${bodyVal}`);
+                bodys = zq_timebodys.split("&")
+                // $.msg($.name, "获取第" + bodys.length + "个阅读请求: 成功🎉", ``)
+            }
+        } else {
+            $.setdata($request.body,'zq_timebody');
+            $.log(`${$.name}获取阅读: 成功, zq_timebodys: ${bodyVal}`);
+            $.msg($.name, `获取第一个阅读请求: 成功🎉`, ``)
+        }
+    }
+}
+
+function timejl(timeout = 0) {
     return new Promise((resolve) => {
         let url = {
-            url : 'https://kandian.wkandian.com/WebApi/ShareSignNew/sendScoreV2?friend_uid='+uid+'&'+zq_cookie1,
-            headers : {'Host': 'kandian.wkandian.com',
-                'Referer':'https://kandian.wkandian.com/h5/20201020missionSign/?'+zq_cookie1
-            },
-        }
-        $.get(url, async (err, resp, data) => {
+            url : 'https://kandian.wkandian.com/v5/user/stay.json',
+            headers : jc_timeheader,
+            body : zq_timebody1,}//xsgbody,}
+        $.post(url, async (err, resp, data) => {
             try {
 
                 const result = JSON.parse(data)
                 if(result.success === true ){
-                    long=result.data.length
-                    console.log('领取好友红包成功，获得：'+result.data[long-1].score + '金币')
-
-		    await $.wait(2000);
-                   // await share(wzid)
-
+                    console.log('\n阅读时长：'+result.time + '秒')
                 }else{
-                    console.log('\n该好友未签到或红包已完')
+                    console.log('\n更新阅读时长失败')
                 }
             } catch (e) {
             } finally {

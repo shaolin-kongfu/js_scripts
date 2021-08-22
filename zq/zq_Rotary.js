@@ -5,21 +5,23 @@ shaolin-kongfu
 赞赏:邀请码57984759
 万分感谢！！
 
-好友签到红包位置：打开app → 下方左起第三个选项（任务图标） → 中间好友红包（在看看赚的左边）
 
-每天每位好友签到后有4个红包，前两个是100金币，后面两个是10金币，先抢先得
 
-没有好友的可以加群，让群友扫码：https://t.me/ShaolinTemple2
+转盘抽奖，使用zq_cookie
 
 
  */
 
-const $ = new Env("中青看点好友签到红包");
+const $ = new Env("中青看点大转盘抽奖");
 const notify = $.isNode() ? require('./sendNotify') : '';
 message = ""
 let zq_cookie= $.isNode() ? (process.env.zq_cookie ? process.env.zq_cookie : "") : ($.getdata('zq_cookie') ? $.getdata('zq_cookie') : "")
 let zq_cookieArr = []
 let zq_cookies = ""
+
+var time = Date.parse( new Date() ).toString();
+var time1 = time.substr(0,10);
+
 if (!zq_cookie) {
      $.msg($.name, '【提示】进入点击右下角"任务图标"，获取cookie，再跑一次脚本', '不知道说啥好', {
          "open-url": "给您劈个叉吧"
@@ -45,6 +47,8 @@ if (!zq_cookie) {
         }
     })
 
+
+
 !(async () => {
         console.log(`共${zq_cookieArr.length}个cookie`)
 	        for (let k = 0; k < zq_cookieArr.length; k++) {
@@ -52,76 +56,89 @@ if (!zq_cookie) {
                 bodyVal = zq_cookieArr[k].split('&uid=')[0];
                 cookie = bodyVal.replace(/zqkey=/, "cookie=")
                 cookie_id = cookie.replace(/zqkey_id=/, "cookie_id=")
-                var time1 = Date.parse( new Date() ).toString();
-                time1 = time1.substr(0,10);
                 zq_cookie1= cookie_id + '&request_time=' + time1 + '&time=' + time1 +'&'+ bodyVal
                 //待处理cookie
                 //console.log(`${zq_cookie1}`)
-                console.log(`--------第 ${k + 1} 个账号好友查询中--------\n`)
-                await friendlist(zq_cookie1)
-                //await $.wait(4000);
+                console.log(`--------第 ${k + 1} 个账号转盘抽奖中--------\n`)
+
+                console.log("\n\n")
+
+                for(let k = 0 ; k < 100 ; k++){
+                    await Rotary(zq_cookie1,cookie_id,time)
+                    await $.wait(6000);
+                    console.log("\n\n")
+                }
+                for (let k = 1 ; k < 5 ; k++){
+                    id = k.toString()
+                    await openbox(zq_cookie1,cookie_id,time,id)
+                    await $.wait(15000)
+                }
                 console.log("\n\n")
             }
-
-
      })()
     .catch((e) => $.logErr(e))
     .finally(() => $.done())
-//查询好友列表
-function friendlist(zq_cookie1,timeout = 0) {
-    return new Promise((resolve) => {
+//抽奖
+function Rotary(zq_cookie1,cookie_id,time) {
+    return new Promise((resolve, reject) => {
         let url = {
-            url : 'https://kandian.wkandian.com/WebApi/ShareSignNew/getFriendFinalList?'+zq_cookie1,
+            url : 'https://kandian.wkandian.com/WebApi/RotaryTable/turnRotary?_='+zq_cookie1,
             headers : {'Host': 'kandian.wkandian.com',
-                'Referer':'https://kandian.wkandian.com/h5/20201020missionSign/?'+zq_cookie1
+                'Referer':'https://kandian.wkandian.com/html/rotaryTable/index.html?'+zq_cookie1
             },
+            body:cookie_id,
         }
-        $.get(url, async (err, resp, data) => {
+        $.post(url, async (err, resp, data) => {
             try {
-
                 const result = JSON.parse(data)
-                if(result.success === true ){
+                if(result.status === 1 ){
+                    if(result.data.score !== 0){
+                        console.log('好家伙！你抽中了'+result.data.score + '金币')
 
-                    for (let k=0;k<result.data.list.length;k++){
-                    friendid = result.data.list[k].uid
-                    console.log(result.data.list[k].uid)
-                    await friendSign(friendid)
-                    await $.wait(3000);
+                        //console.log('剩'+remain+'次')
+                    }else {
+                        console.log('你抽了个寂寞')
                     }
-                   // await share(wzid)
 
                 }else{
-                    console.log('\n你个孤儿，没有好友')
+                    console.log('\n抽奖失败，别问我，我也不知道为啥')
                 }
             } catch (e) {
+                $.logErr(e+resp);
             } finally {
                 resolve()
             }
-            },timeout)
+            })
     })
 }
 
-function friendSign(uid,timeout = 0) {
+function openbox(zq_cookie1,cookie_id,time,k,timeout = 0) {
     return new Promise((resolve) => {
         let url = {
-            url : 'https://kandian.wkandian.com/WebApi/ShareSignNew/sendScoreV2?friend_uid='+uid+'&'+zq_cookie1,
+            url : 'https://kandian.wkandian.com/WebApi/RotaryTable/chestReward?_='+ time,
             headers : {'Host': 'kandian.wkandian.com',
-                'Referer':'https://kandian.wkandian.com/h5/20201020missionSign/?'+zq_cookie1
+                'User-Agent': 'Mozilla/5.0 (Linux; Android 8.1.0; 16 X Build/OPM1.171019.026; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/65.0.3325.109 Mobile Safari/537.36',
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Accept-Language': 'zh-CN,en-US;q=0.9',
+                'Accept-Encoding': 'gzip, deflate',
+                'Content-Length': (cookie_id +'&num='+k).length.toString(),
+                'Referer':'https://kandian.wkandian.com/html/rotaryTable/index.html?'+zq_cookie1
             },
+            body:cookie_id + '&num=' + k,
         }
-        $.get(url, async (err, resp, data) => {
+        $.post(url, async (err, resp, data) => {
             try {
-
                 const result = JSON.parse(data)
-                if(result.success === true ){
-                    long=result.data.length
-                    console.log('领取好友红包成功，获得：'+result.data[long-1].score + '金币')
+                if(result.status === 1 ){
+                    if(result.data.score !== 0){
+                        console.log('宝箱获得：'+result.data.score + '金币')
 
-		    await $.wait(2000);
-                   // await share(wzid)
-
+                    }else {
+                        console.log('宝箱打开失败')
+                    }
                 }else{
-                    console.log('\n该好友未签到或红包已完')
+                    console.log('\n宝箱请求失败')
+
                 }
             } catch (e) {
             } finally {
