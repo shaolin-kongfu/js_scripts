@@ -231,14 +231,14 @@
         ["zq_withdraw","zq_cash"],
   "settings": [{
           "id": "zq_cash",
-          "val": "0.3",
+          "val": "30",
           "name": "提现金额",
           "type": "radios",
           "desc": "自动提现金额需和获取提现请求保持一致",
           "items": [
             {
-              "key": "0.3",
-              "label": "0.3元"
+              "key": "10",
+              "label": "10元"
             },
             {
               "key": "30",
