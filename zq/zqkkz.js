@@ -173,7 +173,7 @@ function openbox(id,zq_cookie1,timeout=0) {
 
 //获取看看赚激活body
 async function getzqlookStartbody() {
-if ($request.url.match(/\/kandian.wkandian.com\/nameless\/adlickstart/)) {
+if ($request.url.match(/\/kandian.wkandian.com\/v5\/nameless\/adlickstart/)) {
           bodyVal=$request.body
           await $.wait(1100);
         if (zqlookStartbody) {
