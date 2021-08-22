@@ -19,7 +19,7 @@
       "enable": true
     }, 
     {
-      "match": "https://kandian.wkandian.com/CommonReward/toGetReward.json",
+      "match": "https://kandian.wkandian.com/v5/CommonReward/toGetReward.json",
       "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zqqd.js",
       "enable": true
     },
@@ -36,7 +36,7 @@
     }
     ,
     {
-      "match": "https://kandian.wkandian.com/CommonReward/toGetReward.json",
+      "match": "https://kandian.wkandian.com/v5/CommonReward/toGetReward.json",
       "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zqbox.js",
       "enable": true
     }
