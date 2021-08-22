@@ -6,12 +6,8 @@ shaolin-kongfu
 
 万分感谢！！
 
-[rewrite_local]
-
 #火爆转发
-https://kandian.wkandian.com/v17/NewTask/getTaskList.json 重写目标 https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jc_share.js
-[MITM]
-hostname = kandian.wkandian.com
+
 */
 
 const $ = new Env("中青看点火爆转发");

@@ -1,3 +1,23 @@
+/*
+shaolin-kongfu
+
+软件名称：中青看点
+赞赏:邀请码57984759
+
+万分感谢！！
+
+注意，会与签到重写冲突，抓之前请关闭签到的重写！！
+注意，会与签到重写冲突，抓之前请关闭签到的重写！！
+注意，会与签到重写冲突，抓之前请关闭签到的重写！！
+
+[rewrite_local]
+
+#中青看点宝箱
+https://kandian.wkandian.com/CommonReward/toGetReward.json 重写目标 https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zqbox.js
+[MITM]
+hostname = kandian.wkandian.com
+*/
+
 const $ = new Env('中青看点任务宝箱领取');
 let zqboxbody= $.isNode() ? (process.env.zqboxbody ? process.env.zqboxbody : "") : ($.getdata('zqboxbody') ? $.getdata('zqboxbody') : "")
 let zqboxbodyArr = []

@@ -9,7 +9,7 @@ shaolin-kongfu
 [rewrite_local]
 
 #看看赚
-https://kandian.wkandian.com/v5/nameless/adlickstart.json 重写目标 https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zqkkz.js
+https://kandian.wkandian.com/v5/nameless/adlickstart.json 重写目标 https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zqkkz.js
 [MITM]
 hostname = kandian.wkandian.com
 */

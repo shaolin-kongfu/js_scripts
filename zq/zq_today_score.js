@@ -9,7 +9,7 @@ shaolin-kongfu
 [rewrite_local]
 
 #中青看点每日收益查询
-https://kandian.wkandian.com/v17/NewTask/getTaskList.json 重写目标 https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq_today_score.js
+https://kandian.wkandian.com/v17/NewTask/getTaskList.json 重写目标 https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zq_today_score.js
 [MITM]
 hostname = kandian.wkandian.com
 */
@@ -20,10 +20,6 @@ message = ""
 let zq_cookie= $.isNode() ? (process.env.zq_cookie ? process.env.zq_cookie : "") : ($.getdata('zq_cookie') ? $.getdata('zq_cookie') : "")
 let zq_cookieArr = []
 let zq_cookies = ""
-
-
-
-
 
 if (!zq_cookie) {
      $.msg($.name, '【提示】进入点击右下角"任务图标"，再跑一次脚本', '不知道说啥好', {

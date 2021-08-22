@@ -11,8 +11,12 @@ shaolin-kongfu
 【MITM】
 kandian.wkandian.com
 【rewrite】
-https://kandian.wkandian.com/v5/article/info.json 重写目标
-https://kandian.wkandian.com/v5/article/detail.json 重写目标
+文章
+https://kandian.wkandian.com/v5/article/info.json 重写目标 https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zqwz.js
+视频
+https://kandian.wkandian.com/v5/article/detail.json 重写目标 https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zqwz.js
+时长
+https://kandian.wkandian.com/v5/user/stay.json 重写目标 https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zqwz.js
 
 */
 
