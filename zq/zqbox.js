@@ -13,7 +13,7 @@ shaolin-kongfu
 [rewrite_local]
 
 #中青看点宝箱
-https://kandian.wkandian.com/CommonReward/toGetReward.json 重写目标 https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zqbox.js
+https://kandian.wkandian.com/v5/CommonReward/toGetReward.json 重写目标 https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zqbox.js
 [MITM]
 hostname = kandian.wkandian.com
 */
@@ -79,7 +79,7 @@ if (typeof $request !== "undefined") {
     .finally(() => $.done())
 
 function getzqboxbody() {
-    if ($request.url.match(/\/kandian.wkandian.com\/CommonReward\/toGetReward/)) {
+    if ($request.url.match(/\/kandian.wkandian.com\/v5\/CommonReward\/toGetReward/)) {
           bodyVal = $request.body
         if (zqboxbody) {
             if (zqboxbody.indexOf(bodyVal) > -1) {
