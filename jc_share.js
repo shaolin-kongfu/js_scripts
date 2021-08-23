@@ -106,7 +106,7 @@ function wzlist(timeout = 5000) {
                 const result = JSON.parse(data)
                 if(result.data.items !== "undefined" ){
                     wzid = result.data.items[0].id
-                    //console.log(result.data.items[0].id)
+                    console.log(result.data.items[0].id)
 		            await $.wait(3000);
                     await share(wzid)
 
@@ -186,7 +186,7 @@ function sharejl(timeout=0) {
 
 
 async function getjc_cookie() {
-    if ($request.url.match(/\/v17\/NewTask\/getTaskList/)) {
+    if ($request.url.match(/\/ant.xunsl.com\/v17\/NewTask\/getTaskList/)) {
           bodyVal1 = $request.url.split('?')[1]
           bodyVal2 = bodyVal1.split('&token')[0]
           bodyVal3 = bodyVal2.split('&zqkey=')[1]
