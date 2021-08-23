@@ -118,7 +118,7 @@ function today_score(jc_cookie1,timeout = 0) {
 
 
 async function getjc_cookie() {
-    if ($request.url.match(/\/v17\/NewTask\/getTaskList/)) {
+    if ($request.url.match(/\/ant.xunsl.com\/v17\/NewTask\/getTaskList/)) {
           bodyVal1 = $request.url.split('?')[1]
           bodyVal2 = bodyVal1.split('&token')[0]
           bodyVal3 = bodyVal2.split('&zqkey=')[1]

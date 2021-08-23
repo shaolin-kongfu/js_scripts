@@ -1,25 +1,3 @@
-/*
-shaolin-kongfu
-仅适配v2p以及青龙（青龙请自行抓包），不支持圈x
-新手写脚本，难免有bug,欢迎反馈！
-个人频道:https://t.me/ShaolinTemple1
-tom大佬的频道:https://t.me/tom_ww
-我都在里面，有问题欢迎反馈
-软件名称：晶彩看点
-赞赏:邀请码54870223 
-万分感谢！！
-
-注意！！！！！重写会与签到脚本的重写冲突，抓取任务宝箱body之前记得把签到脚本的重写关掉
-注意！！！！！重写会与签到脚本的重写冲突，抓取任务宝箱body之前记得把签到脚本的重写关掉
-注意！！！！！重写会与签到脚本的重写冲突，抓取任务宝箱body之前记得把签到脚本的重写关掉
-
-[rewrite_local]
-#获取任务宝箱奖励
-https://ant.xunsl.com/v5/CommonReward/toGetReward.json 重写目标 https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jcbox.js
-[MITM]
-hostname = ant.xunsl.com
-*/
-
 const $ = new Env('晶彩看点任务宝箱领取');
 let jcboxbody= $.isNode() ? (process.env.jcboxbody ? process.env.jcboxbody : "") : ($.getdata('jcboxbody') ? $.getdata('jcboxbody') : "")
 let jcboxbodyArr = []
@@ -81,7 +59,7 @@ if (typeof $request !== "undefined") {
     .finally(() => $.done())
 
 function getjcboxbody() {
-    if ($request.url.match(/\/CommonReward\/toGetReward/)) {
+    if ($request.url.match(/\/ant.xunsl.com\/v5\/CommonReward\/toGetReward/)) {
           bodyVal = $request.body
         if (jcboxbody) {
             if (jcboxbody.indexOf(bodyVal) > -1) {

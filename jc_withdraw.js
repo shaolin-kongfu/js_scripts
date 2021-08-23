@@ -1,9 +1,7 @@
 /*
 晶彩自动提现 jc_withdraw.js，
 调用jc_cookie,jc_withdraw,jc_cash
-
 赞赏:邀请码54870223
-
 脚本地址：
 https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jc_withdraw.js
 定时确保在每日首次火爆转发之后（jc_share.js），一天一次
@@ -11,13 +9,9 @@ https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jc_withdraw.js
 v2p食用说明：
 1.添加重写如下：
 https://ant.xunsl.com/v5/wechat/withdraw2.json 重写目标 https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jc_withdraw.js
-
 2.打开app进入提现页面，选择对应金额，点击立即提现（不管当日是否已经提现，都能抓），到变量中查看到有jc_withdraw即可
-
 3.注意多账号用户抓包jc_withdraw时需要与jc_cookie账号顺序一致
-
 4.jc_cash不填默认0.3元，填的话有0.3，30两个选项（boxjs订阅中可直接修改，没有订阅的话直接新建变量即可）
-
 5.jc_withdraw务必与jc_cash金额一致，即修改jc_withdraw时也要修改jc_cash
 ****************************************************************************
 青龙食用说明：
@@ -26,10 +20,7 @@ https://ant.xunsl.com/v5/wechat/withdraw2.json 重写目标 https://raw.githubus
 3.export jc_cash="0.3"或者export jc_cash="30"，不填默认0.3
 4.多账号用户抓包jc_withdraw时需要与jc_cookie账号顺序一致
 5.jc_withdraw务必与jc_cash金额一致，即修改jc_withdraw时也要修改jc_cash
-
 */
-
-
 
 const $ = new Env("晶彩看点提现");
 const notify = $.isNode() ? require('./sendNotify') : '';
@@ -176,7 +167,7 @@ function withdraw(jc_withdraw1,timeout = 0) {
 
 
 function getbody() {
-    if ($request.url.match(/\/wechat\/withdraw2.json/)) {
+    if ($request.url.match(/\/ant.xunsl.com\/v5\/wechat\/withdraw2.json/)) {
           bodyVal=$request.body
             console.log(bodyVal)
         if (jc_withdraw) {

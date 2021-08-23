@@ -173,7 +173,7 @@ function openbox(id,jc_cookie1,timeout=0) {
 
 //获取看看赚激活body
 async function getlookStartbody() {
-if ($request.url.match(/\/nameless\/adlickstart/)) {
+if ($request.url.match(/\/ant.xunsl.com\/v5\/nameless\/adlickstart/)) {
           bodyVal=$request.body
           await $.wait(1100);
         if (lookStartbody) {
