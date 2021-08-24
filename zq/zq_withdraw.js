@@ -52,9 +52,9 @@ if (zq_withdraw) {
     }
 } else {
     var fs = require("fs");
-    var data = fs.readFileSync("zq_withdraw.txt", "utf8");
-    if (data !== `undefined`) {
-        zq_withdraws = data.split("\n");
+    zq_withdraw = fs.readFileSync("zq_withdraw.txt", "utf8");
+    if (zq_withdraw !== `undefined`) {
+        zq_withdraws = zq_withdraw.split("\n");
     } else {
         $.msg($.name, '【提示】请先完成一次提现，明天再跑一次脚本', '不知道说啥好', {
             "open-url": "给您劈个叉吧"
