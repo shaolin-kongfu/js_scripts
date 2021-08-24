@@ -39,63 +39,57 @@ let zq_cookies = ""
 let nowmoney;
 
 
+var time1 = Date.parse(new Date()).toString();
+time1 = time1.substr(0, 10);
+if (zq_withdraw) {
+    if (zq_withdraw.indexOf("@") == -1 && zq_withdraw.indexOf("@") == -1) {
+        zq_withdrawArr.push(zq_withdraw)
+    } else if (zq_withdraw.indexOf("@") > -1) {
+        zq_withdraws = zq_withdraw.split("@")
+    } else if (process.env.zq_withdraw && process.env.zq_withdraw.indexOf('@') > -1) {
+        zq_withdrawArr = process.env.zq_withdraw.split('@');
+        console.log(`您选择的是用"@"隔开\n`)
+    }
+} else {
+    var fs = require("fs");
+    var data = fs.readFileSync("zq_withdraw.txt", "utf8");
+    if (data !== `undefined`) {
+        zq_withdraws = data.split("\n");
+    } else {
+        $.msg($.name, '【提示】请先完成一次提现，明天再跑一次脚本', '不知道说啥好', {
+            "open-url": "给您劈个叉吧"
+        });
 
-var time1 = Date.parse( new Date() ).toString();
-    time1 = time1.substr(0,10);
-if (!zq_withdraw) {
-     $.msg($.name, '【提示】请先完成一次提现，明天再跑一次脚本', '不知道说啥好', {
-         "open-url": "给您劈个叉吧"
-     });
+        $.done()
+    }
+};
+Object.keys(zq_withdraws).forEach((item) => {
+    if (zq_withdraws[item] && !zq_withdraws[item].startsWith("#")) {
+        zq_withdrawArr.push(zq_withdraws[item])
+    }
+})
 
-     $.done()
- }
- else if (zq_withdraw.indexOf("@") == -1 && zq_withdraw.indexOf("@") == -1) {
-            zq_withdrawArr.push(zq_withdraw)
- }
- else if (zq_withdraw.indexOf("@") > -1) {
-            zq_withdraws = zq_withdraw.split("@")
- }
- else if (process.env.zq_withdraw && process.env.zq_withdraw.indexOf('@') > -1) {
-            zq_withdrawArr = process.env.zq_withdraw.split('@');
-            console.log(`您选择的是用"@"隔开\n`)
- }
- else {
-            var fs = require("fs");
-            var data = fs.readFileSync("zq_withdraw.txt", "utf8");
-            if (data !== `undefined`) {
-                zq_withdraws = data.split("\n");
-            }
- };
-    Object.keys(zq_withdraws).forEach((item) => {
-        if (zq_withdraws[item] && !zq_withdraws[item].startsWith("#")) {
-            zq_withdrawArr.push(zq_withdraws[item])
-        }
-    })
-
-
-if (!zq_cookie) {
-     $.msg($.name, '【提示】进入点击右下角"赚钱图标"，再跑一次脚本', '不知道说啥好', {
-         "open-url": "给您劈个叉吧"
-     });
-     $.done()
- }
- else if (zq_cookie.indexOf("@") == -1 && zq_cookie.indexOf("@") == -1) {
-            zq_cookieArr.push(zq_cookie)
- }
- else if (zq_cookie.indexOf("@") > -1) {
-            zq_cookies = zq_cookie.split("@")
- }
- else if (process.env.zq_cookie && process.env.zq_cookie.indexOf('@') > -1) {
-            zq_cookieArr = process.env.zq_cookie.split('@');
-            console.log(`您选择的是用"@"隔开\n`)
- }
-else {
+if (zq_cookie) {
+    if (zq_cookie.indexOf("@") == -1 && zq_cookie.indexOf("@") == -1) {
+        zq_cookieArr.push(zq_cookie)
+    } else if (zq_cookie.indexOf("@") > -1) {
+        zq_cookies = zq_cookie.split("@")
+    } else if (process.env.zq_cookie && process.env.zq_cookie.indexOf('@') > -1) {
+        zq_cookieArr = process.env.zq_cookie.split('@');
+        console.log(`您选择的是用"@"隔开\n`)
+    }
+} else {
     var fs = require("fs");
     var data = fs.readFileSync("zq_cookie.txt", "utf8");
     if (data !== `undefined`) {
         zq_cookies = data.split("\n");
+    } else {
+        $.msg($.name, '【提示】进入点击右下角"任务图标"，再跑一次脚本', '不知道说啥好', {
+            "open-url": "给您劈个叉吧"
+        });
+        $.done()
     }
-};
+}
 Object.keys(zq_cookies).forEach((item) => {
     if (zq_cookies[item] && !zq_cookies[item].startsWith("#")) {
         zq_cookieArr.push(zq_cookies[item])

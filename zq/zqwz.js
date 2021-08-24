@@ -45,34 +45,32 @@ const wzheader = {
     'Host': 'kandian.wkandian.com'
 }
 
-  if (!zq_timebody) {
-     $.msg($.name, '【提示】请点击文章阅读1分钟获取timebody，再跑一次脚本', '不知道说啥好', {
-         "open-url": "给您劈个叉吧"
-     });
-     $.done()
- }
- else if (zq_timebody.indexOf("&") == -1) {
-            zq_timebodyArr.push(zq_timebody)
- }
- else if (zq_timebody.indexOf("&") > -1) {
-            zq_timebodys = zq_timebody.split("&")
- }
- else if (process.env.zq_timebody && process.env.zq_timebody.indexOf('&') > -1) {
-            zq_timebodyArr = process.env.zq_timebody.split('&');
-            console.log(`您选择的是用"&"隔开\n`)
- }
- else {
-              var fs = require("fs");
-              var data = fs.readFileSync("zq_timebody.txt", "utf8");
-              if (data !== `undefined`) {
-                  zq_timebodys = data.split("\n");
-              }
- };
-    Object.keys(zq_timebodys).forEach((item) => {
-        if (zq_timebodys[item] && !zq_timebodys[item].startsWith("#")) {
-            zq_timebodyArr.push(zq_timebodys[item])
-        }
-    })
+if (zq_timebody) {
+    if (zq_timebody.indexOf("&") == -1) {
+        zq_timebodyArr.push(zq_timebody)
+    } else if (zq_timebody.indexOf("&") > -1) {
+        zq_timebodys = zq_timebody.split("&")
+    } else if (process.env.zq_timebody && process.env.zq_timebody.indexOf('&') > -1) {
+        zq_timebodyArr = process.env.zq_timebody.split('&');
+        console.log(`您选择的是用"&"隔开\n`)
+    }
+} else {
+    var fs = require("fs");
+    var data = fs.readFileSync("zq_timebody.txt", "utf8");
+    if (data !== `undefined`) {
+        zq_timebodys = data.split("\n");
+    } else {
+        $.msg($.name, '【提示】请点击文章阅读1分钟获取timebody，再跑一次脚本', '不知道说啥好', {
+            "open-url": "给您劈个叉吧"
+        });
+        $.done()
+    }
+}
+Object.keys(zq_timebodys).forEach((item) => {
+    if (zq_timebodys[item] && !zq_timebodys[item].startsWith("#")) {
+        zq_timebodyArr.push(zq_timebodys[item])
+    }
+})
 
  if (!zqwzbody) {
      $.msg($.name, '【提示】请点击文章获取body，再跑一次脚本', '不知道说啥好', {

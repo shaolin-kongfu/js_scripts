@@ -32,34 +32,32 @@ const qdheader={
      getzqqdbody()
      $.done()
  }
- if (!zqqdbody) {
-     $.msg($.name, '【提示】请签到以获取body，明天再跑一次脚本测试', '不知道说啥好', {
-         "open-url": "给您劈个叉吧"
-     });
-     $.done()
- }
- else if (zqqdbody.indexOf("&") == -1) {
-            zqqdbodyArr.push(zqqdbody)
- }
- else if (zqqdbody.indexOf("&") > -1) {
-            zqqdbodys = zqqdbody.split("&")
- }
- else if (process.env.zqqdbody && process.env.zqqdbody.indexOf('&') > -1) {
-            zqqdbodyArr = process.env.zqqdbody.split('&');
-            console.log(`您选择的是用"&"隔开\n`)
- }
- else {
-             var fs = require("fs");
-             var data = fs.readFileSync("zqqdbody.txt", "utf8");
-             if (data !== `undefined`) {
-                 zqqdbodys = data.split("\n");
-             }
- };
-    Object.keys(zqqdbodys).forEach((item) => {
-        if (zqqdbodys[item] && !zqqdbodys[item].startsWith("#")) {
-            zqqdbodyArr.push(zqqdbodys[item])
-        }
-    })
+if (zqqdbody) {
+    if (zqqdbody.indexOf("&") == -1) {
+        zqqdbodyArr.push(zqqdbody)
+    } else if (zqqdbody.indexOf("&") > -1) {
+        zqqdbodys = zqqdbody.split("&")
+    } else if (process.env.zqqdbody && process.env.zqqdbody.indexOf('&') > -1) {
+        zqqdbodyArr = process.env.zqqdbody.split('&');
+        console.log(`您选择的是用"&"隔开\n`)
+    }
+} else {
+    var fs = require("fs");
+    var data = fs.readFileSync("zqqdbody.txt", "utf8");
+    if (data !== `undefined`) {
+        zqqdbodys = data.split("\n");
+    } else {
+        $.msg($.name, '【提示】请签到以获取body，明天再跑一次脚本测试', '不知道说啥好', {
+            "open-url": "给您劈个叉吧"
+        });
+        $.done()
+    }
+}
+Object.keys(zqqdbodys).forEach((item) => {
+    if (zqqdbodys[item] && !zqqdbodys[item].startsWith("#")) {
+        zqqdbodyArr.push(zqqdbodys[item])
+    }
+})
 
 !(async () => {
 

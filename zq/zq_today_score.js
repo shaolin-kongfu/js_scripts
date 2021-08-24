@@ -21,27 +21,25 @@ let zq_cookie= $.isNode() ? (process.env.zq_cookie ? process.env.zq_cookie : "")
 let zq_cookieArr = []
 let zq_cookies = ""
 
-if (!zq_cookie) {
-     $.msg($.name, '【提示】进入点击右下角"任务图标"，再跑一次脚本', '不知道说啥好', {
-         "open-url": "给您劈个叉吧"
-     });
-     $.done()
- }
- else if (zq_cookie.indexOf("@") == -1 && zq_cookie.indexOf("@") == -1) {
-            zq_cookieArr.push(zq_cookie)
- }
- else if (zq_cookie.indexOf("@") > -1) {
-            zq_cookies = zq_cookie.split("@")
- }
- else if (process.env.zq_cookie && process.env.zq_cookie.indexOf('@') > -1) {
-            zq_cookieArr = process.env.zq_cookie.split('@');
-            console.log(`您选择的是用"@"隔开\n`)
- }
-else {
+if (zq_cookie) {
+    if (zq_cookie.indexOf("@") == -1 && zq_cookie.indexOf("@") == -1) {
+        zq_cookieArr.push(zq_cookie)
+    } else if (zq_cookie.indexOf("@") > -1) {
+        zq_cookies = zq_cookie.split("@")
+    } else if (process.env.zq_cookie && process.env.zq_cookie.indexOf('@') > -1) {
+        zq_cookieArr = process.env.zq_cookie.split('@');
+        console.log(`您选择的是用"@"隔开\n`)
+    }
+} else {
     var fs = require("fs");
     var data = fs.readFileSync("zq_cookie.txt", "utf8");
     if (data !== `undefined`) {
         zq_cookies = data.split("\n");
+    } else {
+        $.msg($.name, '【提示】进入点击右下角"任务图标"，再跑一次脚本', '不知道说啥好', {
+            "open-url": "给您劈个叉吧"
+        });
+        $.done()
     }
 };
 Object.keys(zq_cookies).forEach((item) => {
