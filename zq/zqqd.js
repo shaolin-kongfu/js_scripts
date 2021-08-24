@@ -49,10 +49,14 @@ const qdheader={
             console.log(`您选择的是用"&"隔开\n`)
  }
  else {
-            zqqdbodys = [process.env.zqqdbody]
+             var fs = require("fs");
+             var data = fs.readFileSync("zqqdbody.txt", "utf8");
+             if (data !== `undefined`) {
+                 zqqdbodys = data.split("\n");
+             }
  };
     Object.keys(zqqdbodys).forEach((item) => {
-        if (zqqdbodys[item]) {
+        if (zqqdbodys[item] && !zqqdbodys[item].startsWith("#")) {
             zqqdbodyArr.push(zqqdbodys[item])
         }
     })

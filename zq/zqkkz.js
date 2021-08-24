@@ -65,14 +65,18 @@ if (!zq_cookie) {
             zq_cookieArr = process.env.zq_cookie.split('@');
             console.log(`您选择的是用"@"隔开\n`)
  }
- else {
-            zq_cookies = [process.env.zq_cookie]
- };
-    Object.keys(zq_cookies).forEach((item) => {
-        if (zq_cookies[item]) {
-            zq_cookieArr.push(zq_cookies[item])
-        }
-    })
+else {
+    var fs = require("fs");
+    var data = fs.readFileSync("zq_cookie.txt", "utf8");
+    if (data !== `undefined`) {
+        zq_cookies = data.split("\n");
+    }
+};
+Object.keys(zq_cookies).forEach((item) => {
+    if (zq_cookies[item] && !zq_cookies[item].startsWith("#")) {
+        zq_cookieArr.push(zq_cookies[item])
+    }
+})
 if (!zqlookStartbody) {
      $.msg($.name, '【提示】请点击看看赚某一任务获取body', '不知道说啥好', {
          "open-url": "给您劈个叉吧"
@@ -90,10 +94,14 @@ if (!zqlookStartbody) {
             console.log(`您选择的是用"&"隔开\n`)
  }
  else {
-            zqlookStartbodys = [process.env.zqlookStartbody]
+            var fs = require("fs");
+            var data = fs.readFileSync("zqlookStartbody.txt", "utf8");
+            if (data !== `undefined`) {
+                zqlookStartbodys = data.split("\n");
+            }
  };
     Object.keys(zqlookStartbodys).forEach((item) => {
-        if (zqlookStartbodys[item]) {
+        if (zqlookStartbodys[item] && !zqlookStartbodys[item].startsWith("#")) {
             zqlookStartbodyArr.push(zqlookStartbodys[item])
         }
     })

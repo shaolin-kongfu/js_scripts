@@ -60,10 +60,14 @@ if (!zq_withdraw) {
             console.log(`您选择的是用"@"隔开\n`)
  }
  else {
-            zq_withdraws = [process.env.zq_withdraw]
+            var fs = require("fs");
+            var data = fs.readFileSync("zq_withdraw.txt", "utf8");
+            if (data !== `undefined`) {
+                zq_withdraws = data.split("\n");
+            }
  };
     Object.keys(zq_withdraws).forEach((item) => {
-        if (zq_withdraws[item]) {
+        if (zq_withdraws[item] && !zq_withdraws[item].startsWith("#")) {
             zq_withdrawArr.push(zq_withdraws[item])
         }
     })
@@ -85,14 +89,18 @@ if (!zq_cookie) {
             zq_cookieArr = process.env.zq_cookie.split('@');
             console.log(`您选择的是用"@"隔开\n`)
  }
- else {
-            zq_cookies = [process.env.zq_cookie]
- };
-    Object.keys(zq_cookies).forEach((item) => {
-        if (zq_cookies[item]) {
-            zq_cookieArr.push(zq_cookies[item])
-        }
-    })
+else {
+    var fs = require("fs");
+    var data = fs.readFileSync("zq_cookie.txt", "utf8");
+    if (data !== `undefined`) {
+        zq_cookies = data.split("\n");
+    }
+};
+Object.keys(zq_cookies).forEach((item) => {
+    if (zq_cookies[item] && !zq_cookies[item].startsWith("#")) {
+        zq_cookieArr.push(zq_cookies[item])
+    }
+})
 
 !(async () => {
      if (typeof $request !== "undefined") {

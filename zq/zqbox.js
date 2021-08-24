@@ -42,10 +42,14 @@ if (!zqboxbody) {
             console.log(`您选择的是用"&"隔开\n`)
  }
  else {
-            zqboxbodys = [process.env.zqboxbody]
+            var fs = require("fs");
+            var data = fs.readFileSync("zqboxbody.txt", "utf8");
+            if (data !== `undefined`) {
+                zqboxbodys = data.split("\n");
+            }
  };
     Object.keys(zqboxbodys).forEach((item) => {
-        if (zqboxbodys[item]) {
+        if (zqboxbodys[item] && !zqboxbodys[item].startsWith("#")) {
             zqboxbodyArr.push(zqboxbodys[item])
         }
     })

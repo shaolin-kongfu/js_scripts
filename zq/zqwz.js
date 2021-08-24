@@ -62,10 +62,14 @@ const wzheader = {
             console.log(`您选择的是用"&"隔开\n`)
  }
  else {
-            zq_timebodys = [process.env.zq_timebody]
+              var fs = require("fs");
+              var data = fs.readFileSync("zq_timebody.txt", "utf8");
+              if (data !== `undefined`) {
+                  zq_timebodys = data.split("\n");
+              }
  };
     Object.keys(zq_timebodys).forEach((item) => {
-        if (zq_timebodys[item]) {
+        if (zq_timebodys[item] && !zq_timebodys[item].startsWith("#")) {
             zq_timebodyArr.push(zq_timebodys[item])
         }
     })
@@ -87,10 +91,14 @@ const wzheader = {
             console.log(`您选择的是用"&"隔开\n`)
  }
  else {
-            zqwzbodys = [process.env.zqwzbody]
+             var fs = require("fs");
+             var data = fs.readFileSync("zqwzbody.txt", "utf8");
+             if (data !== `undefined`) {
+                 zqwzbodys = data.split("\n");
+             }
  };
     Object.keys(zqwzbodys).forEach((item) => {
-        if (zqwzbodys[item]) {
+        if (zqwzbodys[item] && !zqwzbodys[item].startsWith("#")) {
             zqwzbodyArr.push(zqwzbodys[item])
         }
     })
