@@ -43,9 +43,9 @@ if (zqqdbody) {
     }
 } else {
     var fs = require("fs");
-    var data = fs.readFileSync("zqqdbody.txt", "utf8");
-    if (data !== `undefined`) {
-        zqqdbodys = data.split("\n");
+    zqqdbody = fs.readFileSync("zqqdbody.txt", "utf8");
+    if (zqqdbody !== `undefined`) {
+        zqqdbodys = zqqdbody.split("\n");
     } else {
         $.msg($.name, '【提示】请签到以获取body，明天再跑一次脚本测试', '不知道说啥好', {
             "open-url": "给您劈个叉吧"

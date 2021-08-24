@@ -93,7 +93,6 @@ if (zqwzbody) {
         $.done()
     }
 }
-;
 Object.keys(zqwzbodys).forEach((item) => {
     if (zqwzbodys[item] && !zqwzbodys[item].startsWith("#")) {
         zqwzbodyArr.push(zqwzbodys[item])

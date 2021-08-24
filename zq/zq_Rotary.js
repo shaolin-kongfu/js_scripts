@@ -32,9 +32,9 @@ if (zq_cookie) {
     }
 } else {
     var fs = require("fs");
-    var data = fs.readFileSync("zq_cookie.txt", "utf8");
-    if (data !== `undefined`) {
-        zq_cookies = data.split("\n");
+    zq_cookie = fs.readFileSync("zq_cookie.txt", "utf8");
+    if (zq_cookie !== `undefined`) {
+        zq_cookies = zq_cookie.split("\n");
     } else {
         $.msg($.name, '【提示】进入点击右下角"任务图标"，再跑一次脚本', '不知道说啥好', {
             "open-url": "给您劈个叉吧"

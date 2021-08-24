@@ -35,9 +35,9 @@ if (zqboxbody) {
     }
 } else {
     var fs = require("fs");
-    var data = fs.readFileSync("zqboxbody.txt", "utf8");
-    if (data !== `undefined`) {
-        zqboxbodys = data.split("\n");
+    zqboxbody = fs.readFileSync("zqboxbody.txt", "utf8");
+    if (zqboxbody !== `undefined`) {
+        zqboxbodys = zqboxbody.split("\n");
     } else {
         $.msg($.name, '【提示】请在app下方点击任务图标，在每日任务中点击所有可领取的奖励，获取body，明天再跑一次脚本', '不知道说啥好', {
             "open-url": "给您劈个叉吧"
