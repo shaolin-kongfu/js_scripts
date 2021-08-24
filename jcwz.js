@@ -1,27 +1,3 @@
-/*
-shaolin-kongfu
-
-仅适配v2p以及青龙（青龙请自行抓包），不支持圈x
-
-新手写脚本，难免有bug,欢迎反馈！
-个人频道:https://t.me/ShaolinTemple1
-tom大佬的频道:https://t.me/tom_ww
-我都在里面，有问题欢迎反馈
-
-软件名称：晶彩看点
-赞赏:邀请码54870223 
-
-万分感谢！！
-
-[rewrite_local]
-#阅读文章
-https://ant.xunsl.com/v5/article/info.json 重写目标 https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jcwz.js
-#阅读时长（抓取一个即可）
-https://ant.xunsl.com/v5/user/stay.json 重写目标 https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jcwz.js
-[MITM]
-hostname = ant.xunsl.com
-*/
-
 const $ = new Env("晶彩看点阅读文章");
 const notify = $.isNode() ? require('./sendNotify') : '';
 message = ""
@@ -137,7 +113,7 @@ const wzheader = {
 
 
 function getwzbody() {
-    if ($request.url.match(/\/v5\/article\/info.json/)||$request.url.match(/\/v5\/article\/detail.json/)) {
+    if ($request.url.match(/\/ant.xunsl.com\/v5\/article\/info.json/)||$request.url.match(/\/ant.xunsl.com\/v5\/article\/detail.json/)) {
           bodyVal1 = $request.url.split('p=')[1]
           console.log(encodeURIComponent(bodyVal1))
           bodyVal = 'p='+encodeURIComponent(bodyVal1)
@@ -188,7 +164,7 @@ function wzjl(timeout = 0) {
 
 
 function getjc_timebody() {
-    if ($request.url.match(/\/v5\/user\/stay.json/)) {
+    if ($request.url.match(/\/ant.xunsl.com\/v5\/user\/stay.json/)) {
           bodyVal=$request.body
             console.log(bodyVal)
         if (jc_timebody) {
