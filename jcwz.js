@@ -169,18 +169,18 @@ function getjc_timebody() {
             console.log(bodyVal)
         if (jc_timebody) {
             if (jc_timebody.indexOf(bodyVal) > -1) {
-                $.log("此阅读请求已存在，本次跳过")
+                $.log("此阅读时长请求已存在，本次跳过")
             } else if (jc_timebody.indexOf(bodyVal) == -1) {
                 jc_timebodys = jc_timebody + "&" + bodyVal;
                 $.setdata(jc_timebodys,'jc_timebody');
                 $.log(`${$.name}获取阅读: 成功, jc_timebodys: ${bodyVal}`);
                 bodys = jc_timebodys.split("&")
-                // $.msg($.name, "获取第" + bodys.length + "个阅读请求: 成功🎉", ``)
+                $.msg($.name, "获取第" + bodys.length + "个阅读时长请求: 成功🎉", ``)
             }
         } else {
             $.setdata($request.body,'jc_timebody');
             $.log(`${$.name}获取阅读: 成功, jc_timebodys: ${bodyVal}`);
-            $.msg($.name, `获取第一个阅读请求: 成功🎉`, ``)
+            $.msg($.name, `获取第一个阅读时长请求: 成功🎉`, ``)
         }
     }
 }
