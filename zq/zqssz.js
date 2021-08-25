@@ -9,7 +9,7 @@ shaolin-kongfu
 [rewrite_local]
 
 #搜索赚
-https://kandian.wkandian.com/v5/Sousuo/playStart.json 重写目标 https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zqllz.js
+https://kandian.wkandian.com/v5/Sousuo/playStart.json 重写目标 https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zqssz.js
 [MITM]
 hostname = kandian.wkandian.com
 */
