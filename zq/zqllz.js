@@ -42,7 +42,7 @@ if (zqllzbody) {
     var fs = require("fs");
     zqllzbody = fs.readFileSync("zqllzbody.txt", "utf8");
     if (zqllzbody !== `undefined`) {
-        zqllzbodys = zq_withdraw.split("\n");
+        zqllzbodys = zqllzbody.split("\n");
     } else {
         $.msg($.name, '【提示】请点击浏览赚某一任务获取body', '不知道说啥好', {
             "open-url": "给您劈个叉吧"
