@@ -224,6 +224,32 @@
       "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/kongfu.jpg"
       ]
      },
+     {
+      "id": "zqssz.js",
+      "name": "中青搜索赚",
+      "keys": [
+        "zqsszbody"
+      ],
+      "repo": "https://github.com/shaolin-kongfu/js_scripts/blob/main/zq/zq_Adv_video.js",
+      "script": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zq_Adv_video.js",
+      "icons": [
+      "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/kongfu.jpg",
+      "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/kongfu.jpg"
+      ]
+     },
+     {
+      "id": "zqllz.js",
+      "name": "中青浏览赚",
+      "keys": [
+        "zqllzbody"
+      ],
+      "repo": "https://github.com/shaolin-kongfu/js_scripts/blob/main/zq/zq_Adv_video.js",
+      "script": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zq_Adv_video.js",
+      "icons": [
+      "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/kongfu.jpg",
+      "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/kongfu.jpg"
+      ]
+     },
     {
       "id": "zq_withdraw",
       "name": "中青提现",
