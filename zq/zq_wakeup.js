@@ -45,20 +45,19 @@ var hour=myDate.getHours();
                 if(hour >= 8 ){
                 console.log(`--------第 ${k + 1} 个账号早起打卡报名中--------\n`)
                 await signup()
-                await $.wait(2000)
-                     if ($.message.length != 0) {
+                console.log("\n\n")
+                    if ($.message.length != 0) {
                  message += "账号" + (k + 1) + "：  " + $.message + " \n"
              }
-                console.log("\n\n")
+                await $.wait(5000)
                 } else if(hour >= 5 && hour < 8){
                     console.log(`--------第 ${k + 1} 个账号早起打卡中--------\n`)
                     await wakeup()
-                    await $.wait(2000)
-                     if ($.message.length != 0) {
+                    console.log("\n\n")
+                    if ($.message.length != 0) {
                  message += "账号" + (k + 1) + "：  " + $.message + " \n"
              }
-                    console.log("\n\n")
-
+                await $.wait(5000)
                 }
                 if (message.length != 0) {
              await notify ? notify.sendNotify("中青看点打卡", `${message}\n\n 吹水群：https://t.me/ShaolinTemple2`) :
@@ -91,8 +90,9 @@ function signup(timeout = 0) {
                     console.log(`瓜分人数 ${signup}\n`)
                     console.log(`瓜分金额 ${result.data.jackpot_money}`)
                     $.message = `中青打卡赚钱报名:${result.msg}\n 瓜分人数:${signup} \n 瓜分金额:${result.data.jackpot_money}元`
-                    //$.msg($.name, "", `中青打卡赚钱报名:${result.msg}\n 瓜分人数:${signup} \n 瓜分金额:${result.data.jackpot_money}元`);
+                    $.msg($.name, "", `中青打卡赚钱报名:${result.msg}\n 瓜分人数:${signup} \n 瓜分金额:${result.data.jackpot_money}元`);
                 }else{
+                    $.message = `结果:${result.msg}\n`
                     console.log(result)
                 }
             } catch (e) {
@@ -124,7 +124,7 @@ function wakeup(timeout = 0) {
                     console.log(`瓜分人数 ${signup}\n`)
                     console.log(`瓜分金额 ${result.data.jackpot_money}`)
                     $.message = `中青打卡结果:${result.msg}\n打卡时间：${result.data.card_time}\n瓜分人数:${signup} \n 瓜分金额:${result.data.jackpot_money}元`
-                    //$.msg($.name, "", `中青打卡结果:${result.msg}\n打卡时间：${result.data.card_time}\n瓜分人数:${signup} \n 瓜分金额:${result.data.jackpot_money}元`);
+                    $.msg($.name, "", `中青打卡结果:${result.msg}\n打卡时间：${result.data.card_time}\n瓜分人数:${signup} \n 瓜分金额:${result.data.jackpot_money}元`);
                 }else{
                     console.log(result)
                 }
