@@ -29,7 +29,7 @@ const lookStartheader={
 }
 
 
-if (!zqllzbody) {
+if (zqllzbody) {
     if (zqllzbody.indexOf("&") == -1) {
         zqllzbodyArr.push(zqllzbody)
     } else if (zqllzbody.indexOf("&") > -1) {
