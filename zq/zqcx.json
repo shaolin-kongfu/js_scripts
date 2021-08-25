@@ -45,6 +45,18 @@
       "match": "https://kandian.wkandian.com/v5/wechat/withdraw2.json",
       "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zq_withdraw.js",
       "enable": true
+    } 
+    ,
+    {
+      "match": "https://kandian.wkandian.com/v5/task/browse_start.json",
+      "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zqllz.js",
+      "enable": true
+    }
+    ,
+    {
+      "match": "https://kandian.wkandian.com/v5/Sousuo/playStart.json",
+      "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zqssz.js",
+      "enable": true
     }
   ]
 }
