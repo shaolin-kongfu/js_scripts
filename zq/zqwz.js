@@ -45,55 +45,59 @@ const wzheader = {
     'Host': 'kandian.wkandian.com'
 }
 
-  if (!zq_timebody) {
-     $.msg($.name, '【提示】请点击文章阅读1分钟获取timebody，再跑一次脚本', '不知道说啥好', {
-         "open-url": "给您劈个叉吧"
-     });
-     $.done()
- }
- else if (zq_timebody.indexOf("&") == -1) {
-            zq_timebodyArr.push(zq_timebody)
- }
- else if (zq_timebody.indexOf("&") > -1) {
-            zq_timebodys = zq_timebody.split("&")
- }
- else if (process.env.zq_timebody && process.env.zq_timebody.indexOf('&') > -1) {
-            zq_timebodyArr = process.env.zq_timebody.split('&');
-            console.log(`您选择的是用"&"隔开\n`)
- }
- else {
-            zq_timebodys = [process.env.zq_timebody]
- };
-    Object.keys(zq_timebodys).forEach((item) => {
-        if (zq_timebodys[item]) {
-            zq_timebodyArr.push(zq_timebodys[item])
-        }
-    })
+if (zq_timebody) {
+    if (zq_timebody.indexOf("&") == -1) {
+        zq_timebodyArr.push(zq_timebody)
+    } else if (zq_timebody.indexOf("&") > -1) {
+        zq_timebodys = zq_timebody.split("&")
+    } else if (process.env.zq_timebody && process.env.zq_timebody.indexOf('&') > -1) {
+        zq_timebodyArr = process.env.zq_timebody.split('&');
+        console.log(`您选择的是用"&"隔开\n`)
+    }
+} else {
+    var fs = require("fs");
+    zq_timebody = fs.readFileSync("zq_timebody.txt", "utf8");
+    if (zq_timebody !== `undefined`) {
+        zq_timebodys = zq_timebody.split("\n");
+    } else {
+        $.msg($.name, '【提示】请点击文章阅读1分钟获取timebody，再跑一次脚本', '不知道说啥好', {
+            "open-url": "给您劈个叉吧"
+        });
+        $.done()
+    }
+}
+Object.keys(zq_timebodys).forEach((item) => {
+    if (zq_timebodys[item] && !zq_timebodys[item].startsWith("#")) {
+        zq_timebodyArr.push(zq_timebodys[item])
+    }
+})
 
- if (!zqwzbody) {
-     $.msg($.name, '【提示】请点击文章获取body，再跑一次脚本', '不知道说啥好', {
-         "open-url": "给您劈个叉吧"
-     });
-     $.done()
- }
- else if (zqwzbody.indexOf("&") == -1) {
-            zqwzbodyArr.push(zqwzbody)
- }
- else if (zqwzbody.indexOf("&") > -1) {
-            zqwzbodys = zqwzbody.split("&")
- }
- else if (process.env.zqwzbody && process.env.zqwzbody.indexOf('&') > -1) {
-            zqwzbodyArr = process.env.zqwzbody.split('&');
-            console.log(`您选择的是用"&"隔开\n`)
- }
- else {
-            zqwzbodys = [process.env.zqwzbody]
- };
-    Object.keys(zqwzbodys).forEach((item) => {
-        if (zqwzbodys[item]) {
-            zqwzbodyArr.push(zqwzbodys[item])
-        }
-    })
+if (zqwzbody) {
+    if (zqwzbody.indexOf("&") == -1) {
+        zqwzbodyArr.push(zqwzbody)
+    } else if (zqwzbody.indexOf("&") > -1) {
+        zqwzbodys = zqwzbody.split("&")
+    } else if (process.env.zqwzbody && process.env.zqwzbody.indexOf('&') > -1) {
+        zqwzbodyArr = process.env.zqwzbody.split('&');
+        console.log(`您选择的是用"&"隔开\n`)
+    }
+} else {
+    var fs = require("fs");
+    zqwzbody = fs.readFileSync("zqwzbody.txt", "utf8");
+    if (zqwzbody !== `undefined`) {
+        zqwzbodys = zqwzbody.split("\n");
+    } else {
+        $.msg($.name, '【提示】请点击文章获取body，再跑一次脚本', '不知道说啥好', {
+            "open-url": "给您劈个叉吧"
+        });
+        $.done()
+    }
+}
+Object.keys(zqwzbodys).forEach((item) => {
+    if (zqwzbodys[item] && !zqwzbodys[item].startsWith("#")) {
+        zqwzbodyArr.push(zqwzbodys[item])
+    }
+})
 
 !(async () => {
     if (typeof $request !== "undefined") {

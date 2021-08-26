@@ -7,30 +7,32 @@ let zq_cookies = ""
 var myDate = new Date();
 var hour=myDate.getHours();
 
- if (!zq_cookie) {
-     $.msg($.name, '【提示】进入点击右下角"任务图标"，再跑一次脚本', '不知道说啥好', {
-         "open-url": "给您劈个叉吧"
-     });
-     $.done()
- }
- else if (zq_cookie.indexOf("@") == -1 && zq_cookie.indexOf("@") == -1) {
-            zq_cookieArr.push(zq_cookie)
- }
- else if (zq_cookie.indexOf("@") > -1) {
-            zq_cookies = zq_cookie.split("@")
- }
- else if (process.env.zq_cookie && process.env.zq_cookie.indexOf('@') > -1) {
-            zq_cookieArr = process.env.zq_cookie.split('@');
-            console.log(`您选择的是用"@"隔开\n`)
- }
- else {
-            zq_cookies = [process.env.zq_cookie]
- };
-    Object.keys(zq_cookies).forEach((item) => {
-        if (zq_cookies[item]) {
-            zq_cookieArr.push(zq_cookies[item])
-        }
-    })
+if (zq_cookie) {
+    if (zq_cookie.indexOf("@") == -1 && zq_cookie.indexOf("@") == -1) {
+        zq_cookieArr.push(zq_cookie)
+    } else if (zq_cookie.indexOf("@") > -1) {
+        zq_cookies = zq_cookie.split("@")
+    } else if (process.env.zq_cookie && process.env.zq_cookie.indexOf('@') > -1) {
+        zq_cookieArr = process.env.zq_cookie.split('@');
+        console.log(`您选择的是用"@"隔开\n`)
+    }
+} else {
+    var fs = require("fs");
+    zq_cookie = fs.readFileSync("zq_cookie.txt", "utf8");
+    if (zq_cookie !== `undefined`) {
+        zq_cookies = zq_cookie.split("\n");
+    } else {
+        $.msg($.name, '【提示】进入点击右下角"任务图标"，再跑一次脚本', '不知道说啥好', {
+            "open-url": "给您劈个叉吧"
+        });
+        $.done()
+    }
+}
+Object.keys(zq_cookies).forEach((item) => {
+    if (zq_cookies[item] && !zq_cookies[item].startsWith("#")) {
+        zq_cookieArr.push(zq_cookies[item])
+    }
+})
 
 !(async () => {
         console.log(`共${zq_cookieArr.length}个cookie`)
@@ -46,18 +48,18 @@ var hour=myDate.getHours();
                 console.log(`--------第 ${k + 1} 个账号早起打卡报名中--------\n`)
                 await signup()
                 console.log("\n\n")
-                    if ($.message.length != 0) {
-                 message += "账号" + (k + 1) + "：  " + $.message + " \n"
-             }
+                    if ($.message.length !== 'undefined' && $.message.length != 0) {
+                        message += "账号" + (k + 1) + "：  " + $.message + " \n"
+                    }
                 await $.wait(3000)
 
                 } else if(hour >= 5 && hour < 8){
                     console.log(`--------第 ${k + 1} 个账号早起打卡中--------\n`)
                     await wakeup()
                     console.log("\n\n")
-                    if ($.message.length != 0) {
-                 message += "账号" + (k + 1) + "：  " + $.message + " \n"
-             }
+                    if ($.message.length !== 'undefined' && $.message.length != 0) {
+                        message += "账号" + (k + 1) + "：  " + $.message + " \n"
+                    }
                 await $.wait(3000)
 
                 }

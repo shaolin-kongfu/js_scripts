@@ -49,54 +49,58 @@ const lookStartheader={
 
 
 
-if (!zq_cookie) {
-     $.msg($.name, '【提示】进入点击右下角"任务图标"，再跑一次脚本', '不知道说啥好', {
-         "open-url": "给您劈个叉吧"
-     });
-     $.done()
- }
- else if (zq_cookie.indexOf("@") == -1 && zq_cookie.indexOf("@") == -1) {
-            zq_cookieArr.push(zq_cookie)
- }
- else if (zq_cookie.indexOf("@") > -1) {
-            zq_cookies = zq_cookie.split("@")
- }
- else if (process.env.zq_cookie && process.env.zq_cookie.indexOf('@') > -1) {
-            zq_cookieArr = process.env.zq_cookie.split('@');
-            console.log(`您选择的是用"@"隔开\n`)
- }
- else {
-            zq_cookies = [process.env.zq_cookie]
- };
-    Object.keys(zq_cookies).forEach((item) => {
-        if (zq_cookies[item]) {
-            zq_cookieArr.push(zq_cookies[item])
-        }
-    })
-if (!zqlookStartbody) {
-     $.msg($.name, '【提示】请点击看看赚某一任务获取body', '不知道说啥好', {
-         "open-url": "给您劈个叉吧"
-     });
-     $.done()
- }
- else if (zqlookStartbody.indexOf("&") == -1) {
-            zqlookStartbodyArr.push(zqlookStartbody)
- }
- else if (zqlookStartbody.indexOf("&") > -1) {
-            zqlookStartbodys = zqlookStartbody.split("&")
- }
- else if (process.env.zqlookStartbody && process.env.zqlookStartbody.indexOf('&') > -1) {
-            zqlookStartbodyArr = process.env.zqlookStartbody.split('&');
-            console.log(`您选择的是用"&"隔开\n`)
- }
- else {
-            zqlookStartbodys = [process.env.zqlookStartbody]
- };
-    Object.keys(zqlookStartbodys).forEach((item) => {
-        if (zqlookStartbodys[item]) {
-            zqlookStartbodyArr.push(zqlookStartbodys[item])
-        }
-    })
+if (zq_cookie) {
+    if (zq_cookie.indexOf("@") == -1 && zq_cookie.indexOf("@") == -1) {
+        zq_cookieArr.push(zq_cookie)
+    } else if (zq_cookie.indexOf("@") > -1) {
+        zq_cookies = zq_cookie.split("@")
+    } else if (process.env.zq_cookie && process.env.zq_cookie.indexOf('@') > -1) {
+        zq_cookieArr = process.env.zq_cookie.split('@');
+        console.log(`您选择的是用"@"隔开\n`)
+    }
+} else {
+    var fs = require("fs");
+    zq_cookie = fs.readFileSync("zq_cookie.txt", "utf8");
+    if (zq_cookie !== `undefined`) {
+        zq_cookies = zq_cookie.split("\n");
+    } else {
+        $.msg($.name, '【提示】进入点击右下角"任务图标"，再跑一次脚本', '不知道说啥好', {
+            "open-url": "给您劈个叉吧"
+        });
+        $.done()
+    }
+}
+Object.keys(zq_cookies).forEach((item) => {
+    if (zq_cookies[item] && !zq_cookies[item].startsWith("#")) {
+        zq_cookieArr.push(zq_cookies[item])
+    }
+})
+if (zqlookStartbody) {
+    if (zqlookStartbody.indexOf("&") == -1) {
+        zqlookStartbodyArr.push(zqlookStartbody)
+    } else if (zqlookStartbody.indexOf("&") > -1) {
+        zqlookStartbodys = zqlookStartbody.split("&")
+    } else if (process.env.zqlookStartbody && process.env.zqlookStartbody.indexOf('&') > -1) {
+        zqlookStartbodyArr = process.env.zqlookStartbody.split('&');
+        console.log(`您选择的是用"&"隔开\n`)
+    }
+} else {
+    var fs = require("fs");
+    zqlookStartbody = fs.readFileSync("zqlookStartbody.txt", "utf8");
+    if (zqlookStartbody !== `undefined`) {
+        zqlookStartbodys = zqlookStartbody.split("\n");
+    } else {
+        $.msg($.name, '【提示】请点击看看赚某一任务获取body', '不知道说啥好', {
+            "open-url": "给您劈个叉吧"
+        });
+        $.done()
+    }
+}
+Object.keys(zqlookStartbodys).forEach((item) => {
+    if (zqlookStartbodys[item] && !zqlookStartbodys[item].startsWith("#")) {
+        zqlookStartbodyArr.push(zqlookStartbodys[item])
+    }
+})
 
 !(async () => {
      if (typeof $request !== "undefined") {

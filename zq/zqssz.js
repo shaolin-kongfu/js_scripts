@@ -29,30 +29,32 @@ const lookStartheader={
 }
 
 
-if (!zqsszbody) {
-     $.msg($.name, '【提示】请点击搜索赚某一任务获取body', '不知道说啥好', {
-         "open-url": "给您劈个叉吧"
-     });
-     $.done()
- }
- else if (zqsszbody.indexOf("&") == -1) {
-            zqsszbodyArr.push(zqsszbody)
- }
- else if (zqsszbody.indexOf("&") > -1) {
-            zqsszbodys = zqsszbody.split("&")
- }
- else if (process.env.zqsszbody && process.env.zqsszbody.indexOf('&') > -1) {
-            zqsszbodyArr = process.env.zqsszbody.split('&');
-            console.log(`您选择的是用"&"隔开\n`)
- }
- else {
-            zqsszbodys = [process.env.zqsszbody]
- };
-    Object.keys(zqsszbodys).forEach((item) => {
-        if (zqsszbodys[item]) {
-            zqsszbodyArr.push(zqsszbodys[item])
-        }
-    })
+if (zqsszbody) {
+    if (zqsszbody.indexOf("&") == -1) {
+        zqsszbodyArr.push(zqsszbody)
+    } else if (zqsszbody.indexOf("&") > -1) {
+        zqsszbodys = zqsszbody.split("&")
+    } else if (process.env.zqsszbody && process.env.zqsszbody.indexOf('&') > -1) {
+        zqsszbodyArr = process.env.zqsszbody.split('&');
+        console.log(`您选择的是用"&"隔开\n`)
+    }
+} else {
+    var fs = require("fs");
+    zqsszbody = fs.readFileSync("zqsszbody.txt", "utf8");
+    if (zqsszbody !== `undefined`) {
+        zqsszbodys = zqsszbody.split("\n");
+    } else {
+        $.msg($.name, '【提示】请点击搜索赚某一任务获取body', '不知道说啥好', {
+            "open-url": "给您劈个叉吧"
+        });
+        $.done()
+    }
+}
+Object.keys(zqsszbodys).forEach((item) => {
+    if (zqsszbodys[item] && !zqsszbodys[item].startsWith("#")) {
+        zqsszbodyArr.push(zqsszbodys[item])
+    }
+})
 
 !(async () => {
      if (typeof $request !== "undefined") {

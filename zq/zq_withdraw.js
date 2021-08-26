@@ -32,67 +32,69 @@ message = ""
 let zq_withdraw= $.isNode() ? (process.env.zq_withdraw ? process.env.zq_withdraw : "") : ($.getdata('zq_withdraw') ? $.getdata('zq_withdraw') : "")
 let zq_withdrawArr = []
 let zq_withdraws = ""
-let zq_cash = $.getdata('zq_cash') || 30;
+let zq_cash = $.isNode() ? (process.env.zq_cash ? process.env.zq_cash : "30") : ($.getdata('zq_cash') ? $.getdata('zq_cash') : "30")
 let zq_cookie= $.isNode() ? (process.env.zq_cookie ? process.env.zq_cookie : "") : ($.getdata('zq_cookie') ? $.getdata('zq_cookie') : "")
 let zq_cookieArr = []
 let zq_cookies = ""
 let nowmoney;
 
 
+var time1 = Date.parse(new Date()).toString();
+time1 = time1.substr(0, 10);
+if (zq_withdraw) {
+    if (zq_withdraw.indexOf("@") == -1 && zq_withdraw.indexOf("@") == -1) {
+        zq_withdrawArr.push(zq_withdraw)
+    } else if (zq_withdraw.indexOf("@") > -1) {
+        zq_withdraws = zq_withdraw.split("@")
+    } else if (process.env.zq_withdraw && process.env.zq_withdraw.indexOf('@') > -1) {
+        zq_withdrawArr = process.env.zq_withdraw.split('@');
+        console.log(`您选择的是用"@"隔开\n`)
+    }
+} else {
+    var fs = require("fs");
+    zq_withdraw = fs.readFileSync("zq_withdraw.txt", "utf8");
+    if (zq_withdraw !== `undefined`) {
+        zq_withdraws = zq_withdraw.split("\n");
+    } else {
+        $.msg($.name, '【提示】请先完成一次提现，明天再跑一次脚本', '不知道说啥好', {
+            "open-url": "给您劈个叉吧"
+        });
 
-var time1 = Date.parse( new Date() ).toString();
-    time1 = time1.substr(0,10);
-if (!zq_withdraw) {
-     $.msg($.name, '【提示】请先完成一次提现，明天再跑一次脚本', '不知道说啥好', {
-         "open-url": "给您劈个叉吧"
-     });
+        $.done()
+    }
+};
+Object.keys(zq_withdraws).forEach((item) => {
+    if (zq_withdraws[item] && !zq_withdraws[item].startsWith("#")) {
+        zq_withdrawArr.push(zq_withdraws[item])
+    }
+})
 
-     $.done()
- }
- else if (zq_withdraw.indexOf("@") == -1 && zq_withdraw.indexOf("@") == -1) {
-            zq_withdrawArr.push(zq_withdraw)
- }
- else if (zq_withdraw.indexOf("@") > -1) {
-            zq_withdraws = zq_withdraw.split("@")
- }
- else if (process.env.zq_withdraw && process.env.zq_withdraw.indexOf('@') > -1) {
-            zq_withdrawArr = process.env.zq_withdraw.split('@');
-            console.log(`您选择的是用"@"隔开\n`)
- }
- else {
-            zq_withdraws = [process.env.zq_withdraw]
- };
-    Object.keys(zq_withdraws).forEach((item) => {
-        if (zq_withdraws[item]) {
-            zq_withdrawArr.push(zq_withdraws[item])
-        }
-    })
-
-
-if (!zq_cookie) {
-     $.msg($.name, '【提示】进入点击右下角"赚钱图标"，再跑一次脚本', '不知道说啥好', {
-         "open-url": "给您劈个叉吧"
-     });
-     $.done()
- }
- else if (zq_cookie.indexOf("@") == -1 && zq_cookie.indexOf("@") == -1) {
-            zq_cookieArr.push(zq_cookie)
- }
- else if (zq_cookie.indexOf("@") > -1) {
-            zq_cookies = zq_cookie.split("@")
- }
- else if (process.env.zq_cookie && process.env.zq_cookie.indexOf('@') > -1) {
-            zq_cookieArr = process.env.zq_cookie.split('@');
-            console.log(`您选择的是用"@"隔开\n`)
- }
- else {
-            zq_cookies = [process.env.zq_cookie]
- };
-    Object.keys(zq_cookies).forEach((item) => {
-        if (zq_cookies[item]) {
-            zq_cookieArr.push(zq_cookies[item])
-        }
-    })
+if (zq_cookie) {
+    if (zq_cookie.indexOf("@") == -1 && zq_cookie.indexOf("@") == -1) {
+        zq_cookieArr.push(zq_cookie)
+    } else if (zq_cookie.indexOf("@") > -1) {
+        zq_cookies = zq_cookie.split("@")
+    } else if (process.env.zq_cookie && process.env.zq_cookie.indexOf('@') > -1) {
+        zq_cookieArr = process.env.zq_cookie.split('@');
+        console.log(`您选择的是用"@"隔开\n`)
+    }
+} else {
+    var fs = require("fs");
+    zq_cookie = fs.readFileSync("zq_cookie.txt", "utf8");
+    if (zq_cookie !== `undefined`) {
+        zq_cookies = zq_cookie.split("\n");
+    } else {
+        $.msg($.name, '【提示】进入点击右下角"任务图标"，再跑一次脚本', '不知道说啥好', {
+            "open-url": "给您劈个叉吧"
+        });
+        $.done()
+    }
+}
+Object.keys(zq_cookies).forEach((item) => {
+    if (zq_cookies[item] && !zq_cookies[item].startsWith("#")) {
+        zq_cookieArr.push(zq_cookies[item])
+    }
+})
 
 !(async () => {
      if (typeof $request !== "undefined") {
