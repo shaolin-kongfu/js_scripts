@@ -32,7 +32,7 @@ if (zq_cookie) {
         zq_cookieArr = process.env.zq_cookie.split('@');
         console.log(`您选择的是用"@"隔开\n`)
     }
-} else {
+} else if($.isNode()){
     var fs = require("fs");
     zq_cookie = fs.readFileSync("zq_cookie.txt", "utf8");
     if (zq_cookie !== `undefined`) {
