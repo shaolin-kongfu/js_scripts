@@ -58,8 +58,12 @@ if (!dsj_header) {
             await dsj_led()
             await run()
             await run_rw()
-            await dsj_lqp()
 
+            await dsj_lqp()
+            for (let k = 0; k<5;k++){
+                await lhz()
+                await $.wait(60000)
+            }
             await tasks(); // 任务状态
             await wx_tasks()
             await getGametime(); // 游戏时长
@@ -409,7 +413,7 @@ function signin() {
 function dsj_led() {
     return new Promise((resolve, reject) => {
         let url = {
-            url: `http://api.gaoqingdianshi.com/api/sign/chooseAdditionalReward?rewardId=45`,
+            url: `http://api.gaoqingdianshi.com/api/sign/chooseAdditionalReward?rewardId=50`,
             headers: JSON.parse(dsj_header1),
         }
         $.get(url, (error, response, data) => {
@@ -911,6 +915,26 @@ function cash() {
 
             }
             resolve()
+        })
+    })
+}
+
+//零花赚
+function lhz() {
+    return new Promise((resolve, reject) => {
+        let url = {
+            url: `${dianshijia_API}/v5/task/complete?code=H5Page_2&comType=0`,
+            headers: JSON.parse(dsj_header1),
+        }
+        $.get(url, (error, response, data) => {
+            //console.log(data)
+            let result = JSON.parse(data)
+            if(result.errCode == 0){
+                console.log('\n阅读零花赚：' + '阅读次数:' + result.data.dayComCount)
+            }else{
+              console.log('\n【阅读零花赚: '+result.msg)
+            }
+        resolve()
         })
     })
 }

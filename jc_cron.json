@@ -65,6 +65,36 @@
       }
     },
     {
+      "name": "晶彩好友签到红包",
+      "type": "cron",
+      "time": "15 7 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jc_friendSign.js"
+      }
+    },
+    {
+      "name": "晶彩抽奖",
+      "type": "cron",
+      "time": "34 22 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jc_Rotary.js"
+      }
+    },
+    {
+      "name": "晶彩提现",
+      "type": "cron",
+      "time": "34 10 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jc_withdraw.js"
+      }
+    },
+    {
       "name": "晶彩每日收益统计",
       "type": "cron",
       "time": "15 23 * * *",

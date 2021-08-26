@@ -47,19 +47,20 @@ Object.keys(zq_cookies).forEach((item) => {
                 if(hour >= 8 ){
                 console.log(`--------第 ${k + 1} 个账号早起打卡报名中--------\n`)
                 await signup()
-                await $.wait(2000)
-                     if ($.message.length != 0) {
+                console.log("\n\n")
+                    if ($.message.length != 0) {
                  message += "账号" + (k + 1) + "：  " + $.message + " \n"
              }
-                console.log("\n\n")
+                await $.wait(3000)
+
                 } else if(hour >= 5 && hour < 8){
                     console.log(`--------第 ${k + 1} 个账号早起打卡中--------\n`)
                     await wakeup()
-                    await $.wait(2000)
-                     if ($.message.length != 0) {
+                    console.log("\n\n")
+                    if ($.message.length != 0) {
                  message += "账号" + (k + 1) + "：  " + $.message + " \n"
              }
-                    console.log("\n\n")
+                await $.wait(3000)
 
                 }
                 if (message.length != 0) {
@@ -81,20 +82,21 @@ function signup(timeout = 0) {
             'Content-Length': '0',
              'Referer':' https://kd.youth.cn/h5/20190603cardactive/?'+'keyword_wyq=woyaoq.com&access=4G&app-version=8.1.2&app_version=8.1.2&carrier=%E4%B8%AD%E5%9B%BD%E7%A7%BB%E5%8A%A8&channel=c1005&'+zq_cookie1
             },
-        }//xsgbody,}
+        }
         $.post(url, async (err, resp, data) => {
             try {
 
                 const result = JSON.parse(data)
                 if(result.code === 1 ){
-                    signup = result.data.signup_num
+                    signup1 = result.data.signup_num
                     //console.log(result)
                     console.log(`报名 ${result.msg} \n`)
-                    console.log(`瓜分人数 ${signup}\n`)
+                    console.log(`瓜分人数 ${signup1}\n`)
                     console.log(`瓜分金额 ${result.data.jackpot_money}`)
-                    $.message = `中青打卡赚钱报名:${result.msg}\n 瓜分人数:${signup} \n 瓜分金额:${result.data.jackpot_money}元`
-                    //$.msg($.name, "", `中青打卡赚钱报名:${result.msg}\n 瓜分人数:${signup} \n 瓜分金额:${result.data.jackpot_money}元`);
+                    $.message = `中青打卡赚钱报名:${result.msg}\n 瓜分人数:${signup1} \n 瓜分金额:${result.data.jackpot_money}元`
+                    $.msg($.name, "", `中青打卡赚钱报名:${result.msg}\n 瓜分人数:${signup1} \n 瓜分金额:${result.data.jackpot_money}元`);
                 }else{
+                    $.message = `结果:${result.msg}\n`
                     console.log(result)
                 }
             } catch (e) {
@@ -126,7 +128,7 @@ function wakeup(timeout = 0) {
                     console.log(`瓜分人数 ${signup}\n`)
                     console.log(`瓜分金额 ${result.data.jackpot_money}`)
                     $.message = `中青打卡结果:${result.msg}\n打卡时间：${result.data.card_time}\n瓜分人数:${signup} \n 瓜分金额:${result.data.jackpot_money}元`
-                    //$.msg($.name, "", `中青打卡结果:${result.msg}\n打卡时间：${result.data.card_time}\n瓜分人数:${signup} \n 瓜分金额:${result.data.jackpot_money}元`);
+                    $.msg($.name, "", `中青打卡结果:${result.msg}\n打卡时间：${result.data.card_time}\n瓜分人数:${signup} \n 瓜分金额:${result.data.jackpot_money}元`);
                 }else{
                     console.log(result)
                 }

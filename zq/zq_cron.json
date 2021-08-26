@@ -75,6 +75,56 @@
       }
     },
     {
+      "name": "中青好友签到红包",
+      "type": "cron",
+      "time": "15 7 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zq_friendSign.js"
+      }
+    },
+    {
+      "name": "中青抽奖",
+      "type": "cron",
+      "time": "34 22 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zq_Rotary.js"
+      }
+    },
+    {
+      "name": "中青打卡赚",
+      "type": "cron",
+      "time": "34 5,9 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zq_wakeup.js"
+      }
+    },
+    {
+      "name": "中青搜索赚",
+      "type": "cron",
+      "time": "35 5 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zqssz.js"
+      }
+    },
+    {
+      "name": "中青浏览赚",
+      "type": "cron",
+      "time": "34 6 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zqllz.js"
+      }
+    },
+    {
       "name": "中青自动提现",
       "type": "cron",
       "time": "25 10 * * *",

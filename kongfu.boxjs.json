@@ -9,7 +9,8 @@
       "id": "jcKkz",
       "name": "晶彩看看赚",
       "keys": [
-        "lookStartbody"
+        "lookStartbody",
+          "jc_cookie"
       ], 
       "repo": "https://github.com/shaolin-kongfu/js_scripts/blob/main/jckkz.js",  
       "script": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jckkz.js", 
@@ -48,39 +49,13 @@
       ]
     },
     {
-      "id": "jcZf",
-      "name": "晶彩火爆转发",
+      "id": "jcCookie",
+      "name": "晶彩火爆转发&好友签到红包&福利视频",
       "keys": [
         "jc_cookie"
       ], 
-      "repo": "https://github.com/shaolin-kongfu/js_scripts/blob/main/jc_share.js",
-      "script": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jc_share.js",     
-      "icons": [ 
-      "https://cdn.jsdelivr.net/gh/NANXIAO1971/ceshi@main/picture/jckd1.png",
-      "https://cdn.jsdelivr.net/gh/NANXIAO1971/ceshi@main/picture/jckd1.png"
-      ]
-     },
-     {
-      "id": "jcfriendSign",
-      "name": "晶彩好友签到红包",
-      "keys": [
-        "jc_cookie"
-      ], 
-      "repo": "https://github.com/shaolin-kongfu/js_scripts/blob/main/jc_friendSign.js",
-      "script": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jc_friendSign.js",     
-      "icons": [ 
-      "https://cdn.jsdelivr.net/gh/NANXIAO1971/ceshi@main/picture/jckd1.png",
-      "https://cdn.jsdelivr.net/gh/NANXIAO1971/ceshi@main/picture/jckd1.png"
-      ]
-     },
-     {
-      "id": "jc_Adv_video.js",
-      "name": "晶彩福利视频",
-      "keys": [
-        "jc_cookie"
-      ], 
-      "repo": "https://github.com/shaolin-kongfu/js_scripts/blob/main/jc_Adv_video.js",
-      "script": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jc_Adv_video.js",     
+      "repo": "https://github.com/shaolin-kongfu/js_scripts",
+      "script": "https://github.com/shaolin-kongfu/js_scripts",     
       "icons": [ 
       "https://cdn.jsdelivr.net/gh/NANXIAO1971/ceshi@main/picture/jckd1.png",
       "https://cdn.jsdelivr.net/gh/NANXIAO1971/ceshi@main/picture/jckd1.png"
@@ -186,36 +161,36 @@
       ]
     },
     {
-      "id": "zqZf",
-      "name": "中青火爆转发",
+      "id": "zqcookie",
+      "name": "中青火爆转发&好友签到红包&福利视频&打卡赚",
       "keys": [
         "zq_cookie"
       ],
-      "repo": "https://github.com/shaolin-kongfu/js_scripts/blob/main/zq/zq_share.js",
-      "script": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zq_share.js",
+      "repo": "https://github.com/shaolin-kongfu/js_scripts/tree/main/zq",
+      "script": "https://github.com/shaolin-kongfu/js_scripts/tree/main/zq",
       "icons": [
       "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/kongfu.jpg",
       "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/kongfu.jpg"
       ]
      },
      {
-      "id": "zqfriendSign",
-      "name": "中青好友签到红包",
+      "id": "zqssz.js",
+      "name": "中青搜索赚",
       "keys": [
-        "zq_cookie"
+        "zqsszbody"
       ],
-      "repo": "https://github.com/shaolin-kongfu/js_scripts/blob/main/zq/zq_friendSign.js",
-      "script": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zq_friendSign.js",
+      "repo": "https://github.com/shaolin-kongfu/js_scripts/blob/main/zq/zq_Adv_video.js",
+      "script": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zq_Adv_video.js",
       "icons": [
       "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/kongfu.jpg",
       "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/kongfu.jpg"
       ]
      },
      {
-      "id": "zq_Adv_video.js",
-      "name": "中青福利视频",
+      "id": "zqllz.js",
+      "name": "中青浏览赚",
       "keys": [
-        "zq_cookie"
+        "zqllzbody"
       ],
       "repo": "https://github.com/shaolin-kongfu/js_scripts/blob/main/zq/zq_Adv_video.js",
       "script": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zq_Adv_video.js",
