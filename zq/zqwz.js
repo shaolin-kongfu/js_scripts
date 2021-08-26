@@ -54,7 +54,7 @@ if (zq_timebody) {
         zq_timebodyArr = process.env.zq_timebody.split('&');
         console.log(`您选择的是用"&"隔开\n`)
     }
-} else {
+} else if($.isNode()) {
     var fs = require("fs");
     zq_timebody = fs.readFileSync("zq_timebody.txt", "utf8");
     if (zq_timebody !== `undefined`) {
@@ -81,7 +81,7 @@ if (zqwzbody) {
         zqwzbodyArr = process.env.zqwzbody.split('&');
         console.log(`您选择的是用"&"隔开\n`)
     }
-} else {
+} else if($.isNode()) {
     var fs = require("fs");
     zqwzbody = fs.readFileSync("zqwzbody.txt", "utf8");
     if (zqwzbody !== `undefined`) {
