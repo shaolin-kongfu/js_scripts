@@ -38,7 +38,7 @@ if (zqsszbody) {
         zqsszbodyArr = process.env.zqsszbody.split('&');
         console.log(`您选择的是用"&"隔开\n`)
     }
-} else {
+} else if($.isNode()){
     var fs = require("fs");
     zqsszbody = fs.readFileSync("zqsszbody.txt", "utf8");
     if (zqsszbody !== `undefined`) {
