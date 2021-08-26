@@ -48,18 +48,18 @@ Object.keys(zq_cookies).forEach((item) => {
                 console.log(`--------第 ${k + 1} 个账号早起打卡报名中--------\n`)
                 await signup()
                 console.log("\n\n")
-                    if ($.message.length != 0) {
-                 message += "账号" + (k + 1) + "：  " + $.message + " \n"
-             }
+                    if ($.message.length !== 'undefined' && $.message.length != 0) {
+                        message += "账号" + (k + 1) + "：  " + $.message + " \n"
+                    }
                 await $.wait(3000)
 
                 } else if(hour >= 5 && hour < 8){
                     console.log(`--------第 ${k + 1} 个账号早起打卡中--------\n`)
                     await wakeup()
                     console.log("\n\n")
-                    if ($.message.length != 0) {
-                 message += "账号" + (k + 1) + "：  " + $.message + " \n"
-             }
+                    if ($.message.length !== 'undefined' && $.message.length != 0) {
+                        message += "账号" + (k + 1) + "：  " + $.message + " \n"
+                    }
                 await $.wait(3000)
 
                 }
