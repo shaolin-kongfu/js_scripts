@@ -59,13 +59,13 @@ if (zq_timebody) {
     zq_timebody = fs.readFileSync("zq_timebody.txt", "utf8");
     if (zq_timebody !== `undefined`) {
         zq_timebodys = zq_timebody.split("\n");
-    } else {
+    } 
+}else {
         $.msg($.name, '【提示】请点击文章阅读1分钟获取timebody，再跑一次脚本', '不知道说啥好', {
             "open-url": "给您劈个叉吧"
         });
         $.done()
     }
-}
 Object.keys(zq_timebodys).forEach((item) => {
     if (zq_timebodys[item] && !zq_timebodys[item].startsWith("#")) {
         zq_timebodyArr.push(zq_timebodys[item])
@@ -86,13 +86,13 @@ if (zqwzbody) {
     zqwzbody = fs.readFileSync("zqwzbody.txt", "utf8");
     if (zqwzbody !== `undefined`) {
         zqwzbodys = zqwzbody.split("\n");
-    } else {
+    } 
+}else {
         $.msg($.name, '【提示】请点击文章获取body，再跑一次脚本', '不知道说啥好', {
             "open-url": "给您劈个叉吧"
         });
         $.done()
     }
-}
 Object.keys(zqwzbodys).forEach((item) => {
     if (zqwzbodys[item] && !zqwzbodys[item].startsWith("#")) {
         zqwzbodyArr.push(zqwzbodys[item])
