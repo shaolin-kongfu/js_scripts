@@ -7,7 +7,7 @@ shaolin-kongfu
 中青看点福利视频
 
 使用zq_cookie
-cron：20 21 * * * zq_Adv_video.js
+cron 20 21 * * * zq_Adv_video.js
 脚本地址：
 https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zq_Adv_video.js
 定时确保在jcbox脚本运行之前完成即可，一天一次
