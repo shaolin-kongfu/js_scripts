@@ -3,7 +3,7 @@ shaolin-kongfu
 
 软件名称：中青看点
 赞赏:邀请码57984759
-
+cron：34 6 * * *zqllz.js
 万分感谢！！
 
 [rewrite_local]
