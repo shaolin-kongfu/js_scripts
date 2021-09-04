@@ -7,6 +7,7 @@ shaolin-kongfu
 
 万分感谢！！
 
+cron: 15 2 * * * zqqd.js
 
 [rewrite_local]
 
