@@ -6,7 +6,7 @@ shaolin-kongfu
 赞赏:邀请码57984759
 
 万分感谢！！
-
+cron: 30 7,12,18 * * *zqwz.js
 
 【MITM】
 kandian.wkandian.com
