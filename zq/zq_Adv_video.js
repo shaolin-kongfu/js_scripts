@@ -15,7 +15,7 @@ https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zq_Adv_video
 首次跑完之后需要打开zqbox的重写，在app-任务-每日任务-看福利视频处，领取任务奖励，以后就不用管了
 
  */
-cron：20 21 * * *zq_Adv_video.js
+cron：20 21 * * * zq_Adv_video.js
 const $ = new Env("中青看点福利视频");
 const notify = $.isNode() ? require('./sendNotify') : '';
 message = ""
