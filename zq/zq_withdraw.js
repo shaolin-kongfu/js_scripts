@@ -3,7 +3,7 @@
 调用zq_cookie,zq_withdraw,zq_cash
 
 赞赏:邀请码57984759
-
+cron：25 10 * * *zq_withdraw.js
 万分感谢！！！
 
 脚本地址：
