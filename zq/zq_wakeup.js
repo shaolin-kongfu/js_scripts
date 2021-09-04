@@ -1,3 +1,7 @@
+/*
+cron：34 5,9 * * *zq_wakeup.js
+*/
+
 const $ = new Env("中青看点打卡赚钱");
 const notify = $.isNode() ? require('./sendNotify') : '';
 message = ""
