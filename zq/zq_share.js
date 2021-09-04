@@ -5,7 +5,7 @@ shaolin-kongfu
 赞赏:邀请码57984759
 
 万分感谢！！
-
+cron：15 6,12,18 * * *zq_share.js
 #火爆转发
 
 */
