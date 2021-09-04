@@ -5,7 +5,7 @@ shaolin-kongfu
 赞赏:邀请码57984759
 
 中青看点福利视频
-
+cron：20 21 * * *zq_Adv_video.js
 使用zq_cookie
 
 脚本地址：
