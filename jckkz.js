@@ -184,7 +184,7 @@ if ($request.url.match(/\/ant.xunsl.com\/v5\/nameless\/adlickstart/)) {
                 $.setdata(lookStartbodys, 'lookStartbody');
                 $.log(`${$.name}获取看看赚任务: 成功, lookStartbodys: ${bodyVal}`);
                 bodys = lookStartbodys.split("&")
-                // $.msg($.name, "获取第" + bodys.length + "个看看赚任务请求: 成功🎉", ``)
+                $.msg($.name, "获取第" + bodys.length + "个看看赚任务请求: 成功🎉", ``)
             }
         } else {
             $.setdata(bodyVal, 'lookStartbody');
