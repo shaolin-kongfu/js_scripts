@@ -93,7 +93,7 @@ if ($request.url.match(/\/kandian.wkandian.com\/v5\/task\/browse_start/)) {
                 $.setdata(zqllzbodys, 'zqllzbody');
                 $.log(`${$.name}获取浏览赚任务: 成功, zqllzbodys: ${bodyVal}`);
                 bodys = zqllzbodys.split("&")
-                // $.msg($.name, "获取第" + bodys.length + "个浏览赚任务请求: 成功🎉", ``)
+                 $.msg($.name, "获取第" + bodys.length + "个浏览赚任务请求: 成功🎉", ``)
             }
         } else {
             $.setdata(bodyVal, 'zqllzbody');
