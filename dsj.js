@@ -930,7 +930,7 @@ function lhz() {
             //console.log(data)
             let result = JSON.parse(data)
             if(result.errCode == 0){
-                console.log('\n阅读零花赚：' + '阅读次数:' + result.data.dayComCount)
+                console.log('\n阅读零花赚：' + '阅读次数:' + result.data.dayCompCount)
             }else{
               console.log('\n【阅读零花赚: '+result.msg)
             }
