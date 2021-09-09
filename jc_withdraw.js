@@ -178,7 +178,7 @@ function getbody() {
                 $.setdata(jc_withdraws,'jc_withdraw');
                 $.log(`${$.name}获取提现: 成功, jc_withdraws: ${bodyVal}`);
                 bodys = jc_withdraws.split("@")
-                // $.msg($.name, "获取第" + bodys.length + "个阅读请求: 成功🎉", ``)
+                 $.msg($.name, "获取第" + bodys.length + "个提现请求: 成功🎉", ``)
             }
         } else {
             $.setdata($request.body,'jc_withdraw');
