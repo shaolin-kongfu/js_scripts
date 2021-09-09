@@ -133,7 +133,7 @@ async function getjc_cookie() {
                 $.setdata(jc_cookies, 'jc_cookie');
                 $.log(`${$.name}获取cookie: 成功, jc_cookies: ${bodyVal}`);
                 bodys = jc_cookies.split("@")
-                // $.msg($.name, "获取第" + bodys.length + "个阅读请求: 成功🎉", ``)
+                $.msg($.name, "获取第" + bodys.length + "个cookie: 成功🎉", ``)
             }
         } else {
             $.setdata(bodyVal, 'jc_cookie');
