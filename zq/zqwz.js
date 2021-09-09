@@ -153,7 +153,7 @@ function getzqwzbody() {
                 $.setdata(zqwzbodys, 'zqwzbody');
                 $.log(`${$.name}获取阅读: 成功, zqwzbodys: ${bodyVal}`);
                 bodys = zqwzbodys.split("&")
-                // $.msg($.name, "获取第" + bodys.length + "个阅读请求: 成功🎉", ``)
+                 $.msg($.name, "获取第" + bodys.length + "个阅读请求: 成功🎉", ``)
             }
         } else {
             $.setdata(bodyVal, 'zqwzbody');
@@ -194,18 +194,18 @@ function getzq_timebody() {
             console.log(bodyVal)
         if (zq_timebody) {
             if (zq_timebody.indexOf(bodyVal) > -1) {
-                $.log("此阅读请求已存在，本次跳过")
+                $.log("此阅读时长请求已存在，本次跳过")
             } else if (zq_timebody.indexOf(bodyVal) == -1) {
                 zq_timebodys = zq_timebody + "&" + bodyVal;
                 $.setdata(zq_timebodys,'zq_timebody');
-                $.log(`${$.name}获取阅读: 成功, zq_timebodys: ${bodyVal}`);
+                $.log(`${$.name}获取阅读时长: 成功, zq_timebodys: ${bodyVal}`);
                 bodys = zq_timebodys.split("&")
-                // $.msg($.name, "获取第" + bodys.length + "个阅读请求: 成功🎉", ``)
+                 $.msg($.name, "获取第" + bodys.length + "个阅读时长请求: 成功🎉", ``)
             }
         } else {
             $.setdata($request.body,'zq_timebody');
-            $.log(`${$.name}获取阅读: 成功, zq_timebodys: ${bodyVal}`);
-            $.msg($.name, `获取第一个阅读请求: 成功🎉`, ``)
+            $.log(`${$.name}获取阅读时长: 成功, zq_timebodys: ${bodyVal}`);
+            $.msg($.name, `获取第一个阅读时长请求: 成功🎉`, ``)
         }
     }
 }
