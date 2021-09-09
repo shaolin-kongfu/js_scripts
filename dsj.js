@@ -60,10 +60,10 @@ if (!dsj_header) {
             await run_rw()
 
             await dsj_lqp()
-            // for (let k = 0; k<5;k++){
-            //     await lhz()
-            //     await $.wait(60000)
-            // }
+            for (let k = 0; k<5;k++){
+                await lhz()
+                await $.wait(60000)
+            }
             await tasks(); // 任务状态
             await wx_tasks()
             await getGametime(); // 游戏时长
