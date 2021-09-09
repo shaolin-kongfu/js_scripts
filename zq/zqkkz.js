@@ -188,7 +188,7 @@ if ($request.url.match(/\/kandian.wkandian.com\/v5\/nameless\/adlickstart/)) {
                 $.setdata(zqlookStartbodys, 'zqlookStartbody');
                 $.log(`${$.name}获取看看赚任务: 成功, zqlookStartbodys: ${bodyVal}`);
                 bodys = zqlookStartbodys.split("&")
-                // $.msg($.name, "获取第" + bodys.length + "个看看赚任务请求: 成功🎉", ``)
+                 $.msg($.name, "获取第" + bodys.length + "个看看赚任务请求: 成功🎉", ``)
             }
         } else {
             $.setdata(bodyVal, 'zqlookStartbody');
