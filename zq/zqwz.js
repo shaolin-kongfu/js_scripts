@@ -32,6 +32,8 @@ let zqwzbodys = ""
 let zq_timebody= $.isNode() ? (process.env.zq_timebody ? process.env.zq_timebody : "") : ($.getdata('zq_timebody') ? $.getdata('zq_timebody') : "")
 let zq_timebodyArr = []
 let zq_timebodys = ""
+let zqwznum
+let indexLast = $.getdata('zqbody_index')? $.getdata('zqbody_index'):0;
 const jc_timeheader={
     'device-platform': 'android',
     'Content-Type': 'application/x-www-form-urlencoded',
@@ -59,13 +61,13 @@ if (zq_timebody) {
     zq_timebody = fs.readFileSync("zq_timebody.txt", "utf8");
     if (zq_timebody !== `undefined`) {
         zq_timebodys = zq_timebody.split("\n");
-    } 
-}else {
+    } else {
         $.msg($.name, '【提示】请点击文章阅读1分钟获取timebody，再跑一次脚本', '不知道说啥好', {
             "open-url": "给您劈个叉吧"
         });
         $.done()
     }
+}
 Object.keys(zq_timebodys).forEach((item) => {
     if (zq_timebodys[item] && !zq_timebodys[item].startsWith("#")) {
         zq_timebodyArr.push(zq_timebodys[item])
@@ -86,13 +88,13 @@ if (zqwzbody) {
     zqwzbody = fs.readFileSync("zqwzbody.txt", "utf8");
     if (zqwzbody !== `undefined`) {
         zqwzbodys = zqwzbody.split("\n");
-    } 
-}else {
+    } else {
         $.msg($.name, '【提示】请点击文章获取body，再跑一次脚本', '不知道说啥好', {
             "open-url": "给您劈个叉吧"
         });
         $.done()
     }
+}
 Object.keys(zqwzbodys).forEach((item) => {
     if (zqwzbodys[item] && !zqwzbodys[item].startsWith("#")) {
         zqwzbodyArr.push(zqwzbodys[item])
@@ -107,12 +109,15 @@ Object.keys(zqwzbodys).forEach((item) => {
  }else {
 
         console.log(`共${zqwzbodyArr.length}个阅读body`)
-        for (let k = 0; k < zqwzbodyArr.length; k++) {
+        index1 = indexLast * 1
+        for (let k =  index1 ? index1 : 0; k < zqwzbodyArr.length; k++) {
             // $.message = ""
             zqwzbody1 = zqwzbodyArr[k];
             // console.log(`${zqwzbody1}`)
             console.log(`--------第 ${k + 1} 次阅读任务执行中--------\n`)
             await wzjl()
+            zqwznum = k+2
+            $.setdata(zqwznum, 'zqbody_index');
             await $.wait(60000);
             for (let k = 0; k < zq_timebodyArr.length; k++) {
                 zq_timebody1 = zq_timebodyArr[k];
@@ -120,6 +125,7 @@ Object.keys(zqwzbodys).forEach((item) => {
             }
             console.log("\n\n")
         }
+        $.setdata(0, 'zqbody_index');
     }
 
 
@@ -176,6 +182,7 @@ function wzjl(timeout = 0) {
                 const result = JSON.parse(data)
                 if(result.items.read_score !== "undefined" ){
                     console.log('\n浏览文章成功，获得：'+result.items.read_score + '金币')
+                    
                 }else{
                     console.log('\n看太久了，换一篇试试')
                 }
@@ -194,18 +201,18 @@ function getzq_timebody() {
             console.log(bodyVal)
         if (zq_timebody) {
             if (zq_timebody.indexOf(bodyVal) > -1) {
-                $.log("此阅读时长请求已存在，本次跳过")
+                $.log("此阅读请求已存在，本次跳过")
             } else if (zq_timebody.indexOf(bodyVal) == -1) {
                 zq_timebodys = zq_timebody + "&" + bodyVal;
                 $.setdata(zq_timebodys,'zq_timebody');
-                $.log(`${$.name}获取阅读时长: 成功, zq_timebodys: ${bodyVal}`);
+                $.log(`${$.name}获取阅读: 成功, zq_timebodys: ${bodyVal}`);
                 bodys = zq_timebodys.split("&")
-                 $.msg($.name, "获取第" + bodys.length + "个阅读时长请求: 成功🎉", ``)
+                // $.msg($.name, "获取第" + bodys.length + "个阅读请求: 成功🎉", ``)
             }
         } else {
             $.setdata($request.body,'zq_timebody');
-            $.log(`${$.name}获取阅读时长: 成功, zq_timebodys: ${bodyVal}`);
-            $.msg($.name, `获取第一个阅读时长请求: 成功🎉`, ``)
+            $.log(`${$.name}获取阅读: 成功, zq_timebodys: ${bodyVal}`);
+            $.msg($.name, `获取第一个阅读请求: 成功🎉`, ``)
         }
     }
 }
