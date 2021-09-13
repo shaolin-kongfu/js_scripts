@@ -6,8 +6,12 @@ shaolin-kongfu
 
 万分感谢！！
 
-#火爆转发
+[rewrite_local]
 
+#火爆转发
+https://kandian.wkandian.com/v17/NewTask/getTaskList.json 重写目标 https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jc_share.js
+[MITM]
+hostname = kandian.wkandian.com
 */
 
 const $ = new Env("中青看点火爆转发");
@@ -23,32 +27,31 @@ console.log(hour)
 
 
 
-if (zq_cookie) {
-    if (zq_cookie.indexOf("@") == -1 && zq_cookie.indexOf("@") == -1) {
-        zq_cookieArr.push(zq_cookie)
-    } else if (zq_cookie.indexOf("@") > -1) {
-        zq_cookies = zq_cookie.split("@")
-    } else if (process.env.zq_cookie && process.env.zq_cookie.indexOf('@') > -1) {
-        zq_cookieArr = process.env.zq_cookie.split('@');
-        console.log(`您选择的是用"@"隔开\n`)
-    }
-} else if($.isNode()){
-    var fs = require("fs");
-    zq_cookie = fs.readFileSync("zq_cookie.txt", "utf8");
-    if (zq_cookie !== `undefined`) {
-        zq_cookies = zq_cookie.split("\n");
-    } else {
-        $.msg($.name, '【提示】进入点击右下角"任务图标"，再跑一次脚本', '不知道说啥好', {
-            "open-url": "给您劈个叉吧"
-        });
-        $.done()
-    }
-}
-Object.keys(zq_cookies).forEach((item) => {
-    if (zq_cookies[item] && !zq_cookies[item].startsWith("#")) {
-        zq_cookieArr.push(zq_cookies[item])
-    }
-})
+
+ if (!zq_cookie) {
+     $.msg($.name, '【提示】进入点击右下角"任务图标"，再跑一次脚本', '不知道说啥好', {
+         "open-url": "给您劈个叉吧"
+     });
+     $.done()
+ }
+ else if (zq_cookie.indexOf("@") == -1 && zq_cookie.indexOf("@") == -1) {
+            zq_cookieArr.push(zq_cookie)
+ }
+ else if (zq_cookie.indexOf("@") > -1) {
+            zq_cookies = zq_cookie.split("@")
+ }
+ else if (process.env.zq_cookie && process.env.zq_cookie.indexOf('@') > -1) {
+            zq_cookieArr = process.env.zq_cookie.split('@');
+            console.log(`您选择的是用"@"隔开\n`)
+ }
+ else {
+            zq_cookies = [process.env.zq_cookie]
+ };
+    Object.keys(zq_cookies).forEach((item) => {
+        if (zq_cookies[item]) {
+            zq_cookieArr.push(zq_cookies[item])
+        }
+    })
 
 !(async () => {
      if (typeof $request !== "undefined") {
@@ -95,7 +98,7 @@ function wzlist(timeout = 5000) {
         let url = {
             url : 'https://kandian.wkandian.com/WebApi/ArticleTop/listsNewTag',
             headers : {'Host': 'kandian.wkandian.com'},
-            //body : wzbody1,
+            body : zq_cookie1 +'&tag=12',
         }//xsgbody,}
         $.post(url, async (err, resp, data) => {
             try {
