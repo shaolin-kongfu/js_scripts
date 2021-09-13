@@ -34,7 +34,7 @@ let zq_timebodyArr = []
 let zq_timebodys = ""
 let zqwznum
 let indexLast = $.getdata('zqbody_index')? $.getdata('zqbody_index'):0;
-const jc_timeheader={
+const zq_timeheader={
     'device-platform': 'android',
     'Content-Type': 'application/x-www-form-urlencoded',
     'Content-Length': '1197',
