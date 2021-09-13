@@ -125,6 +125,16 @@
       }
     },
     {
+      "name": "中青阅读翻倍",
+      "type": "cron",
+      "time": "34 5 * * 1",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/zq/zq_double.js"
+      }
+    },
+    {
       "name": "中青自动提现",
       "type": "cron",
       "time": "25 10 * * *",
