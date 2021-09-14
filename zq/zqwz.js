@@ -24,7 +24,7 @@ const $ = new Env("中青看点阅读文章");
 const notify = $.isNode() ? require('./sendNotify') : '';
 message = ""
 
-let addtime = true
+
 let zqwzbody= $.isNode() ? (process.env.zqwzbody ? process.env.zqwzbody : "") : ($.getdata('zqwzbody') ? $.getdata('zqwzbody') : "")
 let zqwzbodyArr = []
 let zqwzbodys = ""
@@ -118,23 +118,11 @@ Object.keys(zqwzbodys).forEach((item) => {
             await wzjl()
             zqwznum = k+2
             $.setdata(zqwznum, 'zqbody_index');
-            DD=10000+Math.floor(6000 * Math.random());
-            await $.wait(DD);
-           let num=zq_timebodyArr.length;
-			if ( num > 0 ) {
-				let m = Math.floor(Math.random()*(num));	
-				zq_timebody1=zq_timebodyArr[m];
-				if (addtime==true){
-						console.log(`-------------------------\n\n本次使用第${m+1}条时长链接\n`)
-						await timejl();
-				}
-				else{					
-					console.log(`-------------------------\n\n今日时长已超过2小时,跳过时长上传\n`)
-				}
-			}
-			else{
-				console.log(`-------------------------\n\n没有时长链接,请抓取一条时长`)
-			}
+            await $.wait(60000);
+            for (let k = 0; k < zq_timebodyArr.length; k++) {
+                zq_timebody1 = zq_timebodyArr[k];
+                await timejl()
+            }
             console.log("\n\n")
         }
         $.setdata(0, 'zqbody_index');
@@ -240,15 +228,7 @@ function timejl(timeout = 0) {
 
                 const result = JSON.parse(data)
                 if(result.success === true ){
-                     //console.log('\n阅读时长：'+result.time + '秒')
-					readtimes = result.time / 60
-					$.log(`阅读时长共计` + Math.floor(readtimes) + `分钟`)
-					if (result.time >= Math.floor(Math.random() * (7200 - 9000) + 9000)) {
-					// 时长达2小时+，设置下次执行直接跳过
-						addtime=false;
-					}else{
-						addtime=true;
-					}
+                    console.log('\n阅读时长：'+result.time + '秒')
                 }else{
                     console.log('\n更新阅读时长失败')
                 }
