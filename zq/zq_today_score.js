@@ -1,3 +1,4 @@
+
 /*
 shaolin-kongfu
 
@@ -21,32 +22,30 @@ let zq_cookie= $.isNode() ? (process.env.zq_cookie ? process.env.zq_cookie : "")
 let zq_cookieArr = []
 let zq_cookies = ""
 
-if (zq_cookie) {
-    if (zq_cookie.indexOf("@") == -1 && zq_cookie.indexOf("@") == -1) {
-        zq_cookieArr.push(zq_cookie)
-    } else if (zq_cookie.indexOf("@") > -1) {
-        zq_cookies = zq_cookie.split("@")
-    } else if (process.env.zq_cookie && process.env.zq_cookie.indexOf('@') > -1) {
-        zq_cookieArr = process.env.zq_cookie.split('@');
-        console.log(`您选择的是用"@"隔开\n`)
-    }
-} else if($.isNode()){
-    var fs = require("fs");
-    zq_cookie = fs.readFileSync("zq_cookie.txt", "utf8");
-    if (zq_cookie !== `undefined`) {
-        zq_cookies = zq_cookie.split("\n");
-    } else {
-        $.msg($.name, '【提示】进入点击右下角"任务图标"，再跑一次脚本', '不知道说啥好', {
-            "open-url": "给您劈个叉吧"
-        });
-        $.done()
-    }
-}
-Object.keys(zq_cookies).forEach((item) => {
-    if (zq_cookies[item] && !zq_cookies[item].startsWith("#")) {
-        zq_cookieArr.push(zq_cookies[item])
-    }
-})
+if (!zq_cookie) {
+     $.msg($.name, '【提示】进入点击右下角"任务图标"，再跑一次脚本', '不知道说啥好', {
+         "open-url": "给您劈个叉吧"
+     });
+     $.done()
+ }
+ else if (zq_cookie.indexOf("@") == -1 && zq_cookie.indexOf("@") == -1) {
+            zq_cookieArr.push(zq_cookie)
+ }
+ else if (zq_cookie.indexOf("@") > -1) {
+            zq_cookies = zq_cookie.split("@")
+ }
+ else if (process.env.zq_cookie && process.env.zq_cookie.indexOf('@') > -1) {
+            zq_cookieArr = process.env.zq_cookie.split('@');
+            console.log(`您选择的是用"@"隔开\n`)
+ }
+ else {
+            zq_cookies = [process.env.zq_cookie]
+ };
+    Object.keys(zq_cookies).forEach((item) => {
+        if (zq_cookies[item]) {
+            zq_cookieArr.push(zq_cookies[item])
+        }
+    })
 
 !(async () => {
      if (typeof $request !== "undefined") {
@@ -60,12 +59,13 @@ Object.keys(zq_cookies).forEach((item) => {
              cookie = bodyVal.replace(/zqkey=/, "cookie=")
              cookie_id = cookie.replace(/zqkey_id=/, "cookie_id=")
              zq_cookie1 = cookie_id + '&' + bodyVal
+             zq_cookie2 = 'uid='+zq_cookieArr[k].split('&uid=')[1] + '&'+ bodyVal
              //待处理cookie
              console.log(`${zq_cookie1}`)
              console.log(`--------第 ${k + 1} 个账号收益查询中--------\n`)
-             await today_score(zq_cookie1)
+             await nickname(zq_cookie2)
              if ($.message.length != 0) {
-                 message += "账号" + (k + 1) + "：  " + $.message + " \n"
+                 message += "账号" + (k + 1) + "：  \n" + $.message + " \n"
              }
              await $.wait(4000);
              console.log("\n\n")
@@ -83,8 +83,36 @@ Object.keys(zq_cookies).forEach((item) => {
     .catch((e) => $.logErr(e))
     .finally(() => $.done())
 
+function nickname(zq_cookie2,timeout = 0) {
+    return new Promise((resolve) => {
+        let url = {
+            url : 'https://kandian.wkandian.com/v17/NewTask/getSign.json?'+ zq_cookie2,
+            headers : {
+    'Host': 'kandian.wkandian.com'
+},
+            }
+        $.get(url, async (err, resp, data) => {
+            try {
 
-function today_score(zq_cookie1,timeout = 0) {
+                const result = JSON.parse(data)
+                if(result.success == true){
+                    console.log('\n昵称:'+result.items.user.nickname)
+                    nickname =result.items.user.nickname
+                    await $.wait(1000);
+                    await today_score(zq_cookie1,nickname)
+                  
+            
+                }else{
+                     console.log(result)
+                }
+            } catch (e) {
+            } finally {
+                resolve()
+            }
+            },timeout)
+    })
+}
+function today_score(zq_cookie1,nickname,timeout = 0) {
     return new Promise((resolve) => {
         let url = {
             url : 'https://kandian.wkandian.com/wap/user/balance?'+ zq_cookie1,
@@ -100,7 +128,7 @@ function today_score(zq_cookie1,timeout = 0) {
                     console.log('\n今日收益总计:'+result.user.today_score)
                     console.log('\n当前金币总数:'+result.user.score)
                     console.log('\n折合人民币总数:'+result.user.money)
-                    $.message = `今日收益总计:${result.user.today_score}金币\n 当前金币总数:${result.user.score} \n 折合人民币总数:${result.user.money}元`
+                    $.message = `昵称:${nickname}\n今日收益总计:${result.user.today_score}金币\n 当前金币总数:${result.user.score} \n 折合人民币总数:${result.user.money}元`
                     //$.msg($.name, "", `今日收益总计:${result.user.today_score}金币\n 当前金币总数:${result.user.score} \n 折合人民币总数:${result.user.money}元`);
                 }else{
                      console.log(result)
@@ -131,7 +159,7 @@ async function getzq_cookie() {
                 $.setdata(zq_cookies, 'zq_cookie');
                 $.log(`${$.name}获取cookie: 成功, zq_cookies: ${bodyVal}`);
                 bodys = zq_cookies.split("@")
-                $.msg($.name, "获取第" + bodys.length + "个cookie: 成功🎉", ``)
+                // $.msg($.name, "获取第" + bodys.length + "个阅读请求: 成功🎉", ``)
             }
         } else {
             $.setdata(bodyVal, 'zq_cookie');
