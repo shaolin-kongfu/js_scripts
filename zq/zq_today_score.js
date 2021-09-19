@@ -97,9 +97,9 @@ function nickname(zq_cookie2,timeout = 0) {
                 const result = JSON.parse(data)
                 if(result.success == true){
                     console.log('\n昵称:'+result.items.user.nickname)
-                    nickname =result.items.user.nickname
+                    nickname1 =result.items.user.nickname
                     await $.wait(1000);
-                    await today_score(zq_cookie1,nickname)
+                    await today_score(zq_cookie1,nickname1)
                   
             
                 }else{
@@ -112,7 +112,7 @@ function nickname(zq_cookie2,timeout = 0) {
             },timeout)
     })
 }
-function today_score(zq_cookie1,nickname,timeout = 0) {
+function today_score(zq_cookie1,nickname1,timeout = 0) {
     return new Promise((resolve) => {
         let url = {
             url : 'https://kandian.wkandian.com/wap/user/balance?'+ zq_cookie1,
@@ -128,7 +128,7 @@ function today_score(zq_cookie1,nickname,timeout = 0) {
                     console.log('\n今日收益总计:'+result.user.today_score)
                     console.log('\n当前金币总数:'+result.user.score)
                     console.log('\n折合人民币总数:'+result.user.money)
-                    $.message = `昵称:${nickname}\n今日收益总计:${result.user.today_score}金币\n 当前金币总数:${result.user.score} \n 折合人民币总数:${result.user.money}元`
+                    $.message = `昵称:${nickname1}\n今日收益总计:${result.user.today_score}金币\n 当前金币总数:${result.user.score} \n 折合人民币总数:${result.user.money}元`
                     //$.msg($.name, "", `今日收益总计:${result.user.today_score}金币\n 当前金币总数:${result.user.score} \n 折合人民币总数:${result.user.money}元`);
                 }else{
                      console.log(result)
