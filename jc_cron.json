@@ -3,7 +3,7 @@
   "desc": "无",
   "date": "2021-08-05 20:32:08",
   "author": "https://t.me/ShaolinTemple1",
-  "resource": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jc_cron.json",
+  "resource": "https://ghproxy.com/https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jc_cron.json",
   "list": [
     {
       "name": "晶彩签到",
@@ -11,7 +11,7 @@
       "time": "15 2 * * *",
       "job": {
         "type": "runjs",
-        "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jcqd.js"
+        "target": "https://ghproxy.com/https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jcqd.js"
       }
     },
     {
@@ -21,7 +21,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jcwz.js"
+        "target": "https://ghproxy.com/https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jcwz.js"
       }
     },
     {
@@ -41,7 +41,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jc_share.js"
+        "target": "https://ghproxy.com/https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jc_share.js"
       }
     },
     {
@@ -51,7 +51,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jc_Adv_video.js"
+        "target": "https://ghproxy.com/https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jc_Adv_video.js"
       }
     },
     {
@@ -61,7 +61,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jcbox.js"
+        "target": "https://ghproxy.com/https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jcbox.js"
       }
     },
     {
@@ -71,7 +71,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jc_friendSign.js"
+        "target": "https://ghproxy.com/https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jc_friendSign.js"
       }
     },
     {
@@ -81,7 +81,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jc_Rotary.js"
+        "target": "https://ghproxy.com/https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jc_Rotary.js"
       }
     },
     {
@@ -91,7 +91,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jc_withdraw.js"
+        "target": "https://ghproxy.com/https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jc_withdraw.js"
       }
     },
     {
@@ -101,7 +101,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jc_today_score.js"
+        "target": "https://ghproxy.com/https://raw.githubusercontent.com/shaolin-kongfu/js_scripts/main/jc_today_score.js"
       }
     }
   ]
