@@ -1,0 +1,98 @@
+{
+  "name": "晶彩天气任务订阅",
+  "author": "leaf",
+  "note": "请自行修改运行时间",
+  "date": "2021-11-12 00:08:11",
+  "list": [
+    {
+      "name": "晶彩天气看看赚",
+      "type": "cron",
+      "time": "21 8,20 * * *",
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/leafxcy/JavaScript/main/jctq/jctqkkz.js"
+      }
+    },
+    {
+      "name": "晶彩天气每日收益",
+      "type": "cron",
+      "time": "18 22 * * *",
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/leafxcy/JavaScript/main/jctq/jctq_today_score.js"
+      }
+    },
+    {
+      "name": "晶彩天气签到",
+      "type": "cron",
+      "time": "23 0,6 * * *",
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/leafxcy/JavaScript/main/jctq/jctqqd.js"
+      }
+    },
+    {
+      "name": "晶彩天气文章",
+      "type": "cron",
+      "time": "12 7,19 * * *",
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/leafxcy/JavaScript/main/jctq/jctqwz.js"
+      }
+    },
+    {
+      "name": "晶彩天气火爆转发",
+      "type": "cron",
+      "time": "12 6,12,18 * * *",
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/leafxcy/JavaScript/main/jctq/jctq_share.js"
+      }
+    },
+    {
+      "name": "晶彩天气福利视频",
+      "type": "cron",
+      "time": "20 9,17 * * *",
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/leafxcy/JavaScript/main/jctq/jctq_Adv_video.js"
+      }
+    },
+    {
+      "name": "晶彩天气抽奖",
+      "type": "cron",
+      "time": "31 8,16 * * *",
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/leafxcy/JavaScript/main/jctq/jctq_Rotary.js"
+      }
+    },
+    {
+      "name": "晶彩天气每日宝箱",
+      "type": "cron",
+      "time": "24 21,22 * * *",
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/leafxcy/JavaScript/main/jctq/jctqbox.js"
+      }
+    },
+    {
+      "name": "晶彩天气好友红包",
+      "type": "cron",
+      "time": "32 2,6,20 * * *",
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/leafxcy/JavaScript/main/jctq/jctq_friendSign.js"
+      }
+    },
+    {
+      "name": "晶彩天气提现",
+      "type": "cron",
+      "time": "34 23 * * *",
+      "job": {
+        "type": "runjs",
+        "target": "https://raw.githubusercontent.com/leafxcy/JavaScript/main/jctq/jctq_withdraw.js"
+      }
+    }
+  ]
+}
